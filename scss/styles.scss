@@ -1,3 +1,462 @@
-body{
-    background-color: bisque;
+@font-face {
+    font-family: "e-Ukraine";
+    src: url("../fonts/e-Ukraine-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
 }
+
+@font-face {
+    font-family: "e-Ukraine";
+    src: url("../fonts/e-Ukraine-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "e-Ukraine";
+    src: url("../fonts/e-Ukraine-Light.ttf") format("truetype");
+    font-style: normal;
+    font-weight: light;
+}
+
+$main:#A73169;
+$blue_ua: #0057B8;
+$yellow_ua: #FFD800;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 226px 14px 226px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: "e-Ukraine" !important;
+}
+
+/* стили для элемента логотипа */
+.header__logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.profile__link svg {
+    width: 40px;
+    height: 40px;
+}
+
+/* стили для элемента навигационного меню */
+.header__nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* стили для элемента списка ссылок навигационного меню */
+.header__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* стили для элемента каждого отдельного пункта меню */
+.menu__item {
+    margin: 0 1rem;
+}
+
+/* стили для элемента ссылки на каждый отдельный пункт меню */
+.menu__link {
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    font-weight: light;
+}
+
+
+/* стили для элемента ссылки на каждый отдельный пункт меню при наведении */
+.menu__link:hover {
+    color: $main;
+}
+
+/* стили для элемента ссылки на профиль пользователя */
+.profile__link {
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+/* стили для элемента ссылки на профиль пользователя при наведении */
+.profile__link:hover {
+    color: $main;
+}
+
+/* стили для элемента гамбургера для мобильного меню */
+.header__hamburger {
+    display: none;
+}
+
+.block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 95px 0 95px 0;
+
+    /* The image used */
+    background-image: url("../images/ukraine_bg.jpg");
+
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.block__title {
+    font-size: 4em;
+    margin: 0;
+    font-weight: bold;
+    color: $blue_ua;
+}
+
+.block__subtitle {
+    font-size: 2em;
+    padding-left: 30px;
+    margin: 0;
+    font-weight: bold;
+    color: $yellow_ua;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.container {
+    display: flex;
+    margin-top: 5%;
+    margin-left: 5% !important;
+}
+
+.projects-wrapper {
+    margin-left: 10%;
+}
+
+.projects {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+
+}
+
+
+
+
+.projects__img-wrapper {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 624px;
+}
+
+.projects__img {
+    height: 624px;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.projects__content {
+    flex: 4;
+    padding: 20px;
+}
+
+.projects--large .projects__content {
+    flex: 4;
+}
+
+.projects__title {
+    font-weight: bold;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.projects__description {
+    font-size: 16px;
+    line-height: 1.9;
+
+}
+
+.projects__author {
+    padding-top: 35px;
+}
+
+.projects__description span {
+    font-weight: bold;
+}
+
+
+.projects__progress__need {
+    font-weight: normal !important;
+    display: inline-block;
+}
+
+.projects__progress__donated {
+    font-weight: normal !important;
+    padding-left: 20px;
+    display: inline-block;
+}
+
+.projects__progress__fillbar {
+    position: relative;
+    display: block;
+    width: auto;
+    height: 8px;
+    border-radius: 100px;
+    background: $main;
+
+    &:after {
+        position: absolute;
+        right: 0;
+        top: 0px;
+        border-radius: 0px 100px / 100px 0px;
+        display: block;
+        content: '';
+        height: 8px;
+        width: 21%;
+        background: #D9D9D9;
+    }
+}
+
+
+.projects__footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+.projects__footer--text {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.projects__footer--buttons {
+    display: flex;
+    margin-top: 40px;
+}
+
+.projects__footer--button {
+
+    font-size: 16px;
+    transition: all 0.5s ease;
+    width: 225px;
+    height: 55px;
+    border-radius: 10px;
+    border: 3px solid #000;
+    color: #000;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.projects__footer--button:hover {
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    background-color: $main;
+}
+
+.projects__footer--button2 {
+    width: 350px;
+    transition: all 0.5s ease;
+    height: 55px;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    background-color: $main;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.projects__footer--button2:hover {
+    font-size: 16px;
+    border-radius: 10px;
+    border: 3px solid #000;
+    color: #000;
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width: 768px) {
+    .block {
+        flex-direction: column;
+    }
+
+    .block__title {
+        font-size: 2em;
+    }
+
+    .block__subtitle {
+        font-size: 1em;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+
+
+
+/* стили для элемента гамбургера для мобильного меню при маленьких экранах */
+@media screen and (max-width: 768px) {
+    .header__menu {
+        display: none;
+    }
+
+    .header__hamburger {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: #333;
+    }
+}
+
+
+
+
+.recent__projects {
+    overflow-x: scroll;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left: 5%;
+    padding: 20px;
+
+}
+
+.popular__projects {
+    overflow-x: scroll;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left: 5%;
+    padding: 20px;
+
+}
+
+.see_all a,
+.see_all {
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    margin-left: 3%;
+}
+
+.see_all a:hover {
+    color: $main;
+}
+
+.project__header__text {
+    padding-top: 100px;
+    padding-left: 20px;
+    font-weight: bold;
+}
+
+.recent__project {
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #EFEFEF;
+    margin-right: 10px;
+    margin-right: 20px;
+}
+
+.recent__project__content,
+.recent__project__footer {
+    padding-left: 20px;
+    padding-top: 20px;
+
+}
+
+.recent__project__footer {
+    padding-bottom: 20px;
+}
+
+.recent__footer--text,
+.projects__footer--socials {
+    display: inline-block;
+}
+
+.recent__footer--text {
+    padding-left: 45%;
+}
+
+.recent__project__header {
+    height: 150px;
+    border-radius: 10px;
+    background-image: url("../images/placeholder_panda.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+}
+
+.recent__title {
+    margin-top: 3%;
+    font-weight: bold;
+}
+
+.profile__slider-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .profile__slider {
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  .profile__slider:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -10px;
+    height: 30px;
+    width: 30px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .profile__content {
+    width: 100%;
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #eee;
+    border-radius: 10px;
+  }
