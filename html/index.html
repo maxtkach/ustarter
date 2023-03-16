@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script>
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    window.location = "../html/mobile.html"; // замените "http://example.com/mobile-page" на URL вашей мобильной страницы
+  }
+  </script>
 </head>
 
 <body>
@@ -21,7 +26,7 @@
     <div class="header__logo">UStarter</div>
     <nav class="header__nav">
       <ul class="header__menu menu">
-        <li class="menu__item"><a href="#" class="menu__link">Інфо</a></li>
+        <li class="menu__item"><a href="../html/project_creation.html" class="menu__link">Почати проект</a></li>
         <li class="menu__item dropdown">
           <a class="menu__link" href="#" id="navbarDropdownMenuLink" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,15 +34,33 @@
               <path fill="#a73169" d="m12 15l-5-5h10l-5 5Z" /></svg>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Благодійність</a></li>
-            <li><a class="dropdown-item" href="#">Створення Ігор</a></li>
-            <li><a class="dropdown-item" href="#">Інженерія ПО</a></li>
-            <li><a class="dropdown-item" href="#">Дизайн</a></li>
+            <h5 class="dropdown-title dropdown-item">Категорії</h5>
+            <div class="col dropdown-column">
+              <li><a class="dropdown-item" href="#">Фільми та відео</a></li>
+              <li><a class="dropdown-item" href="#">Дизайн</a></li>
+              <li><a class="dropdown-item" href="#">Ігри</a></li>
+              <li><a class="dropdown-item" href="#">Музика</a></li>
+              <li><a class="dropdown-item" href="#">Фото</a></li>
+              <li><a class="dropdown-item" href="#">Технології</a></li>
+            </div>
+            <div class="col dropdown-column">
+              <li><a class="dropdown-item" href="#">Для дітей</a></li>
+              <li><a class="dropdown-item" href="#">Постраждалі</a></li>
+              <li><a class="dropdown-item" href="#">Навчання</a></li>
+              <li><a class="dropdown-item" href="#">Застосунки</a></li>
+              <li><a class="dropdown-item" href="#">Комікси та мультиплікація</a></li>
+              <li><a class="dropdown-item" href="#">Особисті збори</a></li>
+            </div>
+            <div class="col dropdown-column">
+              <li><a class="dropdown-item" href="#">Нещодавні</a></li>
+              <li><a class="dropdown-item" href="#">Найпопулярніші</a></li>
+              <li><a class="dropdown-item" href="#">Найбільш спонсовані</a></li>
+            </div>
           </ul>
         </li>
       </ul>
     </nav>
-    <div class="header__profile profile"><a href="#" class="profile__link"><svg xmlns="http://www.w3.org/2000/svg"
+    <div class="header__profile profile"><a href="../html/profile.html" class="profile__link"><svg xmlns="http://www.w3.org/2000/svg"
           width="48" height="48" viewBox="0 0 48 48">
           <g fill="currentColor">
             <path fill-rule="evenodd"
@@ -53,7 +76,6 @@
               clip-rule="evenodd" />
           </g>
         </svg></a></div>
-    <div class="header__hamburger hamburger">&#9776;</div>
   </header>
 
 
