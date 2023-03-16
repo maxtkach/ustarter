@@ -1,40 +1,40 @@
 from tables import User, Project, Team, Sponsor
 
-class User_Query():
-    def get_user_by_id(self, id, session):
+class UserQuery():
+    def GetUserById(self, id, session):
         return session.query(User)\
             .filter_by(User.id == id)\
             .first_or_404()
-    def get_user_by_project_id(self, project_id, session):
+    def GetUserByProjectId(self, projectId, session):
         return session.query(User)\
-            .filter_by(User.projects_participated.project_id == project_id)\
+            .filter_by(User.projectsParticipated.projectId == projectId)\
             .first_or_404()
-    def get_author_by_project_id(self, project_id, session):
-        return self.get_user_by_id(session.query(Project)
-            .filter_by(Project.id == project_id)
+    def GetAuthorByProjectId(self, projectId, session):
+        return self.GetUserById(session.query(Project)
+            .filter_by(Project.id == projectId)
             .first_or_404()
-            .author_id, session)
-    def get_users_with_projects(self, session):
+            .authorId, session)
+    def GetUsersWithProjects(self, session):
         return session.query(User)\
-            .filter_by(User.projects_participated.role == "Author")\
+            .filter_by(User.projectsParticipated.role == "Author")\
             .all()
-    def get_users_in_projects(self, session):
+    def GetUsersInProjects(self, session):
         return session.query(User)\
-            .filter_by(User.projects_participated)\
+            .filter_by(User.projectsParticipated)\
             .all()
-    def get_users_with_sponsored_projects(self, session):
+    def GetUsersWithSponsoredProjects(self, session):
         return session.query(User)\
-            .filter_by(User.projects_sponsored)\
-            .order_by(sum(sp.money for sp in User.projects_sponsored))\
+            .filter_by(User.projectsSponsored)\
+            .order_by(sum(sp.money for sp in User.projectsSponsored))\
             .all()
 
 
-class Project_Query():
-    def get_project_by_id(self, id, session):
+class ProjectQuery():
+    def GetProjectById(self, id, session):
         return session.query(Project)\
             .filter_by(Project.id == id)\
             .first_or_404()
-    def get_project_by_user_id(self, user_id, session):
+    def GetProjectByUserId(self, userId, session):
         return session.query(Project)\
-            .filter_by(Project.team.user_id == user_id)\
+            .filter_by(Project.team.userId == userId)\
             .first_or_404()
