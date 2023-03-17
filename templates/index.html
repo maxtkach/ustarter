@@ -1,92 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UStarter</title>
-  <link rel="stylesheet" href="static/css/styles.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+{% block head %}
   <script>
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     window.location = "../html/mobile.html"; // замените "http://example.com/mobile-page" на URL вашей мобильной страницы
   }
   </script>
-</head>
+{% endblock %}
 
-<body>
-
-
-  <!-- НАЧАЛО ХЕДЕРА ------------------------------------------- -->
-
-
-  <header class="header">
-    <div class="header__logo">UStarter</div>
-    <nav class="header__nav">
-      <ul class="header__menu menu">
-        <li class="menu__item"><a href="../html/project_creation.html" class="menu__link">Почати проект</a></li>
-        <li class="menu__item dropdown">
-          <a class="menu__link" href="#" id="navbarDropdownMenuLink" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Проекти <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-              <path fill="#a73169" d="m12 15l-5-5h10l-5 5Z" /></svg>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <h5 class="dropdown-title dropdown-item">Категорії</h5>
-            <div class="col dropdown-column">
-              <li><a class="dropdown-item" href="#">Фільми та відео</a></li>
-              <li><a class="dropdown-item" href="#">Дизайн</a></li>
-              <li><a class="dropdown-item" href="#">Ігри</a></li>
-              <li><a class="dropdown-item" href="#">Музика</a></li>
-              <li><a class="dropdown-item" href="#">Фото</a></li>
-              <li><a class="dropdown-item" href="#">Технології</a></li>
-            </div>
-            <div class="col dropdown-column">
-              <li><a class="dropdown-item" href="#">Для дітей</a></li>
-              <li><a class="dropdown-item" href="#">Постраждалі</a></li>
-              <li><a class="dropdown-item" href="#">Навчання</a></li>
-              <li><a class="dropdown-item" href="#">Застосунки</a></li>
-              <li><a class="dropdown-item" href="#">Комікси та мультиплікація</a></li>
-              <li><a class="dropdown-item" href="#">Особисті збори</a></li>
-            </div>
-            <div class="col dropdown-column">
-              <li><a class="dropdown-item" href="#">Нещодавні</a></li>
-              <li><a class="dropdown-item" href="#">Найпопулярніші</a></li>
-              <li><a class="dropdown-item" href="#">Найбільш спонсовані</a></li>
-            </div>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    <div class="header__profile profile"><a href="../html/profile.html" class="profile__link"><svg xmlns="http://www.w3.org/2000/svg"
-          width="48" height="48" viewBox="0 0 48 48">
-          <g fill="currentColor">
-            <path fill-rule="evenodd"
-              d="M24 42c9.941 0 18-8.059 18-18S33.941 6 24 6S6 14.059 6 24s8.059 18 18 18Zm0 2c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z"
-              clip-rule="evenodd" />
-            <path
-              d="M12 35.63c0-1.033.772-1.906 1.8-2.02c7.715-.854 12.72-.777 20.418.019a1.99 1.99 0 0 1 1.108 3.472c-9.085 7.919-14.277 7.81-22.686.008c-.41-.38-.64-.92-.64-1.478Z" />
-            <path fill-rule="evenodd"
-              d="M34.115 34.623c-7.637-.79-12.57-.864-20.206-.019A1.028 1.028 0 0 0 13 35.631c0 .286.119.557.32.745c4.168 3.866 7.326 5.613 10.413 5.624c3.098.011 6.426-1.722 10.936-5.652a.99.99 0 0 0-.554-1.724ZM13.69 32.616c7.796-.863 12.874-.785 20.632.018a2.99 2.99 0 0 1 1.662 5.221c-4.575 3.988-8.385 6.16-12.257 6.145c-3.883-.014-7.525-2.223-11.766-6.158A3.018 3.018 0 0 1 11 35.63a3.028 3.028 0 0 1 2.69-3.015Z"
-              clip-rule="evenodd" />
-            <path d="M32 20a8 8 0 1 1-16 0a8 8 0 0 1 16 0Z" />
-            <path fill-rule="evenodd" d="M24 26a6 6 0 1 0 0-12a6 6 0 0 0 0 12Zm0 2a8 8 0 1 0 0-16a8 8 0 0 0 0 16Z"
-              clip-rule="evenodd" />
-          </g>
-        </svg></a></div>
-  </header>
-
-
-  <!-- КОНЕЦ ХЕДЕРА ------------------------------------------- -->
-
-
-
-
-
+{% block content %}
   <!-- НАЧАЛО БЛОКА С УКРАИНОЙ ------------------------------------------- -->
-
 
   <div class="block">
     <div class="block__title-container">
@@ -636,6 +559,4 @@
   </script>
 
   <script src="static/js/main.js"></script>
-</body>
-
-</html>
+{% endblock %}
