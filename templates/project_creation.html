@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<form method="post">
     <div class="creation">
         <h2 class="creation__title">Створення проекту</h2>
         <h4 class="creation_undertitle">Назвіть ваш проект</h4>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Назва проекту:" aria-label="Username"
+            <input type="text" class="form-control" name="caption" placeholder="Назва проекту:" aria-label="Username"
                 aria-describedby="basic-addon1">
         </div>
         <h4 class="creation_undertitle">Скільки вам потрібно грошей на реалізацію?</h4>
@@ -15,7 +16,7 @@
                     <option value="2">$</option>
                     <option value="3">€</option>
                 </select></span>
-            <input type="text" class="form-control" placeholder="Скільки вам потрібно грошей на реалізацію?"
+            <input type="text" class="form-control" name="neededAmount" placeholder="Скільки вам потрібно грошей на реалізацію?"
                 aria-label="Amount (to the nearest dollar)">
 
         </div>
@@ -26,12 +27,12 @@
                     <option value="2">$</option>
                     <option value="3">€</option>
                 </select></span>
-            <input type="text" class="form-control" placeholder="Стартовий бюджет"
+            <input type="text" class="form-control" name="startBudget" placeholder="Стартовий бюджет"
                 aria-label="Amount (to the nearest dollar)"></div>
 
         <h4 class="creation_undertitle">Розкажіть про ваш проект:</h4>
         <div class="input-group mb-3">
-            <textarea class="form-control" aria-label="With textarea" placeholder="Інформація про проект"></textarea>
+            <textarea class="form-control" name="description" aria-label="With textarea" placeholder="Інформація про проект"></textarea>
         </div>
         <h4 class="creation_undertitle">Додайте фото</h4>
         <div class="input-group mb-3">
@@ -46,15 +47,13 @@
         </div>
         <h4 class="creation_undertitle">Кого шукаєте у команду?</h4>
         <div class="input-group">
-            <textarea class="form-control" aria-label="With textarea"></textarea>
+            <textarea class="form-control" name="neededTeamMembers" aria-label="With textarea"></textarea>
         </div>
 
-        <button class="creation__submit">Створити проект</button>
-
-
+        <button class="creation__submit" type="submit">Створити проект</button>
     </div>
     </div>
-
+</form>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

@@ -1,21 +1,23 @@
 from datetime import datetime
-from app import db
+from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()
 
-class Team(db.Model):
-    __tablename__ = 'user_project_team'
+Team = db.Table(
+    "user_project_team",
+    db.Column('id', db.Integer(),       primary_key=True),
+    db.Column('userId', db.Integer(),   db.ForeignKey('users.id')),
+    db.Column('projectId', db.Integer(),   db.ForeignKey('projects.id')),
+    db.Column('role', db.String(40),  nullable=False)
+)
 
-    userId =      db.Column(db.Integer(),   db.ForeignKey('users.id')),
-    projectId =   db.Column(db.Integer(),   db.ForeignKey('projects.id')),
-    role =         db.Column(db.String(70),  nullable=False)
-
-
-class Sponsor(db.Model):
-    __tablename__ = 'user_project_helper'
-
-    userId =      db.Column(db.Integer(),      db.ForeignKey('users.id')),
-    projectId =   db.Column(db.Integer(),      db.ForeignKey('projects.id')),
-    money =        db.Column(db.BigInteger(),   nullable=False)
+Sponsor = db.Table(
+    'user_project_helper',
+    db.Column('id', db.Integer(),       primary_key=True),
+    db.Column('userId', db.Integer(),      db.ForeignKey('users.id')),
+    db.Column('projectId', db.Integer(),      db.ForeignKey('projects.id')),
+    db.Column('money', db.BigInteger(),   nullable=False)
+)
 
 
 class User(db.Model):
@@ -30,9 +32,9 @@ class User(db.Model):
     imageId =                db.Column(db.Integer(),       nullable=False)
     resume =                  db.Column(db.Text,            nullable=False)
     aboutMe =                db.Column(db.Text,            nullable=False)
-    address =                 db.Column(db.Text,            nullable=False)
-    projectsParticipated =   db.relationship('Project',    secondary=Team,      back_populates='users')
-    projectsSponsored =      db.relationship('Project',    secondary=Sponsor,   back_populates='users')
+    address =                 db.Column(db.Text,            nullable=True)
+    projectsParticipated =   db.relationship('Project',    secondary=Team,      backref=db.backref('users_members'))
+    projectsSponsored =      db.relationship('Project',    secondary=Sponsor,   backref=db.backref('users_sponsors'))
 
 
 class Project(db.Model):
@@ -41,13 +43,15 @@ class Project(db.Model):
     id =                 db.Column(db.Integer(),    primary_key=True)
     authorId =          db.Column(db.Integer(),    db.ForeignKey('users.id'))
     usersClicked =      db.Column(db.Text,         nullable=True)
+    category =          db.Column(db.Text,         nullable=False)
     caption =            db.Column(db.String(100),  nullable=False)
     imageId =           db.Column(db.Integer(),    nullable=False)
     createdOn =         db.Column(db.DateTime(),   default=datetime.now)
     updatedOn =         db.Column(db.DateTime(),   default=datetime.now,   onupdate=datetime.now)
     neededAmount =      db.Column(db.BigInteger(), nullable=False)
-    receivedAmount =    db.Column(db.BigInteger(), nullable=False)
+    receivedAmount =    db.Column(db.BigInteger(), nullable=True)
+    startBudget =       db.Column(db.Integer(), nullable=False)
     description =        db.Column(db.Text,         nullable=False)
-    address =            db.Column(db.Text,         nullable=False)
-    team =               db.relationship('User',    secondary=Team,         back_populates='projects')
-    sponsors =           db.relationship('User',    secondary=Sponsor,      back_populates='projects')
+    address =            db.Column(db.Text,         nullable=True)
+    #team =               db.relationship('User',    secondary=Team,         backref=db.backref('projects'))
+    #sponsors =           db.relationship('User',    secondary=Sponsor,      backref=db.backref('projects'))

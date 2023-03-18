@@ -22,7 +22,7 @@
     <div class="header__logo">UStarter</div>
     <nav class="header__nav">
       <ul class="header__menu menu">
-        <li class="menu__item"><a href="../html/project_creation.html" class="menu__link">Почати проект</a></li>
+        <li class="menu__item"><a href="{{ url_for('CreateProject') }}" class="menu__link">Почати проект</a></li>
         <li class="menu__item dropdown">
           <a class="menu__link" href="#" id="navbarDropdownMenuLink" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -73,6 +73,9 @@
           </g>
         </svg></a></div>
   </header>
+  {% for message in get_flashed_messages() %}
+  <div class="alert alert-danger">{{ message }}</div>
+  {% endfor %}
   {% block content %} {% endblock %}
 </body>
 
