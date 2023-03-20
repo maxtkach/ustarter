@@ -87,7 +87,7 @@
 	font-size: 14px !important;
 	height: auto !important;
 	font-weight: normal !important;
-	padding: 14px 0 !important;
+	padding: 14px 0 !important; 
 	text-transform: uppercase !important;
 	border-color: $main !important;
 }
