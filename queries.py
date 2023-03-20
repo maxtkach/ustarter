@@ -1,4 +1,4 @@
-from ustarter.ustarter.tables import *
+from tables import *
 
 class UserQuery():
     def GetUserById(self, id):

@@ -22,7 +22,7 @@
     <div class="header__logo">UStarter</div>
     <nav class="header__nav">
       <ul class="header__menu menu">
-        <li class="menu__item"><a href="{{ url_for('CreateProject') }}" class="menu__link">Почати проект</a></li>
+        <li class="menu__item"><a href="{{ url_for('project.CreateProject') }}" class="menu__link">Почати проект</a></li>
         <li class="menu__item dropdown">
           <a class="menu__link" href="#" id="navbarDropdownMenuLink" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -56,7 +56,7 @@
         </li>
       </ul>
     </nav>
-    <div class="header__profile profile"><a href="../html/profile.html" class="profile__link"><svg xmlns="http://www.w3.org/2000/svg"
+    <div class="header__profile profile"><a href="{{ url_for('user.SignupPage')}}" class="profile__link"><svg xmlns="http://www.w3.org/2000/svg"
           width="48" height="48" viewBox="0 0 48 48">
           <g fill="currentColor">
             <path fill-rule="evenodd"
@@ -78,6 +78,5 @@
   {% endfor %}
   {% block content %} {% endblock %}
 </body>
-
 
   <!-- КОНЕЦ ХЕДЕРА ------------------------------------------- -->
