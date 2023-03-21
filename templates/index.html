@@ -6,9 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UStarter</title>
-  <link rel="stylesheet" href="../static/css/styles.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/scss/styles.css">
   <script>
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     window.location = "../template/mobile.html"; // замените "http://example.com/mobile-page" на URL вашей мобильной страницы
@@ -107,77 +106,119 @@
   <!-- НАЧАЛО ПЕРВОГО БЛОКА С ТРЕМЯ ПРОЕКТАМИ ------------------------------------------- -->
 
 
-  <div class="container">
+  <section class="section">
 
-    <div class="projects projects--large">
-      <div class="projects__img-wrapper">
-        <img class="projects__img" src="../static/images/placeholder_panda.jpg" alt="Картинка 1">
-      </div>
+    <div class="projects_large">
+      <img class="projects__image" src="../static/images/placeholder_panda.jpg" alt="Картинка 1">
       <div class="projects__content">
-
-        <h2 class="projects__title">The Animals Glory</h2>
-        <div class="projects__progress">
-          <div class="projects__progress__need">Потрібно коштів: 300 000₴ </div>
-          <div class="projects__progress__donated">Зібрано: 237 213₴ (~79%) </div>
-          <div class="projects__progress__fillbar"></div>
+        <div class="projects__main-info">
+          <h2 class="projects__title">The Animals Glory</h2>
+          <div class="projects__progress">
+            <div class="progress__texts">
+              <p class="progress__need">Потрібно коштів: 300 000₴ </p>
+              <p class="progress__donated">Зібрано: 237 213₴ (~79%) </p>
+            </div>
+            <div class="progress__fillbar"></div>
+          </div>
+          <div class="projects__info">
+            <p class="projects__description info__author"><span>Автор:</span> Андрій Меленюк</p>
+            <p class="projects__description info__goals"><span>Цілі:</span> допомогти тваринам під час війни</p>
+            <p class="projects__description info__problem"><span>Проблема:</span> Велика к-ть тварин знаходяться на
+              вулиці, кинуті
+              минулими хозяїнами, тварини без помівки, або в притулку. Їх к-ть постійно зростає і ми божаємо щоб таких
+              тварив в країні було якнайменше </p>
+          </div>
         </div>
-        <p class="projects__description projects__author"><span>Автор:</span> Андрій Меленюк</p>
-
-        <p class="projects__description projects__goals"><span>Цілі:</span> допомогти тваринам під час війни</p>
-        <p class="projects__description projects__problem"><span>Проблема:</span> Велика к-ть тварин знаходяться на
-          вулиці, кинуті
-          минулими хозяїнами, тварини без помівки, або в притулку. Їх к-ть постійно зростає і ми божаємо щоб таких
-          тварив в країні було якнайменше </p>
-
         <div class="projects__footer">
-          <div class="projects__footer--text">Зв'язок з нами
-            <div class="projects__footer--socials">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-              </svg>
+          <div class="footer__texts">
+            <div class="footer__text"><span>Зв'язок з нами</span>
+              <div class="footer__socials">
+                <div class="footer__icon">
+                  <img src="../static/images/logos_telegram.svg" alt="telegram">
+                </div>
+                <div class="footer__icon">
+                  <img src="../static/images/logos_tiktok-icon.svg" alt="telegram">
+                </div>
+                <div class="footer__icon">
+                  <img src="../static/images/skill-icons_instagram.svg" alt="telegram">
+                </div>
+                <div class="footer__icon">
+                  <img src="../static/images/skill-icons_twitter.svg" alt="telegram">
+                </div>
+              </div>
+            </div>
+            <div class="footer__text" style="text-align:right">Адреса <br>
+              <span>Одеса, вул. Пушкіна 19 </span>
             </div>
           </div>
-          <div class="projects__footer--text" style="text-align:right">Адреса <br>
-            <span>Одеса, вул. Пушкіна 19 </span>
+          <div class="footer__buttons">
+            <div class="buttons__button2">СПОНСОРУВАТИ</div>
+            <div class="buttons__button " style="margin-left: 20px;">ХОЧУ ДО КОМАНДИ</div>
           </div>
         </div>
-        <div class="projects__footer--buttons">
-          <div class="projects__footer--button2">СПОНСОРУВАТИ</div>
-          <div class="projects__footer--button " style="margin-left: 20px;">ХОЧУ ДО КОМАНДИ</div>
-        </div>
       </div>
     </div>
-
-
-    <div class="projects-wrapper projects--small">
-      <div class="projects">
-        <div class="projects__img-wrapper">
-          <img class="projects__img" src="../static/images/placeholder_panda.jpg" alt="Картинка 2">
+    <div class="projects__smalls">
+      <div class="projects_small">
+        <div>
+          <img class="projects__image_small" src="../static/images/placeholder_panda.jpg" alt="Картинка 1">
         </div>
         <div class="projects__content">
-          <h2 class="projects__title">The Animals Glory</h2>
-          <p class="projects__description projects__author"><span>Зібрано:</span> 72%</p>
-          <p class="projects__description projects__author"><span>Автор:</span> Андрій Меленюк</p>
-          <p class="projects__description projects__goals"><span>Цілі:</span> допомогти тваринам під час війни</p>
-
+          <div class="projects__main-info">
+            <h2 class="projects__title">The Animals Glory</h2>
+            <p class="progress__donated_small">Зібрано: <span>~79%</span></p>
+            <div class="projects__info">
+              <p class="projects__description info__author"><span>Автор:</span> Андрій Меленюк</p>
+              <p class="projects__description info__goals"><span>Цілі:</span> допомогти тваринам під час війни</p>
+            </div>
+          </div>
+          <div class="footer__socials">
+            <div class="footer__icon">
+              <img src="../static/images/logos_telegram.svg" alt="telegram">
+            </div>
+            <div class="footer__icon">
+              <img src="../static/images/logos_tiktok-icon.svg" alt="tiktok">
+            </div>
+            <div class="footer__icon">
+              <img src="../static/images/skill-icons_instagram.svg" alt="instagram">
+            </div>
+            <div class="footer__icon">
+              <img src="../static/images/skill-icons_twitter.svg" alt="twitter">
+            </div>
+          </div>
         </div>
       </div>
-
+      <div class="projects_small mt-md-1">
+        <div>
+          <img class="projects__image_small" src="../static/images/placeholder_panda.jpg" alt="Картинка 1">
+        </div>
+        <div class="projects__content">
+          <div class="projects__main-info">
+            <h2 class="projects__title">The Animals Glory</h2>
+            <p class="progress__donated_small">Зібрано: <span>~79%</span></p>
+            <div class="projects__info">
+              <p class="projects__description info__author"><span>Автор:</span> Андрій Меленюк</p>
+              <p class="projects__description info__goals"><span>Цілі:</span> допомогти тваринам під час війни</p>
+            </div>
+          </div>
+          <div class="footer__socials">
+            <div class="footer__icon">
+              <img src="../static/images/logos_telegram.svg" alt="telegram">
+            </div>
+            <div class="footer__icon">
+              <img src="../static/images/logos_tiktok-icon.svg" alt="tiktok">
+            </div>
+            <div class="footer__icon">
+              <img src="../static/images/skill-icons_instagram.svg" alt="instagram">
+            </div>
+            <div class="footer__icon">
+              <img src="../static/images/skill-icons_twitter.svg" alt="twitter">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
   
 

@@ -1,0 +1,177 @@
+.projects {
+  display: flex;
+  flex-direction: row;
+}
+.projects__smalls {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+}
+@media (max-width: 1620px) {
+  .projects__smalls {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    margin-top: 24px;
+  }
+}
+.projects_small {
+  display: flex;
+  flex-direction: row;
+  height: -moz-max-content;
+  height: max-content;
+  margin-bottom: 24px;
+}
+.projects_large {
+  display: flex;
+  flex-direction: row;
+  max-width: 1200px;
+}
+.projects__image {
+  height: 625px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.projects__image_small {
+  width: 210px;
+  height: 300px;
+}
+.projects__content {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 0 20px;
+}
+.projects__title {
+  font-weight: bold;
+  text-align: center;
+  font-size: 24px;
+}
+.projects__description {
+  font-size: 16px;
+  line-height: 1.9;
+}
+.projects__description span {
+  font-weight: bold;
+}
+.projects__author {
+  padding-top: 35px;
+}
+.projects__footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.progress__texts {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+.progress__need {
+  font-weight: normal !important;
+}
+.progress__donated {
+  font-weight: normal !important;
+}
+.progress__donated_small {
+  margin: 20px 0;
+}
+.progress__donated_small span {
+  color: #A73169;
+  font-weight: bold;
+}
+.progress__fillbar {
+  position: relative;
+  display: block;
+  width: auto;
+  height: 8px;
+  margin-top: 10px;
+  border-radius: 4px;
+  background: #D9D9D9;
+  margin-bottom: 32px;
+}
+.progress__fillbar:after {
+  position: absolute;
+  top: 0px;
+  border-radius: 4px 4px/4px 4px;
+  display: block;
+  content: "";
+  height: 8px;
+  width: 79%;
+  background: #A73169;
+}
+
+.footer__texts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.footer__icon {
+  margin: 6px 12px;
+}
+.footer__icon img {
+  width: 24px;
+  height: 24px;
+}
+.footer__icon:first-child {
+  margin-left: 0;
+}
+.footer__text {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.footer__socials {
+  display: flex;
+  justify-content: space-between;
+}
+.footer__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.buttons__button2 {
+  width: 350px;
+  transition: all 0.5s ease;
+  height: 55px;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  background-color: #A73169;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.buttons__button2:hover {
+  font-size: 16px;
+  border-radius: 10px;
+  border: 3px solid #000;
+  color: #000;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.buttons__button {
+  font-size: 16px;
+  transition: all 0.5s ease;
+  width: 225px;
+  height: 55px;
+  border-radius: 10px;
+  border: 3px solid #000;
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.buttons__button:hover {
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  background-color: #A73169;
+}/*# sourceMappingURL=project.css.map */
