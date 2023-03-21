@@ -1,4 +1,5 @@
 from tables import *
+from sqlalchemy import desc
 
 class UserQuery():
     def GetUserById(self, id):
@@ -27,19 +28,19 @@ class UserQuery():
     def GetUsersWithSponsoredProjects(self):
         return db.session.query(User)\
             .filter(User.projectsSponsored)\
-            .order_by(sum(sp.money for sp in User.projectsSponsored))\
+            .order_by(desc(sum(sp.money for sp in User.projectsSponsored)))\
             .all()
     def GetTopUsersWithSponsoredProjects(self):
         return db.session.query(User)\
             .filter(User.projectsSponsored)\
-            .order_by(sum(sp.money for sp in User.projectsSponsored))\
+            .order_by(desc(sum(sp.money for sp in User.projectsSponsored)))\
             .limit(5)\
             .all()
     def GetTopUsersWithProjects(self):
         return db.session.query(User)\
             .filter(User.projectsParticipated.role == "Author")\
-            .order_by(len(User.projectsParticipated) * len(ProjectQuery()
-            .GetProjectById(User.projectsParticipated.projectId).usersClicked.split(" ")))\
+            .order_by(desc(len(User.projectsParticipated) * len(ProjectQuery()
+            .GetProjectById(User.projectsParticipated.projectId).usersClicked.split(" "))))\
             .limit(5)\
             .all()
 
@@ -53,23 +54,31 @@ class ProjectQuery():
             .all()
     def GetProjectsByTeamMemberId(self, userId):
         team = UserQuery().GetUserById(userId).projectsParticipated
-        projects = [self.GetProjectById(t.projectId) for t in team]
+        projects = [self.GetProjectById(t.columns.projectId) for t in team]
         return projects
     def GetTopProjects(self):
         return db.session.query(Project) \
-            .order_by(len(Project.usersClicked.split(" "))) \
+            .order_by(desc(len(Project.usersClicked.split(" ")))) \
             .limit(5)\
             .all()
     def GetLatestProjects(self):
         return db.session.query(Project) \
-            .order_by(Project.createdOn) \
+            .order_by(desc(Project.createdOn)) \
             .limit(5)\
             .all()
     def GetProjectsBySponsorId(self, userId):
         sponsors = UserQuery().GetUserById(userId).projectsSponsored
-        projects = [self.GetProjectById(s.projectId) for s in sponsors]
+        projects = [self.GetProjectById(s.columns.projectId) for s in sponsors]
         return projects
     def GetProjectsByCategory(self, category):
         return db.session.query(Project) \
             .filter(Project.category == category) \
             .all()
+
+class TeamQuery():
+    def GetTeamByProjectId(self, projectId):
+        return db.session.query(Team).filter(Team.columns.projectId == projectId).all()
+
+class SponsorQuery():
+    def GetSponsorsByProjectId(self, projectId):
+        return db.session.query(Sponsor).filter(Sponsor.columns.projectId == projectId).all()

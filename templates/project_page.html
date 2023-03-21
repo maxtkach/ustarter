@@ -11,21 +11,21 @@
 
 {% block content %}
     <div class="project-page">
-        <div class="project-page__name">The Animals Glory</div>
+        <div class="project-page__name">{{ project.caption }}</div>
         <div class="project-page__content">
-            <div class="project-page__image"><img src="../static/images/placeholder_panda.jpg" alt=""></div>
+            <div class="project-page__image"><img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt=""></div>
             <div class="projects__progress">
-                <div class="project-page__need projects__progress__need">Потрібно коштів: 300 000₴ </div>
-                <div class="project-page__donated projects__progress__donated">Зібрано: 237 213₴ (~79%) </div>
+                <div class="project-page__need projects__progress__need">Потрібна сума: {{ project.neededAmount }}</div>
+                <div class="project-page__donated projects__progress__donated">Отримана сума: {{ project.receivedAmount }}</div>
                 <div class="project-page__fillbar projects__progress__fillbar"></div>
-                <div class="project-page__sponsors">К-ть спонсорів: 12 234 </div>
-                <div class="project-page__team">Команда проекту: 121 </div>
+                <div class="project-page__sponsors">К-ть спонсорів: {{ len(getSponsors(project.id)) }}</div>
+                <div class="project-page__team">Команда: {{ len(getTeam(project.id)) }}</div>
                 <div class="project-page__media-space">Медіа Простір</div>
-                <div class="project-page__media-space--image"><img src="../static/images/placeholder_panda.jpg" alt="">
+                <div class="project-page__media-space--image"><img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
                 </div>
-                <div class="project-page__media-space--image"><img src="../static/images/placeholder_panda.jpg" alt="">
+                <div class="project-page__media-space--image"><img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
                 </div>
-                <div class="project-page__media-space--image"><img src="../static/images/placeholder_panda.jpg" alt="">
+                <div class="project-page__media-space--image"><img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
                 </div>
                 <div class="project-page__buttons projects__footer--buttons">
                     <div class="project-page__button projects__footer--button2">СПОНСОРУВАТИ</div>
@@ -75,70 +75,26 @@
             </div>
             <div class="project-page__bottom-content">
                 <h2 class="project-page__main-title" id="project-about">Про проект</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed scelerisque ligula. Aenean
-                    imperdiet neque non erat consectetur tincidunt. Aliquam at dui nec enim feugiat venenatis. Praesent
-                    non finibus felis, at porta orci. Quisque nec diam tempor, ullamcorper ligula a, aliquet quam.
-                    Vivamus feugiat velit a nisl eleifend, ac luctus urna tincidunt. Proin at dui feugiat, sagittis
-                    massa et, vehicula nisi. Duis lacinia lacus vitae urna venenatis, eu dapibus justo facilisis.
-                    Maecenas sit amet imperdiet quam, sit amet molestie turpis. In at dui vel diam tempus rutrum
-                    faucibus ut eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-                    mus.
-                    Sed commodo, urna et gravida euismod, lacus arcu facilisis augue, eu congue mauris magna ut eros.
-                    Morbi pellentesque sapien et mi blandit, vel suscipit sapien molestie. Vestibulum ac leo ut libero
-                    placerat semper. Nullam mi quam, convallis dignissim faucibus vitae, consectetur vel turpis. Sed
-                    sagittis lacinia dui, ac tempor mi vehicula quis.</p>
+                <p>{{ loads(project.description)['description'] }}</p>
                 <h2 class="project-page__main-title" id="project-risics">Ризики</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed scelerisque ligula. Aenean
-                    imperdiet neque non erat consectetur tincidunt. Aliquam at dui nec enim feugiat venenatis. Praesent
-                    non finibus felis, at porta orci. Quisque nec diam tempor, ullamcorper ligula a, aliquet quam.
-                    Vivamus feugiat velit a nisl eleifend, ac luctus urna tincidunt. Proin at dui feugiat, sagittis
-                    massa et, vehicula nisi. Duis lacinia lacus vitae urna venenatis, eu dapibus justo facilisis.
-                    Maecenas sit amet imperdiet quam, sit amet molestie turpis. In at dui vel diam tempus rutrum
-                    faucibus ut eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-                    mus.
-                    Sed commodo, urna et gravida euismod, lacus arcu facilisis augue, eu congue mauris magna ut eros.
-                    Morbi pellentesque sapien et mi blandit, vel suscipit sapien molestie. Vestibulum ac leo ut libero
-                    placerat semper. Nullam mi quam, convallis dignissim faucibus vitae, consectetur vel turpis. Sed
-                    sagittis lacinia dui, ac tempor mi vehicula quis.</p>
+                <p>{{ loads(project.description)['description'] }}</p>
                 <h2 class="project-page__main-title" id="project-team">Хто потрібен у команду</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed scelerisque ligula. Aenean
-                    imperdiet neque non erat consectetur tincidunt. Aliquam at dui nec enim feugiat venenatis. Praesent
-                    non finibus felis, at porta orci. Quisque nec diam tempor, ullamcorper ligula a, aliquet quam.
-                    Vivamus feugiat velit a nisl eleifend, ac luctus urna tincidunt. Proin at dui feugiat, sagittis
-                    massa et, vehicula nisi. Duis lacinia lacus vitae urna venenatis, eu dapibus justo facilisis.
-                    Maecenas sit amet imperdiet quam, sit amet molestie turpis. In at dui vel diam tempus rutrum
-                    faucibus ut eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-                    mus.
-                    Sed commodo, urna et gravida euismod, lacus arcu facilisis augue, eu congue mauris magna ut eros.
-                    Morbi pellentesque sapien et mi blandit, vel suscipit sapien molestie. Vestibulum ac leo ut libero
-                    placerat semper. Nullam mi quam, convallis dignissim faucibus vitae, consectetur vel turpis. Sed
-                    sagittis lacinia dui, ac tempor mi vehicula quis.</p>
+                <p>{{ loads(project.description)['neededTeamMembers'] }}</p>
                 <h2 class="project-page__main-title" id="project-sponsors">Корисна інформація для спонсорів</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed scelerisque ligula. Aenean
-                    imperdiet neque non erat consectetur tincidunt. Aliquam at dui nec enim feugiat venenatis. Praesent
-                    non finibus felis, at porta orci. Quisque nec diam tempor, ullamcorper ligula a, aliquet quam.
-                    Vivamus feugiat velit a nisl eleifend, ac luctus urna tincidunt. Proin at dui feugiat, sagittis
-                    massa et, vehicula nisi. Duis lacinia lacus vitae urna venenatis, eu dapibus justo facilisis.
-                    Maecenas sit amet imperdiet quam, sit amet molestie turpis. In at dui vel diam tempus rutrum
-                    faucibus ut eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-                    mus.
-                    Sed commodo, urna et gravida euismod, lacus arcu facilisis augue, eu congue mauris magna ut eros.
-                    Morbi pellentesque sapien et mi blandit, vel suscipit sapien molestie. Vestibulum ac leo ut libero
-                    placerat semper. Nullam mi quam, convallis dignissim faucibus vitae, consectetur vel turpis. Sed
-                    sagittis lacinia dui, ac tempor mi vehicula quis.</p>
+                <p>{{ loads(project.description)['description'] }}</p>
             </div>
             <div class="project-page__main-team">
                 <div class="project-page__main-people">
                     <h3>Ідея</h3>
-                    <img src="../static/images/placeholder_panda.jpg" alt="">
+                    <img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
                     
                     <h6>Андрій Меленюк</h6>
                 </div>
                 <div class="project-page__main-people">
                     <h3>Команда</h3>
-                    <img src="../static/images/placeholder_panda.jpg" alt="">
-                    <img src="../static/images/placeholder_panda.jpg" alt="">
-                    <img src="../static/images/placeholder_panda.jpg" alt="">
+                    <img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
+                    <img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
+                    <img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
     
                 </div>
             </div>
@@ -152,5 +108,5 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
 
-    <script src="../js/main.js"></script>
+    <script src="../static/js/main.js"></script>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="creation">
         <h2 class="creation__title">Створення проекту</h2>
         <h4 class="creation_undertitle">Назвіть ваш проект</h4>
@@ -36,9 +36,7 @@
         </div>
         <h4 class="creation_undertitle">Додайте фото</h4>
         <div class="input-group mb-3">
-            <form action="/upload" method="post" enctype="multipart/form-data">
-                <input type="file" class="" id="images" name="images" accept="image/*" multiple>
-            </form>
+            <input type="file" id="images" name="images" accept="image/*">
         </div>
 
         <h4 class="creation_undertitle">Ризики проекту</h4>
