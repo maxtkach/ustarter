@@ -5,4 +5,4 @@ class Config:
     __database: str = "dvhplhgj"
     __port: int = 5432
 
-    link = f"postgresql://{__username}:{__password}@{__host}:{__port}/{__database}"
+    link = f"postgresql+psycopg2://{__username}:{__password}@{__host}:{__port}/{__database}"

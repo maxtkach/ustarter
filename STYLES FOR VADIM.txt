@@ -1,0 +1,181 @@
+// ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ ПРОЕКТ
+
+.project-page {
+    margin-top: 50px;
+    margin-left: 100px;
+
+		&__name {
+            text-align: center ;
+            font-weight: bold ;
+            font-size: 35px ;
+		}
+
+		&__content {
+            
+            margin-top: 50px;
+            display: inline-block;
+		}
+        &__image{
+            display: inline-block;
+            vertical-align: top;
+        }
+		&__image img {
+            width: 900px;
+            height: 500px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            object-fit: cover;
+            
+		}
+
+		&__need {
+            font-weight: bold !important; ;
+
+		}
+
+		&__donated {
+            font-weight: bold !important;
+		}
+
+		&__fillbar {
+            margin-bottom: 20px;
+
+		}
+
+		&__sponsors {
+            display: inline-block;
+            padding-right: 70px;
+		}
+
+		&__team {
+            display: inline-block;
+		}
+
+		&__media-space {
+            margin-top: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+		}
+
+		&__media-space--image img{
+            width: 200px;
+            height: 100px;
+            padding-left: 5px;
+            object-fit: cover;
+            
+		}
+        &__media-space--image{
+
+            display: inline-block;
+            
+		}
+        
+
+		&__buttons {
+
+		}
+
+		&__button {
+
+		}
+}
+.projects {
+
+		&__progress {
+            display: inline-block;
+            margin-left: 10px;
+		}
+
+		&__footer--buttons {
+		}
+
+		&__footer--button2 {
+		}
+
+		&__footer--button {
+		}
+}
+
+.project-page {
+    &__main{
+        margin-top: 50px;
+    }
+    &__footer {
+        margin-top: 40px;
+    }
+
+    &__city {
+        display: inline-block;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    &__socials {
+        display: inline-block;
+        margin-left: 70%;
+    }
+
+	&__nav {
+        display: inline-block;
+        height: 100%;
+        width: 200px; /* Ширина меню */
+        position: sticky;
+        vertical-align: top;
+        
+	}
+
+	&__punct {
+        display: inline-block ;
+        font-weight: bold;
+        text-decoration: none;
+        color: #000;
+        font-size: 18px;
+        text-align: left;
+	}
+
+	&__bottom-content {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 150px;
+        text-align: left;
+        width: 900px;
+	}
+    .line{
+        width: 100px;
+        height: 5px;
+        color: $main;
+    }
+
+	&__main-title {
+        font-weight: bold;
+	}
+
+	&__main-team {
+        display: inline-block;
+        margin-left: 50px;
+	}
+
+
+	&__main-people {
+        text-align: center;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        
+        
+	}
+    &__main-people h3, h6 {
+        font-weight: bold;
+	}
+    &__main-people img{
+        width: 100px !important;
+        height: 100px !important;
+        border-radius: 100px;
+        display: inline-block;
+        position: relative;
+	}
+}
+
+
+
