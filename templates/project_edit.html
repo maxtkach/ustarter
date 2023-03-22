@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    <div class="creation">
+        <h2 class="creation__title">Створення проекту</h2>
+        <h4 class="creation_undertitle">Назвіть ваш проект</h4>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="caption" placeholder="Назва проекту:" value="{{ project.caption }}" aria-label="Username"
+                aria-describedby="basic-addon1">
+        </div>
+        <h4 class="creation_undertitle">Оберіть категорію вашого проекту</h4>
+        <div class="choose-category input-group mb-3"><select class="form-select" name="category_select" id="inputGroupSelect01">
+                    <option value="Фільми та відео" {% if project.category == "Фільми та відео" %} selected {% endif %}>Фільми та відео</option>
+                    <option value="Дизайн" {% if project.category == "Дизайн" %} selected {% endif %}>Дизайн</option>
+                    <option value="Ігри" {% if project.category == "Ігри" %} selected {% endif %}>Ігри</option>
+                    <option value="Музика" {% if project.category == "Музика" %} selected {% endif %}>Музика</option>
+                    <option value="Фото" {% if project.category == "Фото" %} selected {% endif %}>Фото</option>
+                    <option value="Технології" {% if project.category == "Технології" %} selected {% endif %}>Технології</option>
+                    <option value="Для дітей" {% if project.category == "Для дітей" %} selected {% endif %}>Для дітей</option>
+                    <option value="Постраждалі" {% if project.category == "Постраждалі" %} selected {% endif %}>Постраждалі</option>
+                    <option value="Навчання" {% if project.category == "Навчання" %} selected {% endif %}>Навчання</option>
+                    <option value="Застосунки" {% if project.category == "Застосунки" %} selected {% endif %}>Застосунки</option>
+                    <option value="Комікси та мультиплікація" {% if project.category == "Комікси та мультиплікація" %} selected {% endif %}>Комікси та мультиплікація</option>
+                    <option value="Особисті збори" {% if project.category == "Особисті збори" %} selected {% endif %}>Особисті збори</option>
+                </select></div>
+        <h4 class="creation_undertitle">Скільки вам потрібно грошей на реалізацію?</h4>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><select class="form-select" id="inputGroupSelect01">
+                    <option selected>₴</option>
+                    <option value="2">$</option>
+                    <option value="3">€</option>
+                </select></span>
+            {% if project.receivedAmount < 500 %}<input type="text" class="form-control" name="neededAmount" value="{{project.neededAmount}}"
+                placeholder="Скільки вам потрібно грошей на реалізацію?" aria-label="Amount (to the nearest dollar)"> {% endif %}
+
+        </div>
+        <h4 class="creation_undertitle">Стартовий бюджет</h4>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><select class="form-select" id="inputGroupSelect01">
+                    <option selected>₴</option>
+                    <option value="2">$</option>
+                    <option value="3">€</option>
+                </select></span>
+            <input type="text" class="form-control" name="startBudget" placeholder="Стартовий бюджет"
+                aria-label="Amount (to the nearest dollar)" value="{{project.startBudget}}"></div>
+
+        <h4 class="creation_undertitle">Розкажіть про ваш проект:</h4>
+        <div class="input-group mb-3">
+            <textarea class="form-control" name="description" aria-label="With textarea"
+                placeholder="Інформація про проект">{{loads(project.description)['description']}}</textarea>
+        </div>
+        <h4 class="creation_undertitle">Додайте головне фото проекту</h4>
+        <div class="input-group mb-3">
+            <input type="file" id="images" name="images" accept="image/*">
+        </div>
+
+        <h4 class="creation_undertitle">Додайте ще декілька фото, які візуалізують проект</h4>
+        <div class="input-group mb-3">
+            <input type="file" id="images" name="images_mult" accept="image/*" multiple />
+        </div>
+
+        <h4 class="creation_undertitle">Ризики проекту</h4>
+        <div class="input-group">
+            <textarea class="form-control" name="risks" aria-label="With textarea">{{loads(project.description)['risks']}}</textarea>
+        </div>
+        <h4 class="creation_undertitle">Кого шукаєте у команду?</h4>
+        <div class="input-group">
+            <textarea class="form-control" name="neededTeamMembers" aria-label="With textarea">{{loads(project.description)['neededTeamMembers']}}</textarea>
+        </div>
+
+        <h4 class="creation_undertitle">Напишіть інформацію, що буде корисна вашим майбутнім спонсорам</h4>
+        <div class="input-group">
+            <textarea class="form-control" name="sponsorsInfo" aria-label="With textarea">{{loads(project.description)['sponsorsInfo']}}</textarea>
+        </div>
+
+        <button class="creation__submit" type="submit">Створити проект</button>
+    </div>
+    </div>
+</form>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+</script>
+
+<script src="static/js/main.js"></script>
+{% endblock %}

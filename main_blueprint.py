@@ -16,7 +16,6 @@ def MainPage():
     project3 = choice(projects)
     projects.remove(project3)
     latestProjects = ProjectQuery().GetLatestProjects()
-    print(latestProjects)
     return render_template("index.html",
                            project1=project1,
                            project2=project2,

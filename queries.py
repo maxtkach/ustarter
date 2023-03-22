@@ -5,7 +5,7 @@ class UserQuery():
     def GetUserById(self, id):
         return db.session.query(User)\
             .get(id)
-    def GetUsers(self, id):
+    def GetUsers(self):
         return db.session.query(User)\
             .all()
     def GetUserByProjectId(self, projectId):

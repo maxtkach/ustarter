@@ -18,7 +18,7 @@
 
 
   <header class="header">
-    <div class="header__logo"><a href="./index.html">UStarter</a></div>
+    <div class="header__logo"><a href="{{ url_for('main.MainPage') }}">UStarter</a></div>
     <nav class="header__nav">
       <ul class="header__menu menu">
         <li class="menu__item"><a href="{{ url_for('project.CreateProject') }}" class="menu__link">Почати проект</a></li>
