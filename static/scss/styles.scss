@@ -23,7 +23,7 @@
     margin: 0;
     padding: 0;
     -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     cursor: default;
 }
 
@@ -57,7 +57,7 @@ body {
     text-decoration: none !important;
 }
 
-.header__logo a{
+.header__logo a {
     color: #333 !important;
     text-decoration: none !important;
 }
@@ -103,24 +103,26 @@ body {
     width: 800px;
     margin-top: 25px !important;
     background-color: #401127;
-    
+
 }
 
-.dropdown-menu a,h5{
+.dropdown-menu a,
+h5 {
     transition: all 0.2s ease-in-out;
 }
 
-.dropdown-menu a:hover,h5:hover{
-    background-color:#401127 !important;
+.dropdown-menu a:hover,
+h5:hover {
+    background-color: #401127 !important;
     color: #ccc !important;
 }
 
-.dropdown-item{
+.dropdown-item {
     color: #fff !important;
     padding: 10px;
 }
 
-.dropdown-column{
+.dropdown-column {
     display: inline-block;
 }
 
@@ -209,6 +211,7 @@ body {
         align-items: center;
     }
 }
+
 @media (max-width: 1620px) {
     .section {
         flex-direction: column;
@@ -319,16 +322,16 @@ body {
     width: 80%;
     margin: 0 auto;
     padding: 20px;
-  }
-  
-  .profile__slider {
+}
+
+.profile__slider {
     height: 10px;
     background-color: #ddd;
     border-radius: 5px;
     position: relative;
-  }
-  
-  .profile__slider:before {
+}
+
+.profile__slider:before {
     content: "";
     position: absolute;
     left: 0;
@@ -339,45 +342,48 @@ body {
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-  
-  .profile__content {
+}
+
+.profile__content {
     width: 100%;
     max-width: 80%;
     margin: 20px auto;
     padding: 20px;
     background-color: #eee;
     border-radius: 10px;
-  }
+}
 
 
-  #read__more::before{
-        content: "Читати далі";
-        color: $main;
-        cursor: pointer;
-  }
-  
-  #about__content{
+#read__more::before {
+    content: "Читати далі";
+    color: $main;
+    cursor: pointer;
+}
+
+#about__content {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-  }
+}
 
-  #about__content.active #read__more::before{
-    content: 'Закрити' ;
-  }
-  #about__content.active{
+#about__content.active #read__more::before {
+    content: 'Закрити';
+}
+
+#about__content.active {
     display: block;
-  }
-  .resizable {
+}
+
+.resizable {
     position: relative;
     width: 300px;
     height: 1000px;
-    min-width:300px !important;
-    max-width:683px !important;
-    
+    min-width: 300px !important;
+    max-width: 683px !important;
+
 }
+
 .resizer {
     /* All resizers are positioned absolutely inside the element */
     position: absolute;
@@ -394,14 +400,14 @@ body {
 
 }
 
-.profile__user--info{
+.profile__user--info {
     float: left;
     padding-left: 20px;
     padding-right: 20px;
     margin-top: 49px;
 }
 
-.user__image{
+.user__image {
     height: 150px;
     width: 150px;
     border-radius: 100px;
@@ -409,7 +415,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     display: block;
-    margin: 0 auto; 
+    margin: 0 auto;
 }
 
 
@@ -419,17 +425,20 @@ body {
     padding-top: 5px;
 
 }
+
 .user__email {
     text-align: center;
     text-decoration: underline;
-    color:rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.5);
     font-size: 13px;
 
 }
+
 .user__about {
     text-align: left;
 
 }
+
 .about__title {
     font-weight: bold;
     text-align: center;
@@ -451,54 +460,61 @@ body {
     display: inline-block;
     margin-left: 100px;
     margin-top: 30px;
-  }
-  
-  .user__content ul {
+}
+
+.user__content ul {
     list-style: none;
     margin: 0;
     padding: 0;
-  }
-  
-  .user__content li {
+}
+
+.user__content li {
     display: inline-block;
     padding: 10px;
-  }
+}
 
-  
-  
-  #navbar a {
+
+
+#navbar a {
     color: #333;
     text-decoration: none;
     padding: 5px;
-  }
-  
-  #navbar a:hover {
+}
+
+#navbar a:hover {
     color: #333;
-  }
-  
-  #navbar a.active {
+}
+
+#navbar a.active {
     background-color: #EC9A6D;
     color: #fff !important;
-  }
-  #block1, #block2, #block3, #block4 {
+}
+
+#block1,
+#block2,
+#block3,
+#block4 {
     display: none;
     width: 80%;
     height: 1000px;
     overflow: scroll;
 
-    
-  }
-  
-  #block1.active, #block2.active, #block3.active, #block4.active {
+
+}
+
+#block1.active,
+#block2.active,
+#block3.active,
+#block4.active {
     display: block;
-    
-  }
 
-  .nav__content{
+}
+
+.nav__content {
     margin-left: 21%;
-  }
+}
 
-  .short__project {
+.short__project {
     width: 500px;
     display: inline-block;
     margin-left: 20px;
@@ -507,46 +523,47 @@ body {
     box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
 }
 
-  .short__project--header{
+.short__project--header {
     width: 500px !important;
-  }
-  .short__project--content{
+}
+
+.short__project--content {
     background-color: #EFEFEF;
     text-align: center;
     padding: 20px;
     border-radius: 10px;
-  }
+}
 
-  .projects__progress__need span{
+.projects__progress__need span {
     font-weight: bold;
-  }
+}
 
-  .profile__progress{
+.profile__progress {
     background-color: $main;
-  }
+}
 
-  .progress_mark{
+.progress_mark {
     width: 50px !important;
-    height: 50px !important; 
-    background-color:#A73169;
-  }
+    height: 50px !important;
+    background-color: #A73169;
+}
 
-  .sponsored__title{
+.sponsored__title {
     padding-top: 40px;
     padding-bottom: 40px;
     font-weight: bold;
-  }
+}
 
-  .profile__project{
+.profile__project {
     margin-bottom: 30px;
-  }
+}
 
-  .small_project__content{
+.small_project__content {
     padding-bottom: 10px;
     padding-top: 10px;
-  }
+}
 
-  .creation {
+.creation {
     margin-top: 2%;
     margin-left: 5%;
 
@@ -561,68 +578,396 @@ body {
         width: 300px;
         height: 60px;
         color: #fff;
-        text-transform:uppercase;
+        text-transform: uppercase;
         background-color: $main;
         border-radius: 10px;
         border: none;
         transition: all 0.2s ease-in;
-        
+
     }
+
     &__submit:hover {
         color: #fff;
-        text-transform:uppercase;
+        text-transform: uppercase;
         background-color: #401127;
         border-radius: 10px;
         letter-spacing: 2px;
         border: none;
-        
+
     }
+}
+
+.input-group {
+    width: 1000px !important;
+
+}
+
+.mb-3 {}
+
+.form-control {
+    border-radius: 0 !important;
+    border-color: #000 !important;
+    min-height: 50px;
+
+}
+
+.input-group-text {
+    background-color: $main !important;
+    color: #fff !important;
+}
+
+.form-select {}
+
+.creation_undertitle {
+    font-weight: normal;
+    margin-top: 2%;
+}
+
+input[type="file"] {
+    position: relative;
+    overflow: hidden;
+
+}
+
+input[type="file"]::file-selector-button {
+    content: "Оберіть файли";
+    padding: 5px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: #fff;
+    width: 200px;
+    height: 60px;
+    text-transform: uppercase;
+    background-color: $main;
+    border-radius: 10px;
+    border: none;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button::after {
+    content: "Файл не обрано";
+}
+
+.project-page {
+    margin-top: 50px;
+    margin-left: 100px;
+
+    &__name {
+        text-align: center;
+        font-weight: bold;
+        font-size: 35px;
     }
-    .input-group {
-        width: 1000px !important; 
-        
+
+    &__content {
+
+        margin-top: 50px;
+        display: inline-block;
     }
-    .mb-3 {
+
+    &__image {
+        display: inline-block;
+        vertical-align: top;
     }
-    .form-control {
-        border-radius: 0 !important;
-        border-color: #000 !important;
-        min-height: 50px;
-        
+
+    &__image img {
+        width: 900px;
+        height: 500px;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        object-fit: cover;
+
     }
-    .input-group-text {
-        background-color: $main !important;
-        color: #fff !important;
+
+    &__need {
+        font-weight: bold !important;
+        ;
+
     }
-    .form-select {
-        
+
+    &__donated {
+        font-weight: bold !important;
     }
-    .creation_undertitle{
-        font-weight: normal;
-        margin-top: 2%;
+
+    &__fillbar {
+        margin-bottom: 20px;
+
     }
-    input[type="file"] {
-        position: relative;
-        overflow: hidden;
-       
-      }
-      
-      input[type="file"]::file-selector-button {
-        content: "Оберіть файли";
-        padding: 5px;
-        margin-top: 1%;
-        margin-bottom: 1%;
-        color: #fff;
+
+    &__sponsors {
+        display: inline-block;
+        padding-right: 70px;
+    }
+
+    &__team {
+        display: inline-block;
+    }
+
+    &__media-space {
+        margin-top: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    &__media-space--image img {
         width: 200px;
-        height: 60px;
-        text-transform:uppercase;
-        background-color: $main;
-        border-radius: 10px;
-        border: none;
-        transition: all 0.2s ease-in;
-        cursor: pointer;
-      }
-      
-      input[type="file"]::file-selector-button::after {
-        content: "Файл не обрано";
-      }
+        height: 100px;
+        padding-left: 5px;
+        object-fit: cover;
+
+    }
+
+    &__media-space--image {
+
+        display: inline-block;
+
+    }
+
+
+    &__buttons {}
+
+    &__button {}
+}
+
+.projects {
+
+    &__progress {
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    &__footer--buttons {}
+
+    &__footer--button2 {}
+
+    &__footer--button {}
+}
+
+.project-page {
+    &__main {
+        margin-top: 50px;
+    }
+
+    &__footer {
+        margin-top: 40px;
+    }
+
+    &__city {
+        display: inline-block;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    &__socials {
+        display: inline-block;
+        margin-left: 70%;
+    }
+
+    &__nav {
+        display: inline-block;
+        height: 100%;
+        width: 200px;
+        /* Ширина меню */
+        position: sticky;
+        vertical-align: top;
+
+    }
+
+    &__punct {
+        display: inline-block;
+        font-weight: bold;
+        text-decoration: none;
+        color: #000;
+        font-size: 18px;
+        text-align: left;
+    }
+
+    &__bottom-content {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 150px;
+        text-align: left;
+        width: 900px;
+    }
+
+    .line {
+        width: 100px;
+        height: 5px;
+        color: $main;
+    }
+
+    &__main-title {
+        font-weight: bold;
+    }
+
+    &__main-team {
+        display: inline-block;
+        margin-left: 50px;
+    }
+
+
+    &__main-people {
+        text-align: center;
+        padding-bottom: 10px;
+        padding-top: 10px;
+
+
+    }
+
+    &__main-people h3,
+    h6 {
+        font-weight: bold;
+    }
+
+    &__main-people img {
+        width: 100px !important;
+        height: 100px !important;
+        border-radius: 100px;
+        display: inline-block;
+        position: relative;
+    }
+}
+
+// РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ РЕГИСТРАЦИЯ
+
+.panel-login {
+    border-color: #ccc;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+    padding: 35px;
+}
+
+.panel-login>.panel-heading {
+    color: #00415d;
+    background-color: #fff;
+    border-color: #fff;
+    text-align: center;
+}
+
+.panel-login>.panel-heading a {
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    font-size: 15px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.panel-login>.panel-heading a.active {
+    color: $main;
+}
+
+.panel-login>.panel-heading hr {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    clear: both;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+}
+
+.panel-login input[type="text"],
+.panel-login input[type="email"],
+.panel-login input[type="password"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.panel-login input:hover,
+.panel-login input:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-color: #ccc;
+}
+
+.btn-login {
+    background-color: #59B2E0;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #59B2E6;
+}
+
+.btn-login:hover,
+.btn-login:focus {
+    color: #fff;
+    background-color: #53A3CD;
+    border-color: #53A3CD;
+}
+
+.forgot-password {
+    text-decoration: underline;
+    color: #888;
+}
+
+.forgot-password:hover,
+.forgot-password:focus {
+    text-decoration: underline;
+    color: #666;
+}
+
+.btn-register {
+    background-color: $main !important;
+    outline: none !important;
+    color: #fff !important;
+    font-size: 14px !important;
+    height: auto !important;
+    font-weight: normal !important;
+    padding: 14px 0 !important;
+    text-transform: uppercase !important;
+    border-color: $main !important;
+}
+
+.btn-register:hover,
+.btn-register:focus {
+    color: #fff;
+    background-color: $main;
+}
+
+.signup_container {
+    margin-left: 30%;
+    margin-top: 5%;
+}
+
+.reg__title {
+    display: inline-block;
+    padding-left: 30px;
+}
+
+.form-control2 {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
