@@ -1,3 +1,8 @@
+
+$main:#A73169;
+$blue_ua: #0057B8;
+$yellow_ua: #FFD800;
+
 @font-face {
     font-family: "e-Ukraine";
     src: url("../fonts/e-Ukraine-Regular.ttf") format("truetype");
@@ -31,10 +36,17 @@ p {
     margin: 0;
     padding: 0;
 }
+a{
+    color: #000 !important;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: all 0.3s ease-in-out;
+}
+a:hover{
+    color: $main !important;
+}
 
-$main:#A73169;
-$blue_ua: #0057B8;
-$yellow_ua: #FFD800;
+
 
 .header {
     display: flex;
@@ -269,6 +281,15 @@ body {
     padding-top: 100px;
     padding-left: 20px;
     font-weight: bold;
+    text-transform: capitalize;
+}
+
+.project__header__text a{
+    color: #fff !important;
+}
+
+.project__header__text a:hover{
+    color: $main !important;
 }
 
 .recent__project {
@@ -278,6 +299,7 @@ body {
     background-color: #EFEFEF;
     margin-right: 10px;
     margin-right: 20px;
+    width: 700px;
 }
 
 .recent__project__content,
@@ -307,8 +329,13 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     color: #fff;
+    
 }
 
+.recent__project__header:after{
+    content: '';
+    background-color: rgba(0,0,0,0.5);
+}
 .recent__title {
     margin-top: 3%;
     font-weight: bold;
@@ -726,6 +753,7 @@ body {
 .signup_container{
     margin-left: 30%;
     margin-top: 5%;
+    overflow-x: hidden;
 }
 
 .reg__title{
@@ -828,11 +856,56 @@ body {
 
 		&__buttons {
 
-		}
-
-		&__button {
-
-		}
+            &__button2 {
+                width: 350px;
+                transition: all 0.5s ease;
+                height: 55px;
+                border-radius: 10px;
+                border: none;
+                color: #fff;
+                background-color: $main;
+            
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                
+                &:hover {
+                    font-size: 16px;
+                    border-radius: 10px;
+                    border: 3px solid #000;
+                    color: #000;
+                    background-color: #fff;
+                
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        
+            &__button {
+                font-size: 16px;
+                transition: all 0.5s ease;
+                width: 225px;
+                height: 55px;
+                border-radius: 10px;
+                border: 3px solid #000;
+                color: #000;
+            
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+        
+                &:hover {
+                    border-radius: 10px;
+                    border: none;
+                    color: #fff;
+                    background-color: $main;
+                }
+            }
+        }
 }
 .projects {
 
@@ -928,4 +1001,57 @@ body {
         display: inline-block;
         position: relative;
 	}
+}
+
+.buttons {
+
+    &__button2 {
+        width: 350px;
+        transition: all 0.5s ease;
+        height: 55px;
+        border-radius: 10px;
+        border: none;
+        color: #fff;
+        background-color: $main;
+    
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        
+        &:hover {
+            font-size: 16px;
+            border-radius: 10px;
+            border: 3px solid #000;
+            color: #000;
+            background-color: #fff;
+        
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__button {
+        font-size: 16px;
+        transition: all 0.5s ease;
+        width: 225px;
+        height: 55px;
+        border-radius: 10px;
+        border: 3px solid #000;
+        color: #000;
+    
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            border-radius: 10px;
+            border: none;
+            color: #fff;
+            background-color: $main;
+        }
+    }
 }

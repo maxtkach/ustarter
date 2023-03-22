@@ -62,10 +62,13 @@
   height: 625px;
   -o-object-fit: cover;
      object-fit: cover;
+  width: 500px;
 }
 
 .projects__image_small {
   width: 210px;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 300px;
 }
 
@@ -87,6 +90,7 @@
   font-weight: bold;
   text-align: center;
   font-size: 24px;
+  text-transform: capitalize;
 }
 
 .projects__description {
@@ -129,6 +133,7 @@
 
 .progress__donated {
   font-weight: normal !important;
+  padding-left: 50px;
 }
 
 .progress__donated_small {
@@ -158,7 +163,6 @@
   display: block;
   content: '';
   height: 8px;
-  width: 79%;
   background: #A73169;
 }
 

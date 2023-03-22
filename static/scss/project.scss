@@ -51,7 +51,9 @@ $main:#A73169;
         font-weight: bold;
         text-align: center;
         font-size: 24px;
+        text-transform: capitalize;
     }
+    
 
     &__info {
     }
@@ -88,6 +90,7 @@ $main:#A73169;
 
     &__donated {
         font-weight: normal !important;
+        padding-left: 50px;
         &_small {
             margin: 20px 0;
 
