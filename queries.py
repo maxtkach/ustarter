@@ -10,7 +10,7 @@ class UserQuery():
             .all()
     def GetUserByProjectId(self, projectId):
         return db.session.query(User)\
-            .filter(User.projectsParticipated.projectId == projectId)\
+            .filter(User.projectsParticipated.columns.projectId == projectId)\
             .first()
     def GetAuthorByProjectId(self, projectId):
         return self.GetUserById(db.session.query(Project)
@@ -19,7 +19,7 @@ class UserQuery():
             .authorId)
     def GetUsersWithProjects(self):
         return db.session.query(User)\
-            .filter(User.projectsParticipated.role == "Author")\
+            .filter(User.projectsParticipated.columns.role == "Author")\
             .all()
     def GetUsersInProjects(self):
         return db.session.query(User)\
@@ -28,20 +28,20 @@ class UserQuery():
     def GetUsersWithSponsoredProjects(self):
         return db.session.query(User)\
             .filter(User.projectsSponsored)\
-            .order_by(desc(sum(sp.money for sp in User.projectsSponsored)))\
+            .order_by(desc(sum(sp.columns.money for sp in User.projectsSponsored)))\
             .all()
     def GetTopUsersWithSponsoredProjects(self):
         return db.session.query(User)\
             .filter(User.projectsSponsored)\
-            .order_by(desc(sum(sp.money for sp in User.projectsSponsored)))\
-            .limit(5)\
+            .order_by(desc(sum(sp.columns.money for sp in User.projectsSponsored)))\
+            .limit(4)\
             .all()
     def GetTopUsersWithProjects(self):
         return db.session.query(User)\
             .filter(User.projectsParticipated.role == "Author")\
             .order_by(desc(len(User.projectsParticipated) * len(ProjectQuery()
             .GetProjectById(User.projectsParticipated.projectId).usersClicked.split(" "))))\
-            .limit(5)\
+            .limit(4)\
             .all()
 
 
@@ -59,12 +59,12 @@ class ProjectQuery():
     def GetTopProjects(self):
         return db.session.query(Project) \
             .order_by(desc(len(Project.usersClicked.split(" ")))) \
-            .limit(5)\
+            .limit(4)\
             .all()
     def GetLatestProjects(self):
         return db.session.query(Project) \
             .order_by(desc(Project.createdOn)) \
-            .limit(5)\
+            .limit(4)\
             .all()
     def GetProjectsBySponsorId(self, userId):
         sponsors = UserQuery().GetUserById(userId).projectsSponsored

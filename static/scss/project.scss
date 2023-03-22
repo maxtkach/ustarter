@@ -32,8 +32,10 @@ $main:#A73169;
     &__image {
         height: 625px;
         object-fit: cover;
+        width: 500px;
         &_small {
             width: 210px;
+            object-fit: cover;
             height: 300px;
         }
     }
@@ -113,7 +115,6 @@ $main:#A73169;
             display: block;
             content: '';
             height: 8px;
-            width: 79%;
             background: $main;
         }
     }
