@@ -1,4 +1,5 @@
 from os import listdir, remove
+from os.path import isfile
 
 UPLOAD_FOLDER = 'static/images_users'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -18,7 +19,8 @@ def SaveImg(img):
     return fileName
 
 def EditImg(img, project):
-    remove(f"{UPLOAD_FOLDER}/{getImageNameById(project.imageId)}")
+    if isfile(f"{UPLOAD_FOLDER}/{getImageNameById(project.imageId)}"):
+        remove(f"{UPLOAD_FOLDER}/{getImageNameById(project.imageId)}")
     fileName = img.filename.split(".")
     fileName[0] = str(project.imageId)
     fileName = f"{fileName[0]}.{fileName[-1]}"
@@ -41,7 +43,8 @@ def EditMedia(images, project):
     indexes = []
     media = getMediaNamesByIds(project.mediaNames)
     for m in media:
-        remove(f"{UPLOAD_FOLDER}/{m}")
+        if isfile(f"{UPLOAD_FOLDER}/{m}"):
+            remove(f"{UPLOAD_FOLDER}/{m}")
     for i in range(len(images)):
         fileName = images[i].filename.split(".")
         fileName[0] = f"{project.imageId}_{i + 1}"
