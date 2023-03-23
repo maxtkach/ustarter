@@ -35,7 +35,8 @@ def Profile():
 
 @user.route("/profile/<int:id>")
 def ShowProfile(id):
-    return render_template("profile.html")
+    user = UserQuery().GetUserById(id) #session["id"])
+    return render_template("profile.html", fullName=user.name, email=user.email, aboutMe=user.aboutMe) # + " " + user.surname
 
 @user.route("/profile/<int:id>/edit", methods=["GET", "POST"])
 def EditProfile(id):
@@ -43,7 +44,18 @@ def EditProfile(id):
         user = UserQuery().GetUserById(session["id"])
         if user.email == session["email"] and user.password == session["password"]:
             if session["id"] == id:
-                return render_template("user_edit.html")
+                if request.method == "GET":
+                    return render_template("user_edit.html")
+                elif request.method == "POST":
+                    # if request["name"] and request["surname"] and request["avatar"]
+                    UserQuery().GetUserById(session["id"]).name = request.form["name"]
+                    # UserQuery().GetUserById(session["id"]).surname = request.form["surname"]
+                    UserQuery().GetUserById(session["id"]).aboutMe = request.form["aboutMe"]
+                    UserQuery().GetUserById(session["id"]).address = request.form["address"]
+                    UserQuery().GetUserById(session["id"]).resume = request.form["resume"]
+
+                    db.session.commit()
+                    return redirect(f"../../profile/{id}");
             else:
                 # Not authorized
                 # return redirect(f"../profile/{user.id}");
