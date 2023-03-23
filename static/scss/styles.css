@@ -138,7 +138,8 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.dropdown-menu a:hover, h5:hover {
+.dropdown-menu a:hover,
+h5:hover {
   background-color: #401127 !important;
   color: #ccc !important;
 }
@@ -835,14 +836,20 @@ body {
   color: #fff !important;
 }
 
-#block1, #block2, #block3, #block4 {
+#block1,
+#block2,
+#block3,
+#block4 {
   display: none;
   width: 80%;
   height: 1000px;
   overflow: scroll;
 }
 
-#block1.active, #block2.active, #block3.active, #block4.active {
+#block1.active,
+#block2.active,
+#block3.active,
+#block4.active {
   display: block;
 }
 
