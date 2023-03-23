@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .projects {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -96,6 +97,15 @@
 .projects__description {
   font-size: 16px;
   line-height: 1.9;
+  margin: 0;
+  /* Убираем внешний отступ */
+  -webkit-line-clamp: 2;
+  /* Число отображаемых строк */
+  display: -webkit-box;
+  /* Включаем флексбоксы */
+  -webkit-box-orient: vertical;
+  /* Вертикальная ориентация */
+  overflow: hidden;
 }
 
 .projects__description span {
@@ -297,5 +307,9 @@
   border: none;
   color: #fff;
   background-color: #A73169;
+}
+
+.modal {
+  --bs-modal-width: 1500px !important;
 }
 /*# sourceMappingURL=project.css.map */

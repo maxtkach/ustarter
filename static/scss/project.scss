@@ -61,6 +61,11 @@ $main:#A73169;
     &__description {
         font-size: 16px;
         line-height: 1.9;
+        margin: 0; /* Убираем внешний отступ */
+        -webkit-line-clamp: 2; /* Число отображаемых строк */
+        display: -webkit-box; /* Включаем флексбоксы */
+        -webkit-box-orient: vertical; /* Вертикальная ориентация */
+        overflow: hidden;
         span {
             font-weight: bold;
         }
@@ -211,4 +216,8 @@ $main:#A73169;
             background-color: $main;
         }
     }
+}
+
+.modal{
+    --bs-modal-width: 1500px !important;
 }

@@ -138,8 +138,7 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.dropdown-menu a:hover,
-h5:hover {
+.dropdown-menu a:hover, h5:hover {
   background-color: #401127 !important;
   color: #ccc !important;
 }
@@ -333,6 +332,15 @@ h5:hover {
 .projects__description {
   font-size: 16px;
   line-height: 1.9;
+  margin: 0;
+  /* Убираем внешний отступ */
+  -webkit-line-clamp: 2;
+  /* Число отображаемых строк */
+  display: -webkit-box;
+  /* Включаем флексбоксы */
+  -webkit-box-orient: vertical;
+  /* Вертикальная ориентация */
+  overflow: hidden;
 }
 
 .projects__description span {
@@ -536,6 +544,10 @@ h5:hover {
   background-color: #A73169;
 }
 
+.modal {
+  --bs-modal-width: 1500px !important;
+}
+
 @media (max-width: 768px) {
   .block {
     -webkit-box-orient: vertical;
@@ -613,6 +625,8 @@ h5:hover {
 .project__header__text {
   padding-top: 100px;
   padding-left: 20px;
+  z-index: 100;
+  position: relative;
   font-weight: bold;
   text-transform: capitalize;
 }
@@ -662,11 +676,19 @@ h5:hover {
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
+  position: relative;
 }
 
-.recent__project__header:after {
-  content: '';
+.recent__project__header::before {
+  content: "";
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
 }
 
 .recent__title {
@@ -836,20 +858,14 @@ h5:hover {
   color: #fff !important;
 }
 
-#block1,
-#block2,
-#block3,
-#block4 {
+#block1, #block2, #block3, #block4 {
   display: none;
   width: 80%;
   height: 1000px;
   overflow: scroll;
 }
 
-#block1.active,
-#block2.active,
-#block3.active,
-#block4.active {
+#block1.active, #block2.active, #block3.active, #block4.active {
   display: block;
 }
 
@@ -1424,5 +1440,9 @@ input[type="file"]::file-selector-button::after {
   border: none;
   color: #fff;
   background-color: #A73169;
+}
+
+.settings {
+  padding-top: 100px !important;
 }
 /*# sourceMappingURL=styles.css.map */
