@@ -34,6 +34,10 @@ def ShowProfile(id):
 def SignupPage():
     return render_template("signup.html")
 
+@user.route("/logout")
+def Logout():
+    session.clear()
+
 @user.route("/login", methods=["POST"])
 def Login():
     # Should be try...except used or Flask will handle incorrect requests itself?
