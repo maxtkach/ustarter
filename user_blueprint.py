@@ -24,13 +24,13 @@ def IsNicknameValid(name):
 # WARNING: should be removed or redirected to ShowProfile
 @user.route("/profile")
 def Profile():
-    return render_template("profile.html")
+    return render_template("profile.html") #, userName=session["email"] if session["email"] else "Unknown")
 
 @user.route("/profile/<int:id>")
 def ShowProfile(id):
     return render_template("profile.html")
 
-@user.route("/profile/<int:id>/edit")
+@user.route("/profile/<int:id>/edit", methods=["GET", "POST"])
 def EditProfile(id):
     if session:
         user = UserQuery().GetUserById(session["id"])

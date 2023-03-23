@@ -55,6 +55,7 @@
         </li>
       </ul>
     </nav>
+    
     <div class="header__profile profile"><a href="{{ url_for('user.SignupPage')}}" class="profile__link"><svg xmlns="http://www.w3.org/2000/svg"
           width="48" height="48" viewBox="0 0 48 48">
           <g fill="currentColor">
@@ -70,6 +71,7 @@
             <path fill-rule="evenodd" d="M24 26a6 6 0 1 0 0-12a6 6 0 0 0 0 12Zm0 2a8 8 0 1 0 0-16a8 8 0 0 0 0 16Z"
               clip-rule="evenodd" />
           </g>
+          <span>{{ session["email"] if session["email"] else "Unknown" }}</span>
         </svg></a></div>
   </header>
   {% for message in get_flashed_messages() %}
