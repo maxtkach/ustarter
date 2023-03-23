@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    <div class="creation">
+        <h2 class="creation__title">Створення проекту</h2>
+
+        <h4 class="creation_undertitle">Ваше ім'я</h4>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="name" placeholder="Ваше ім'я:" aria-label="Username"
+                aria-describedby="basic-addon1">
+        </div>
+
+        <h4 class="creation_undertitle">Ваше прізвище</h4>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="surname" placeholder="Ваше прізвище:" aria-label="Username"
+                aria-describedby="basic-addon1">
+        </div>
+
+        <h4 class="creation_undertitle">Додайте фото аватарки</h4>
+        <div class="input-group mb-3">
+            <input type="file" id="images" name="avatar" accept="image/*">
+        </div>
+
+        <h4 class="creation_undertitle">Розкажіть про себе:</h4>
+        <div class="input-group mb-3">
+            <textarea class="form-control" name="aboutMe" aria-label="With textarea"
+                placeholder="Інформація про проект"></textarea>
+        </div>
+
+        <h4 class="creation_undertitle">Ваша Адреса</h4>
+        <div class="input-group">
+            <textarea class="form-control" name="address" aria-label="With textarea"></textarea>
+        </div>
+        <h4 class="creation_undertitle">Ваші навички(Резюме):</h4>
+        <div class="input-group">
+            <textarea class="form-control" name="resume" aria-label="With textarea"></textarea>
+        </div>
+
+        <button class="creation__submit" type="submit">Створити профіль</button>
+    </div>
+    </div>
+</form>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+</script>
+
+<script src="static/js/main.js"></script>
+{% endblock %}
