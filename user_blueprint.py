@@ -21,10 +21,17 @@ def IsNicknameValid(name):
     # WARNING: max and min name size should be like in DB
     return len(name) > 3 and len(name) < 30
 
+def Identify(id, password):
+    user = UserQuery().GetUserById(id)
+    return user and user.id == id and user.password == password
+
 # WARNING: should be removed or redirected to ShowProfile
 @user.route("/profile")
 def Profile():
-    return render_template("profile.html") #, userName=session["email"] if session["email"] else "Unknown")
+    if Identify(session["id"], session["password"]):
+        return redirect(url_for("user.ShowProfile", id=int(session["id"])))
+    return redirect(url_for("Login"))
+    # return render_template("profile.html") #, userName=session["email"] if session["email"] else "Unknown")
 
 @user.route("/profile/<int:id>")
 def ShowProfile(id):
