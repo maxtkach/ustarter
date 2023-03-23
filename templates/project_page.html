@@ -21,12 +21,10 @@
                 <div class="project-page__sponsors">К-ть спонсорів: {{ len(getSponsors(project.id)) }}</div>
                 <div class="project-page__team">Команда: {{ len(getTeam(project.id)) }}</div>
                 <div class="project-page__media-space">Медіа Простір</div>
-                <div class="project-page__media-space--image"><img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
+                {% for imgName in getMediaById(project.mediaNames) %}
+                <div class="project-page__media-space--image"><img src="../{{ path }}/{{ imgName }}" alt="">
                 </div>
-                <div class="project-page__media-space--image"><img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
-                </div>
-                <div class="project-page__media-space--image"><img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
-                </div>
+                {% endfor %}
                 <div class="project-page__buttons projects__footer--buttons">
                     <div class="project-page__button projects__footer--button2">СПОНСОРУВАТИ</div>
                     <div class="project-page__button projects__footer--button " style="margin-left: 20px;">ХОЧУ ДО
@@ -77,11 +75,11 @@
                 <h2 class="project-page__main-title" id="project-about">Про проект</h2>
                 <p>{{ loads(project.description)['description'] }}</p>
                 <h2 class="project-page__main-title" id="project-risics">Ризики</h2>
-                <p>{{ loads(project.description)['description'] }}</p>
+                <p>{{ loads(project.description)['risks'] }}</p>
                 <h2 class="project-page__main-title" id="project-team">Хто потрібен у команду</h2>
                 <p>{{ loads(project.description)['neededTeamMembers'] }}</p>
                 <h2 class="project-page__main-title" id="project-sponsors">Корисна інформація для спонсорів</h2>
-                <p>{{ loads(project.description)['description'] }}</p>
+                <p>{{ loads(project.description)['sponsorsInfo'] }}</p>
             </div>
             <div class="project-page__main-team">
                 <div class="project-page__main-people">

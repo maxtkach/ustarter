@@ -32,8 +32,10 @@ $main:#A73169;
     &__image {
         height: 625px;
         object-fit: cover;
+        width: 500px;
         &_small {
             width: 210px;
+            object-fit: cover;
             height: 300px;
         }
     }
@@ -49,7 +51,9 @@ $main:#A73169;
         font-weight: bold;
         text-align: center;
         font-size: 24px;
+        text-transform: capitalize;
     }
+    
 
     &__info {
     }
@@ -86,6 +90,7 @@ $main:#A73169;
 
     &__donated {
         font-weight: normal !important;
+        padding-left: 50px;
         &_small {
             margin: 20px 0;
 
@@ -113,7 +118,6 @@ $main:#A73169;
             display: block;
             content: '';
             height: 8px;
-            width: 79%;
             background: $main;
         }
     }

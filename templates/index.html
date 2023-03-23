@@ -33,24 +33,20 @@
   <section class="section">
 
     <div class="projects_large">
-      <img class="projects__image" src="../static/images/placeholder_panda.jpg" alt="Картинка 1">
+      <img class="projects__image" src="../{{ path }}/{{ getImageById(project1.imageId) }}" alt="Картинка 1">
       <div class="projects__content">
         <div class="projects__main-info">
-          <h2 class="projects__title">The Animals Glory</h2>
+          <h2 class="projects__title"><a href="{{ url_for('project.ViewProject', project_id=project1.id) }}">{{ project1.caption }}</a></h2>
           <div class="projects__progress">
             <div class="progress__texts">
-              <p class="progress__need">Потрібно коштів: 300 000₴ </p>
-              <p class="progress__donated">Зібрано: 237 213₴ (~79%) </p>
+              <p class="progress__need">Потрібно коштів: {{ project1.neededAmount }}₴ </p>
+              <p class="progress__donated">Зібрано: {{ project1.receivedAmount }}₴ (~{{ (project1.receivedAmount/project1.neededAmount)|round }}%) </p>
             </div>
-            <div class="progress__fillbar"></div>
+            <div class="progress__fillbar" style="width: {{ (project1.receivedAmount/project1.neededAmount)|round }}%"></div>
           </div>
           <div class="projects__info">
-            <p class="projects__description info__author"><span>Автор:</span> Андрій Меленюк</p>
-            <p class="projects__description info__goals"><span>Цілі:</span> допомогти тваринам під час війни</p>
-            <p class="projects__description info__problem"><span>Проблема:</span> Велика к-ть тварин знаходяться на
-              вулиці, кинуті
-              минулими хозяїнами, тварини без помівки, або в притулку. Їх к-ть постійно зростає і ми божаємо щоб таких
-              тварив в країні було якнайменше </p>
+            <p class="projects__description info__author"><span>Автор: </span>Андрій Меленюк</p>
+            <p class="projects__description info__goals"><span>Опис: </span>{{ loads(project1.description)['description'] }}</p>
           </div>
         </div>
         <div class="projects__footer">
@@ -85,15 +81,15 @@
     <div class="projects__smalls">
       <div class="projects_small">
         <div>
-          <img class="projects__image_small" src="../static/images/placeholder_panda.jpg" alt="Картинка 1">
+          <img class="projects__image_small" src="../{{ path }}/{{ getImageById(project2.imageId) }}" alt="Картинка 1">
         </div>
         <div class="projects__content">
           <div class="projects__main-info">
-            <h2 class="projects__title">The Animals Glory</h2>
-            <p class="progress__donated_small">Зібрано: <span>~79%</span></p>
+            <h2 class="projects__title"><a href="{{ url_for('project.ViewProject', project_id=project2.id) }}">{{ project2.caption }}</a></h2>
+            <p class="progress__donated_small">Зібрано: <span>~{{ (project2.receivedAmount/project2.neededAmount)|round }}%</span></p>
             <div class="projects__info">
               <p class="projects__description info__author"><span>Автор:</span> Андрій Меленюк</p>
-              <p class="projects__description info__goals"><span>Цілі:</span> допомогти тваринам під час війни</p>
+              <p class="projects__description info__goals"><span>Опис:</span>{{ loads(project2.description)['description'] }}</p>
             </div>
           </div>
           <div class="footer__socials">
@@ -114,15 +110,15 @@
       </div>
       <div class="projects_small mt-md-1">
         <div>
-          <img class="projects__image_small" src="../static/images/placeholder_panda.jpg" alt="Картинка 1">
+          <img class="projects__image_small" src="../{{ path }}/{{ getImageById(project3.imageId) }}" alt="Картинка 1">
         </div>
         <div class="projects__content">
           <div class="projects__main-info">
-            <h2 class="projects__title">The Animals Glory</h2>
-            <p class="progress__donated_small">Зібрано: <span>~79%</span></p>
+            <h2 class="projects__title"><a href="{{ url_for('project.ViewProject', project_id=project3.id) }}">{{ project3.caption }}</a></h2>
+            <p class="progress__donated_small">Зібрано: <span>~{{ (project3.receivedAmount/project3.neededAmount)|round }}%</span></p>
             <div class="projects__info">
               <p class="projects__description info__author"><span>Автор:</span> Андрій Меленюк</p>
-              <p class="projects__description info__goals"><span>Цілі:</span> допомогти тваринам під час війни</p>
+              <p class="projects__description info__goals"><span>Опис:</span> {{ loads(project3.description)['description'] }}</p>
             </div>
           </div>
           <div class="footer__socials">
@@ -170,22 +166,21 @@
 
 
 <!-- НОВЫЙ ПРОЕКТ ------------------------------------------- -->
+{% for project in latestProjects %}
       <div class="recent__project">
-        <div class="recent__project__header">
-          <h3 class="project__header__text">The Animals Glory </h3>
+        <div class="recent__project__header" style="background-image: url(../{{ path }}/{{ getImageById(project.imageId) }})">
+          <h3 class="project__header__text"><a href="{{ url_for('project.ViewProject', project_id=project.id) }}">{{ project.caption }}</a></h3>
         </div>
         <div class="recent__project__content">
           <div class="project__content__donates">
-            <div class="projects__progress__need">Потрібно коштів: 300 000₴ </div>
-            <div class="projects__progress__donated">Зібрано: 237 213₴ (~79%) </div>
+            <div class="projects__progress__need">Потрібно коштів: {{ project.neededAmount }}₴ </div>
+            <div class="projects__progress__donated">Зібрано: {{ project.receivedAmount }}₴ (~{{ (project.receivedAmount/project.neededAmount)|round }}%) </div>
           </div>
           <hr>
           <div class="project__content__descriprion">
             <p class="projects__description"><span>Автор:</span> Андрій Меленюк</p>
 
-            <p class="projects__description projects__goals"><span>Опис: </span> Допомога постраждалим тваринам. <br>
-              Тварини, яких просто залишили на вулиці, наразі просто бігають по вулицям, <br>
-              давайте зупинимо це, створив приют на вул. Пушкіна 19 </p>
+            <p class="projects__description projects__goals"><span>Опис: </span> {{ loads(project.description)['description'] }} </p>
           </div>
         </div>
         <hr>
@@ -216,166 +211,13 @@
           </div>
         </div>
       </div>
-
-
-
-<!-- НОВЫЙ ПРОЕКТ ------------------------------------------- -->
-      <div class="recent__project">
-        <div class="recent__project__header">
-          <h3 class="project__header__text">The Animals Glory </h3>
-        </div>
-        <div class="recent__project__content">
-          <div class="project__content__donates">
-            <div class="projects__progress__need">Потрібно коштів: 300 000₴ </div>
-            <div class="projects__progress__donated">Зібрано: 237 213₴ (~79%) </div>
-          </div>
-          <hr>
-          <div class="project__content__descriprion">
-            <p class="projects__description"><span>Автор:</span> Андрій Меленюк</p>
-
-            <p class="projects__description projects__goals"><span>Опис: </span> Допомога постраждалим тваринам. <br>
-              Тварини, яких просто залишили на вулиці, наразі просто бігають по вулицям, <br>
-              давайте зупинимо це, створив приют на вул. Пушкіна 19 </p>
-          </div>
-        </div>
-        <hr>
-        <div class="recent__project__footer">
-          <div class="projects__footer--socials">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-          </div>
-          <div class="recent__footer--text">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M12 12q.825 0 1.413-.588T14 10q0-.825-.588-1.413T12 8q-.825 0-1.413.588T10 10q0 .825.588 1.413T12 12Zm0 7.35q3.05-2.8 4.525-5.088T18 10.2q0-2.725-1.738-4.462T12 4Q9.475 4 7.737 5.738T6 10.2q0 1.775 1.475 4.063T12 19.35ZM12 22q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2q3.175 0 5.588 2.225T20 10.2q0 2.5-1.988 5.438T12 22Zm0-11.8Z" />
-              </svg> Одеса, вул. Пушкіна 19 </span>
-          </div>
-        </div>
-      </div>
-
-
-
-<!-- НОВЫЙ ПРОЕКТ ------------------------------------------- -->
-      <div class="recent__project">
-        <div class="recent__project__header">
-          <h3 class="project__header__text">The Animals Glory </h3>
-        </div>
-        <div class="recent__project__content">
-          <div class="project__content__donates">
-            <div class="projects__progress__need">Потрібно коштів: 300 000₴ </div>
-            <div class="projects__progress__donated">Зібрано: 237 213₴ (~79%) </div>
-          </div>
-          <hr>
-          <div class="project__content__descriprion">
-            <p class="projects__description"><span>Автор:</span> Андрій Меленюк</p>
-
-            <p class="projects__description projects__goals"><span>Опис: </span> Допомога постраждалим тваринам. <br>
-              Тварини, яких просто залишили на вулиці, наразі просто бігають по вулицям, <br>
-              давайте зупинимо це, створив приют на вул. Пушкіна 19 </p>
-          </div>
-        </div>
-        <hr>
-        <div class="recent__project__footer">
-          <div class="projects__footer--socials">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-          </div>
-          <div class="recent__footer--text">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M12 12q.825 0 1.413-.588T14 10q0-.825-.588-1.413T12 8q-.825 0-1.413.588T10 10q0 .825.588 1.413T12 12Zm0 7.35q3.05-2.8 4.525-5.088T18 10.2q0-2.725-1.738-4.462T12 4Q9.475 4 7.737 5.738T6 10.2q0 1.775 1.475 4.063T12 19.35ZM12 22q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2q3.175 0 5.588 2.225T20 10.2q0 2.5-1.988 5.438T12 22Zm0-11.8Z" />
-              </svg> Одеса, вул. Пушкіна 19 </span>
-          </div>
-        </div>
-      </div>
-
-
-
-<!-- НОВЫЙ ПРОЕКТ ------------------------------------------- -->
-      <div class="recent__project">
-        <div class="recent__project__header">
-          <h3 class="project__header__text">The Animals Glory </h3>
-        </div>
-        <div class="recent__project__content">
-          <div class="project__content__donates">
-            <div class="projects__progress__need">Потрібно коштів: 300 000₴ </div>
-            <div class="projects__progress__donated">Зібрано: 237 213₴ (~79%) </div>
-          </div>
-          <hr>
-          <div class="project__content__descriprion">
-            <p class="projects__description"><span>Автор:</span> Андрій Меленюк</p>
-
-            <p class="projects__description projects__goals"><span>Опис: </span> Допомога постраждалим тваринам. <br>
-              Тварини, яких просто залишили на вулиці, наразі просто бігають по вулицям, <br>
-              давайте зупинимо це, створив приют на вул. Пушкіна 19 </p>
-          </div>
-        </div>
-        <hr>
-        <div class="recent__project__footer">
-          <div class="projects__footer--socials">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-          </div>
-          <div class="recent__footer--text">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M12 12q.825 0 1.413-.588T14 10q0-.825-.588-1.413T12 8q-.825 0-1.413.588T10 10q0 .825.588 1.413T12 12Zm0 7.35q3.05-2.8 4.525-5.088T18 10.2q0-2.725-1.738-4.462T12 4Q9.475 4 7.737 5.738T6 10.2q0 1.775 1.475 4.063T12 19.35ZM12 22q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2q3.175 0 5.588 2.225T20 10.2q0 2.5-1.988 5.438T12 22Zm0-11.8Z" />
-              </svg> Одеса, вул. Пушкіна 19 </span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
+{% endfor %}
 
 <!-- КОНЕЦ БЛОКА "НЕДАВНИЕ ПРОЕКТЫ" ------------------------------------------- -->
 
 
 
-<!-- НАЧАЛО БЛОКА "ПОПУЛЯРНЫЕ ПРОЕКТЫ" ------------------------------------------- -->
+<!-- НАЧАЛО БЛОКА "ПОПУЛЯРНЫЕ ПРОЕКТЫ" -------------------------------------------
 
 
   <div class="recent">
@@ -387,11 +229,8 @@
       </g>
     </svg></div>
     <div class="popular__projects">
-      
 
 
-
-<!-- НОВЫЙ ПРОЕКТ ------------------------------------------- -->
       <div class="recent__project">
         <div class="recent__project__header">
           <h3 class="project__header__text">The Animals Glory </h3>
@@ -437,163 +276,8 @@
               </svg> Одеса, вул. Пушкіна 19 </span>
           </div>
         </div>
+        -->
       </div>
-
-
-
-<!-- НОВЫЙ ПРОЕКТ ------------------------------------------- -->
-      <div class="recent__project">
-        <div class="recent__project__header">
-          <h3 class="project__header__text">The Animals Glory </h3>
-        </div>
-        <div class="recent__project__content">
-          <div class="project__content__donates">
-            <div class="projects__progress__need">Потрібно коштів: 300 000₴ </div>
-            <div class="projects__progress__donated">Зібрано: 237 213₴ (~79%) </div>
-          </div>
-          <hr>
-          <div class="project__content__descriprion">
-            <p class="projects__description"><span>Автор:</span> Андрій Меленюк</p>
-
-            <p class="projects__description projects__goals"><span>Опис: </span> Допомога постраждалим тваринам. <br>
-              Тварини, яких просто залишили на вулиці, наразі просто бігають по вулицям, <br>
-              давайте зупинимо це, створив приют на вул. Пушкіна 19 </p>
-          </div>
-        </div>
-        <hr>
-        <div class="recent__project__footer">
-          <div class="projects__footer--socials">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-          </div>
-          <div class="recent__footer--text">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M12 12q.825 0 1.413-.588T14 10q0-.825-.588-1.413T12 8q-.825 0-1.413.588T10 10q0 .825.588 1.413T12 12Zm0 7.35q3.05-2.8 4.525-5.088T18 10.2q0-2.725-1.738-4.462T12 4Q9.475 4 7.737 5.738T6 10.2q0 1.775 1.475 4.063T12 19.35ZM12 22q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2q3.175 0 5.588 2.225T20 10.2q0 2.5-1.988 5.438T12 22Zm0-11.8Z" />
-              </svg> Одеса, вул. Пушкіна 19 </span>
-          </div>
-        </div>
-      </div>
-
-
-
-<!-- НОВЫЙ ПРОЕКТ ------------------------------------------- -->
-      <div class="recent__project">
-        <div class="recent__project__header">
-          <h3 class="project__header__text">The Animals Glory </h3>
-        </div>
-        <div class="recent__project__content">
-          <div class="project__content__donates">
-            <div class="projects__progress__need">Потрібно коштів: 300 000₴ </div>
-            <div class="projects__progress__donated">Зібрано: 237 213₴ (~79%) </div>
-          </div>
-          <hr>
-          <div class="project__content__descriprion">
-            <p class="projects__description"><span>Автор:</span> Андрій Меленюк</p>
-
-            <p class="projects__description projects__goals"><span>Опис: </span> Допомога постраждалим тваринам. <br>
-              Тварини, яких просто залишили на вулиці, наразі просто бігають по вулицям, <br>
-              давайте зупинимо це, створив приют на вул. Пушкіна 19 </p>
-          </div>
-        </div>
-        <hr>
-        <div class="recent__project__footer">
-          <div class="projects__footer--socials">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-          </div>
-          <div class="recent__footer--text">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M12 12q.825 0 1.413-.588T14 10q0-.825-.588-1.413T12 8q-.825 0-1.413.588T10 10q0 .825.588 1.413T12 12Zm0 7.35q3.05-2.8 4.525-5.088T18 10.2q0-2.725-1.738-4.462T12 4Q9.475 4 7.737 5.738T6 10.2q0 1.775 1.475 4.063T12 19.35ZM12 22q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2q3.175 0 5.588 2.225T20 10.2q0 2.5-1.988 5.438T12 22Zm0-11.8Z" />
-              </svg> Одеса, вул. Пушкіна 19 </span>
-          </div>
-        </div>
-      </div>
-
-
-
-<!-- НОВЫЙ ПРОЕКТ ------------------------------------------- -->
-      <div class="recent__project">
-        <div class="recent__project__header">
-          <h3 class="project__header__text">The Animals Glory </h3>
-        </div>
-        <div class="recent__project__content">
-          <div class="project__content__donates">
-            <div class="projects__progress__need">Потрібно коштів: 300 000₴ </div>
-            <div class="projects__progress__donated">Зібрано: 237 213₴ (~79%) </div>
-          </div>
-          <hr>
-          <div class="project__content__descriprion">
-            <p class="projects__description"><span>Автор:</span> Андрій Меленюк</p>
-
-            <p class="projects__description projects__goals"><span>Опис: </span> Допомога постраждалим тваринам. <br>
-              Тварини, яких просто залишили на вулиці, наразі просто бігають по вулицям, <br>
-              давайте зупинимо це, створив приют на вул. Пушкіна 19 </p>
-          </div>
-        </div>
-        <hr>
-        <div class="recent__project__footer">
-          <div class="projects__footer--socials">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-            </svg>
-          </div>
-          <div class="recent__footer--text">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M12 12q.825 0 1.413-.588T14 10q0-.825-.588-1.413T12 8q-.825 0-1.413.588T10 10q0 .825.588 1.413T12 12Zm0 7.35q3.05-2.8 4.525-5.088T18 10.2q0-2.725-1.738-4.462T12 4Q9.475 4 7.737 5.738T6 10.2q0 1.775 1.475 4.063T12 19.35ZM12 22q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2q3.175 0 5.588 2.225T20 10.2q0 2.5-1.988 5.438T12 22Zm0-11.8Z" />
-              </svg> Одеса, вул. Пушкіна 19 </span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-<!-- КОНЕЦ БЛОКА "ПОПУЛЯРНЫЕ ПРОЕКТЫ" ------------------------------------------- -->
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
