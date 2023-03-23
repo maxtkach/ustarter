@@ -4,27 +4,11 @@
 <div class="profile">
     <div class="profile__user--info resizable" id="resizeMe">
         <img src="static/images/placeholder_panda.jpg" alt="" class="user__image">
-        <div class="user__name">Андрій Меленюк</div>
-        <div class="user__email">alex2706@gmail.com</div>
+        <div class="user__name">{{ fullName }}</div>
+        <div class="user__email">{{ email }}</div>
         <div class="user__about">
             <div class="about__title">Про себе</div>
-            <div id="about__content">О себе любимом!
-                Поступил в ОЭИС в 1986 году, с 1987 по 1989 служил в ВМФ СССР на северном флоте. В 1993 году
-                закончил институт с отличием (красным дипломом). После чего работал на кафедре АЭС (1 год), ТЭС (4
-                года), ДЭС (с 1998 по настоящее время). Летом 2006 года защитил диссертацию в направлении
-                помехоустойчивого кодирования и получил степень кандидата технических наук. Кроме того работаю
-                программистом (уже не в ОНАС) и с 1998 года занимаюсь цифровой обработкой сигналов на сигнальных
-                процессорах семейства ADSP218x и TMS230c54xx.
-                Женат с 1995 года. В 2000 родился сын. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Eius voluptas nobis, vel molestias ex repellendus maiores, quo, vero perferendis quia similique.
-                Atque totam corporis ullam iusto magnam ipsam, dolorem laboriosam! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Veniam esse beatae, rem illum repellendus voluptate. Corporis nemo
-                quidem officia et, tempora accusamus officiis, iusto dignissimos, nisi nulla ab impedit labore.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus, ratione? Possimus impedit maxime
-                blanditiis itaque numquam nesciunt quos officiis nostrum ipsa facere. Veniam deserunt ipsa sapiente
-                molestias sed quidem cupiditate. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa,
-                id. Optio praesentium culpa tempora obcaecati distinctio repellat voluptate magnam nam consequuntur,
-                ducimus odit dignissimos! Beatae nobis accusamus cum aut voluptate.</div>
+            <div id="about__content">{{ aboutMe }}</div>
             <span id="read__more"></span>
         </div>
         <div class="about__info__footer">
