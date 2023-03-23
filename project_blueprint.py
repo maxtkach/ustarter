@@ -1,4 +1,4 @@
-from flask import render_template, request, Flask, flash, redirect, url_for, Blueprint
+from flask import render_template, request, Flask, flash, redirect, url_for, Blueprint, session
 from config import Config
 from tables import *
 from queries import *
@@ -10,7 +10,7 @@ project = Blueprint("project", __name__)
 
 @project.route("/create_project", methods=("GET", "POST"))
 def CreateProject():
-    if request.method == "POST":
+    if request.method == "POST" and session:
         caption = request.form['caption']
         neededAmount = request.form['neededAmount']
         startBudget = request.form['startBudget']
@@ -45,7 +45,8 @@ def CreateProject():
                                                  "risks": risks, "sponsorsInfo": sponsorsInfo}),
                               category=category,
                               imageId=getImagesCount(),
-                              mediaNames=SaveMedia(images)
+                              mediaNames=SaveMedia(images),
+                              authorId=session["id"]
                               )
             db.session.add(project)
             db.session.commit()

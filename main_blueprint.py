@@ -1,4 +1,4 @@
-from flask import render_template, request, Flask, flash, redirect, url_for, Blueprint
+from flask import render_template, request, Flask, flash, redirect, url_for, Blueprint, session
 from queries import *
 from json import dumps, loads
 from random import choice
@@ -8,6 +8,7 @@ main = Blueprint("main", __name__)
 
 @main.route("/")
 def MainPage():
+    print(session)
     projects = ProjectQuery().GetProjects()
     project1 = choice(projects)
     projects.remove(project1)

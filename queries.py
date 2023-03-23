@@ -5,6 +5,10 @@ class UserQuery():
     def GetUserById(self, id):
         return db.session.query(User)\
             .get(id)
+    def GetUserByEmail(self, email):
+        return db.session.query(User) \
+            .filter(User.email == email)\
+            .first()
     def GetUsers(self):
         return db.session.query(User)\
             .all()
