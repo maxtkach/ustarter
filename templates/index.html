@@ -73,7 +73,9 @@
           </div>
           <div class="footer__buttons">
             <div class="buttons__button2">СПОНСОРУВАТИ</div>
-            <div class="buttons__button " style="margin-left: 20px;">ХОЧУ ДО КОМАНДИ</div>
+            <div class="buttons__button " style="margin-left: 20px;"><button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              ХОЧУ ДО КОМАНДИ
+            </button></div>
           </div>
         </div>
       </div>
@@ -277,6 +279,33 @@
           </div>
         </div>
         -->
+      </div>
+
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Форма вступу до команди</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="input-group">
+                <label for="basic-url" class="form-label">Введіть ваш номер телефону
+                </label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon3">+380</span>
+                  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                </div>
+                <span class="input-group-text">Опишіть чому повинні взяти саме вас</span>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ЗАКРИТИ</button>
+              <button type="button" class="btn" style="background-color: #A73169 !important; color: #FFFFFF !important; ">ПОДАТИ ЗАЯВКУ</button>
+            </div>
+          </div>
+        </div>
       </div>
 
 
