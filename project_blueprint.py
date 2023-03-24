@@ -44,13 +44,20 @@ def CreateProject():
                               description=dumps({"description": description, "neededTeamMembers": neededTeamMembers,
                                                  "risks": risks, "sponsorsInfo": sponsorsInfo}),
                               category=category,
-                              imageId=getImagesCount(),
                               mediaNames=SaveMedia(images),
                               authorId=session["id"]
                               )
             db.session.add(project)
             db.session.commit()
-            return redirect(url_for("main.MainPage"))
+            project = ProjectQuery().GetProjectByCaption(caption)
+            user = UserQuery().GetUserById(session["id"])
+            team = ProjectTeam()
+            team.project = project
+            team.user = user
+            team.role = "Автор"
+            db.session.add(team)
+            db.session.commit()
+            return redirect(url_for('project.ViewProject', project_id=project.id))
 
     return render_template("project_creation.html")
 
@@ -62,17 +69,19 @@ def ViewProject(project_id):
                            getImageById=getImageNameById,
                            loads=loads,
                            path=UPLOAD_FOLDER,
+                           path_avatar=UPLOAD_FOLDER_AVATARS,
                            getSponsors=SponsorQuery().GetSponsorsByProjectId,
                            getTeam=TeamQuery().GetTeamByProjectId,
                            len=len,
-                           getMediaById=getMediaNamesByIds
+                           getMediaById=getMediaNamesByIds,
+                           getUserById=UserQuery().GetUserById
                            )
 
-@project.route("/project/<int:project_id>/edit", methods=["GET", "POST"])
+@project.route("/project/<int:project_id>_edit", methods=["GET", "POST"])
 def EditProject(project_id):
     project = ProjectQuery().GetProjectById(project_id)
 
-    if request.method == "POST":
+    if request.method == "POST" and session and project.authorId == session["id"]:
         caption = request.form['caption']
         neededAmount = request.form['neededAmount']
         startBudget = request.form['startBudget']
@@ -107,6 +116,8 @@ def EditProject(project_id):
                 project.mediaNames = EditMedia(images, project)
             db.session.commit()
             return redirect(url_for('project.ViewProject', project_id=project_id))
+    else:
+        return redirect(url_for('project.ViewProject', project_id=project_id))
 
     return render_template("project_edit.html",
                            project=project,
@@ -116,3 +127,36 @@ def EditProject(project_id):
                            len=len,
                            getMediaById=getMediaNamesByIds
                            )
+
+@project.route("/project/<int:project_id>_delete", methods=["POST"])
+def DeleteProject(project_id):
+    project = ProjectQuery().GetProjectById(project_id)
+    if session["id"] == project.authorId:
+        db.session.delete(project)
+        db.session.commit()
+    return redirect(url_for("main.MainPage"))
+
+@project.route("/project/<int:project_id>/apply_team_member", methods=["POST"])
+def ApplyTeamMember(project_id):
+    project = ProjectQuery().GetProjectById(project_id)
+    phone_number = request.form['telephone_number']
+    message = request.form['message']
+    if not phone_number:
+        flash("")
+
+    elif not message:
+        flash("")
+    else:
+        author = UserQuery().GetUserById(project.authorId)
+        if not author.notifications:
+            author.notifications = dumps([{"telephone_number": phone_number, "message": message}])
+        else:
+            author.notifications = dumps(loads(author.notifications).append({"telephone_number": phone_number,
+                                                                             "message": message}))
+        db.session.commit()
+        return redirect(url_for('project.ViewProject', project_id=project_id))
+
+
+@project.route("/project/<int:project_id>/become_sponsor", methods=["POST"])
+def BecomeSponsor(project_id):
+    project = ProjectQuery().GetProjectById(project_id)

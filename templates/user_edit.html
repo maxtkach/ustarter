@@ -5,15 +5,9 @@
     <div class="creation">
         <h2 class="creation__title">Створення проекту</h2>
 
-        <h4 class="creation_undertitle">Ваше ім'я</h4>
+        <h4 class="creation_undertitle">Ваше ім'я та прізвище</h4>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" name="name" placeholder="Ваше ім'я:" aria-label="Username"
-                aria-describedby="basic-addon1">
-        </div>
-
-        <h4 class="creation_undertitle">Ваше прізвище</h4>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" name="surname" placeholder="Ваше прізвище:" aria-label="Username"
+            <input type="text" class="form-control" name="name" value="{{ user.name }}" placeholder="Ваше ім'я:" aria-label="Username"
                 aria-describedby="basic-addon1">
         </div>
 
@@ -25,37 +19,37 @@
         <h4 class="creation_undertitle">Розкажіть про себе:</h4>
         <div class="input-group mb-3">
             <textarea class="form-control" name="aboutMe" aria-label="With textarea"
-                placeholder="Інформація про проект"></textarea>
+                placeholder="Інформація про проект">{{ user.aboutMe }}</textarea>
         </div>
 
         <h4 class="creation_undertitle">Ваша Адреса</h4>
         <div class="input-group">
-            <textarea class="form-control" name="address" aria-label="With textarea"></textarea>
+            <textarea class="form-control" name="address" aria-label="With textarea">{{ user.address }}</textarea>
         </div>
 
         <h4 class="creation_undertitle">Ваші навички(Резюме):</h4>
         <div class="input-group">
-            <textarea class="form-control" name="resume" aria-label="With textarea"></textarea>
+            <textarea class="form-control" name="resume" aria-label="With textarea">{{ user.resume }}</textarea>
         </div>
 
         <h4 class="creation_undertitle">Ваш телеграм:</h4>
         <div class="input-group">
-            <textarea class="form-control" name="telegram" aria-label="With textarea"></textarea>
+            <textarea class="form-control" name="telegram" aria-label="With textarea">{{ loads(user.social_media)['telegram'] }}</textarea>
         </div>
 
         <h4 class="creation_undertitle">Ваш тікток:</h4>
         <div class="input-group">
-            <textarea class="form-control" name="tiktok" aria-label="With textarea"></textarea>
+            <textarea class="form-control" name="tiktok" aria-label="With textarea">{{ loads(user.social_media)['tiktok'] }}</textarea>
         </div>
 
         <h4 class="creation_undertitle">Ваш інстаграм:</h4>
         <div class="input-group">
-            <textarea class="form-control" name="instagram" aria-label="With textarea"></textarea>
+            <textarea class="form-control" name="instagram" aria-label="With textarea">{{ loads(user.social_media)['instagram'] }}</textarea>
         </div>
 
         <h4 class="creation_undertitle">Ваші твіттер:</h4>
         <div class="input-group">
-            <textarea class="form-control" name="twitter" aria-label="With textarea"></textarea>
+            <textarea class="form-control" name="twitter" aria-label="With textarea">{{ loads(user.social_media)['twitter'] }}</textarea>
         </div>
 
         <button class="creation__submit" type="submit">Створити профіль</button>

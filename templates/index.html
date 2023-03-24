@@ -33,7 +33,7 @@
   <section class="section">
 
     <div class="projects_large">
-      <img class="projects__image" src="../{{ path }}/{{ getImageById(project1.imageId) }}" alt="Картинка 1">
+      <img class="projects__image" src="../{{ path }}/{{ getImageById(project1.id) }}" alt="Картинка 1">
       <div class="projects__content">
         <div class="projects__main-info">
           <h2 class="projects__title"><a href="{{ url_for('project.ViewProject', project_id=project1.id) }}">{{ project1.caption }}</a></h2>
@@ -45,7 +45,8 @@
             <div class="progress__fillbar" style="width: {{ (project1.receivedAmount/project1.neededAmount)|round }}%"></div>
           </div>
           <div class="projects__info">
-            <p class="projects__description info__author"><span>Автор: </span>Андрій Меленюк</p>
+            <p class="projects__description info__author"><span>Автор: </span> {% if getUserById(project1.authorId) is not none %}
+              {{ getUserById(project1.authorId).name }} {% endif %}</p>
             <p class="projects__description info__goals"><span>Опис: </span>{{ loads(project1.description)['description'] }}</p>
           </div>
         </div>
@@ -83,14 +84,15 @@
     <div class="projects__smalls">
       <div class="projects_small">
         <div>
-          <img class="projects__image_small" src="../{{ path }}/{{ getImageById(project2.imageId) }}" alt="Картинка 1">
+          <img class="projects__image_small" src="../{{ path }}/{{ getImageById(project2.id) }}" alt="Картинка 1">
         </div>
         <div class="projects__content">
           <div class="projects__main-info">
             <h2 class="projects__title"><a href="{{ url_for('project.ViewProject', project_id=project2.id) }}">{{ project2.caption }}</a></h2>
             <p class="progress__donated_small">Зібрано: <span>~{{ (project2.receivedAmount/project2.neededAmount)|round }}%</span></p>
             <div class="projects__info">
-              <p class="projects__description info__author"><span>Автор:</span> Андрій Меленюк</p>
+              <p class="projects__description info__author"><span>Автор:</span>  {% if getUserById(project2.authorId) is not none %}
+              {{ getUserById(project2.authorId).name }} {% endif %}</p>
               <p class="projects__description info__goals"><span>Опис:</span>{{ loads(project2.description)['description'] }}</p>
             </div>
           </div>
@@ -112,14 +114,15 @@
       </div>
       <div class="projects_small mt-md-1">
         <div>
-          <img class="projects__image_small" src="../{{ path }}/{{ getImageById(project3.imageId) }}" alt="Картинка 1">
+          <img class="projects__image_small" src="../{{ path }}/{{ getImageById(project3.id) }}" alt="Картинка 1">
         </div>
         <div class="projects__content">
           <div class="projects__main-info">
             <h2 class="projects__title"><a href="{{ url_for('project.ViewProject', project_id=project3.id) }}">{{ project3.caption }}</a></h2>
             <p class="progress__donated_small">Зібрано: <span>~{{ (project3.receivedAmount/project3.neededAmount)|round }}%</span></p>
             <div class="projects__info">
-              <p class="projects__description info__author"><span>Автор:</span> Андрій Меленюк</p>
+              <p class="projects__description info__author"><span>Автор:</span>  {% if getUserById(project3.authorId) is not none %}
+              {{ getUserById(project3.authorId).name }} {% endif %}</p>
               <p class="projects__description info__goals"><span>Опис:</span> {{ loads(project3.description)['description'] }}</p>
             </div>
           </div>
@@ -170,7 +173,7 @@
 <!-- НОВЫЙ ПРОЕКТ ------------------------------------------- -->
 {% for project in latestProjects %}
       <div class="recent__project">
-        <div class="recent__project__header" style="background-image: url(../{{ path }}/{{ getImageById(project.imageId) }})">
+        <div class="recent__project__header" style="background-image: url(../{{ path }}/{{ getImageById(project.id) }})">
           <h3 class="project__header__text"><a href="{{ url_for('project.ViewProject', project_id=project.id) }}">{{ project.caption }}</a></h3>
         </div>
         <div class="recent__project__content">
@@ -180,7 +183,8 @@
           </div>
           <hr>
           <div class="project__content__descriprion">
-            <p class="projects__description"><span>Автор:</span> Андрій Меленюк</p>
+            <p class="projects__description"><span>Автор:</span> {% if getUserById(project.authorId) is not none %}
+              {{ getUserById(project.authorId).name }} {% endif %}</p>
 
             <p class="projects__description projects__goals"><span>Опис: </span> {{ loads(project.description)['description'] }} </p>
           </div>
@@ -284,22 +288,24 @@
               <h5 class="modal-title" id="staticBackdropLabel">Форма вступу до команди</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+          <form action="{{ url_for('project.ApplyTeamMember', project_id=project1.id) }}" method="POST">
             <div class="modal-body">
               <div class="input-group">
                 <label for="basic-url" class="form-label">Введіть ваш номер телефону
                 </label>
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="basic-addon3">+380</span>
-                  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                  <input type="text" class="form-control" name="telephone_number" id="basic-url" aria-describedby="basic-addon3">
                 </div>
                 <span class="input-group-text">Опишіть чому повинні взяти саме вас</span>
-                <textarea class="form-control" aria-label="With textarea"></textarea>
+                <textarea class="form-control" name="message" aria-label="With textarea"></textarea>
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ЗАКРИТИ</button>
-              <button type="button" class="btn" style="background-color: #A73169 !important; color: #FFFFFF !important; ">ПОДАТИ ЗАЯВКУ</button>
+              <button type="submit" class="btn" style="background-color: #A73169 !important; color: #FFFFFF !important; ">ПОДАТИ ЗАЯВКУ</button>
             </div>
+          </form>
           </div>
         </div>
       </div>

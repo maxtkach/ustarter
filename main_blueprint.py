@@ -16,6 +16,8 @@ def MainPage():
     projects.remove(project2)
     project3 = choice(projects)
     projects.remove(project3)
+
+    print(UserQuery().GetUserById(1).notifications)
     latestProjects = ProjectQuery().GetLatestProjects()
     return render_template("index.html",
                            project1=project1,
@@ -24,5 +26,6 @@ def MainPage():
                            path=UPLOAD_FOLDER,
                            getImageById=getImageNameById,
                            loads=loads,
-                           latestProjects=latestProjects
+                           latestProjects=latestProjects,
+                           getUserById=UserQuery().GetUserById
                            )

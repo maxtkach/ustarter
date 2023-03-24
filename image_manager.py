@@ -2,6 +2,7 @@ from os import listdir, remove
 from os.path import isfile
 
 UPLOAD_FOLDER = 'static/images_users'
+UPLOAD_FOLDER_AVATARS = 'static/avatars'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 def allowedFile(filename):
@@ -11,18 +12,18 @@ def allowedFile(filename):
 def getImagesCount(upload_folder=UPLOAD_FOLDER):
     return len([f for f in listdir(upload_folder) if "_" not in f])
 
-def SaveImg(img, upload_folder=UPLOAD_FOLDER):
+def SaveImg(img, upload_folder=UPLOAD_FOLDER, img_id=0):
     fileName = img.filename.split(".")
-    fileName[0] = str(getImagesCount() + 1)
+    fileName[0] = str(getImagesCount() + 1) if img_id == 0 else img_id
     fileName = f"{fileName[0]}.{fileName[-1]}"
     img.save(f"{upload_folder}/{fileName}")
     return fileName
 
-def EditImg(img, project, upload_folder=UPLOAD_FOLDER):
-    if isfile(f"{upload_folder}/{getImageNameById(project.imageId)}"):
-        remove(f"{upload_folder}/{getImageNameById(project.imageId)}")
+def EditImg(img, obj, upload_folder=UPLOAD_FOLDER):
+    if isfile(f"{upload_folder}/{getImageNameById(obj.id)}"):
+        remove(f"{upload_folder}/{getImageNameById(obj.id)}")
     fileName = img.filename.split(".")
-    fileName[0] = str(project.imageId)
+    fileName[0] = str(obj.id)
     fileName = f"{fileName[0]}.{fileName[-1]}"
     img.save(f"{upload_folder}/{fileName}")
     return fileName
@@ -47,7 +48,7 @@ def EditMedia(images, project, upload_folder=UPLOAD_FOLDER):
             remove(f"{upload_folder}/{m}")
     for i in range(len(images)):
         fileName = images[i].filename.split(".")
-        fileName[0] = f"{project.imageId}_{i + 1}"
+        fileName[0] = f"{project.id}_{i + 1}"
         fileName = f"{fileName[0]}.{fileName[-1]}"
         images[i].save(f"{upload_folder}/{fileName}")
         indexes.append(fileName)

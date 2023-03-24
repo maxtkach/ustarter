@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 
+{% block head %}
+    <script>
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            window.location =
+                "../templates/mobile.html"; // замените "http://example.com/mobile-page" на URL вашей мобильной страницы
+        }
+    </script>
+{% endblock %}
+
 {% block content %}
 <form method="post" enctype="multipart/form-data">
     <div class="creation">

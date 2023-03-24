@@ -3,7 +3,7 @@
 {% block content %}
 <div class="profile">
     <div class="profile__user--info resizable" id="resizeMe">
-        <img src="static/images/placeholder_panda.jpg" alt="" class="user__image">
+        <img src="../{{ image_path }}" alt="" class="user__image">
         <div class="user__name">{{ fullName }}</div>
         <div class="user__email">{{ email }}</div>
         <div class="user__about">
@@ -58,9 +58,7 @@
     <div class="nav__content">
         <div id="block1">
             <h2 style="text-align: center; font-weight: bold;">Резюме</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum dolorem repellendus quas numquam,
-                ducimus et ab doloribus veniam fuga. Voluptate est optio quo blanditiis, sint amet! Est architecto
-                minus veniam?</p>
+            <p>{{ resume }}</p>
         </div>
 
         <div id="block2">

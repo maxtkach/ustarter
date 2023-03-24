@@ -18,7 +18,7 @@
     <div class="project-page">
         <div class="project-page__name">{{ project.caption }}</div>
         <div class="project-page__content">
-            <div class="project-page__image"><img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt=""></div>
+            <div class="project-page__image"><img src="../{{ path }}/{{ getImageById(project.id) }}" alt=""></div>
             <div class="projects__progress">
                 <div class="project-page__need projects__progress__need">Потрібна сума: {{ project.neededAmount }}</div>
                 <div class="project-page__donated projects__progress__donated">Отримана сума: {{ project.receivedAmount }}</div>
@@ -81,19 +81,27 @@
                 <p>{{ loads(project.description)['neededTeamMembers'] }}</p>
                 <h2 class="project-page__main-title" id="project-sponsors">Корисна інформація для спонсорів</h2>
                 <p>{{ loads(project.description)['sponsorsInfo'] }}</p>
+                {% if project.authorId == session['id'] %}
+                <form action="{{ url_for('project.DeleteProject', project_id=project.id) }}" method="POST">
+                    <input type="submit" value="Delete Post"
+                            class="btn btn-danger btn-sm"
+                            onclick="return confirm('Are you sure you want to delete this post?')">
+                </form>
+                {% endif %}
             </div>
             <div class="project-page__main-team">
                 <div class="project-page__main-people">
                     <h3>Ідея</h3>
-                    <img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
-                    
-                    <h6>Андрій Меленюк</h6>
+                    <img src="../{{ path_avatar }}/{{ getImageById(project.authorId, path_avatar) }}" alt="">
+                    {% if getUserById(project.authorId) is not none %}
+                    <h6>{{ getUserById(project.authorId).name }}</h6>
+                    {% endif %}
                 </div>
                 <div class="project-page__main-people">
                     <h3>Команда</h3>
-                    <img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
-                    <img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
-                    <img src="../{{ path }}/{{ getImageById(project.imageId) }}" alt="">
+                    <img src="../{{ path }}/{{ getImageById(project.id) }}" alt="">
+                    <img src="../{{ path }}/{{ getImageById(project.id) }}" alt="">
+                    <img src="../{{ path }}/{{ getImageById(project.id) }}" alt="">
     
                 </div>
             </div>
