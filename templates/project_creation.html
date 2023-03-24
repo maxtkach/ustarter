@@ -28,10 +28,8 @@
         <div class="input-group mb-3">
             <span class="input-group-text"><select class="form-select" id="inputGroupSelect01">
                     <option selected>₴</option>
-                    <option value="2">$</option>
-                    <option value="3">€</option>
                 </select></span>
-            <input type="text" class="form-control" name="neededAmount"
+            <input type="number" class="form-control" name="neededAmount"
                 placeholder="Скільки вам потрібно грошей на реалізацію?" aria-label="Amount (to the nearest dollar)">
 
         </div>
@@ -39,10 +37,8 @@
         <div class="input-group mb-3">
             <span class="input-group-text"><select class="form-select" id="inputGroupSelect01">
                     <option selected>₴</option>
-                    <option value="2">$</option>
-                    <option value="3">€</option>
                 </select></span>
-            <input type="text" class="form-control" name="startBudget" placeholder="Стартовий бюджет"
+            <input type="number" class="form-control" name="startBudget" placeholder="Стартовий бюджет"
                 aria-label="Amount (to the nearest dollar)"></div>
 
         <h4 class="creation_undertitle">Розкажіть про ваш проект:</h4>
@@ -59,6 +55,14 @@
         <div class="input-group mb-3">
             <input type="file" id="images" name="images_mult" accept="image/*" multiple />
         </div>
+
+        <h4 class="creation_undertitle">У якому місті плануєте реалізовувати проект?</h4>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><select class="form-select" id="inputGroupSelect01">
+                <option selected>Одеса</option>
+                <option value="2">Миколаїв</option>
+                <option value="3">Київ</option>
+            </select></span></div>
 
         <h4 class="creation_undertitle">Ризики проекту</h4>
         <div class="input-group">
