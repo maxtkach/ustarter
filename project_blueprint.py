@@ -19,6 +19,7 @@ def CreateProject():
         risks = request.form['risks']
         sponsorsInfo = request.form['sponsorsInfo']
         category = request.form['category_select']
+        address = request.form['address_select']
         images = request.files.getlist('images_mult')
         img = request.files['images']
         if not caption:
@@ -35,6 +36,10 @@ def CreateProject():
             flash("Завантажуйте до 3 фоток")
         elif img.filename == '':
             flash("Картинка обов'язкова")
+        elif not category:
+            flash("Категорія обов'язкова")
+        elif not address:
+            flash("Адреса обов'язкова")
         elif img and allowedFile(img.filename):
             SaveImg(img)
             project = Project(caption=caption,
@@ -45,18 +50,19 @@ def CreateProject():
                                                  "risks": risks, "sponsorsInfo": sponsorsInfo}),
                               category=category,
                               mediaNames=SaveMedia(images),
+                              address=address,
                               authorId=session["id"]
                               )
             db.session.add(project)
             db.session.commit()
             project = ProjectQuery().GetProjectByCaption(caption)
-            user = UserQuery().GetUserById(session["id"])
-            team = ProjectTeam()
-            team.project = project
-            team.user = user
-            team.role = "Автор"
-            db.session.add(team)
-            db.session.commit()
+            #user = UserQuery().GetUserById(session["id"])
+            #team = ProjectTeam()
+            #team.project = project
+            #team.user = user
+            #team.role = "Автор"
+            #db.session.add(team)
+            #db.session.commit()
             return redirect(url_for('project.ViewProject', project_id=project.id))
 
     return render_template("project_creation.html")
@@ -90,6 +96,7 @@ def EditProject(project_id):
         risks = request.form['risks']
         sponsorsInfo = request.form['sponsorsInfo']
         category = request.form['category_select']
+        address = request.form['address_select']
         images = request.files.getlist('images_mult')
         img = request.files['images']
         if not caption:
@@ -102,6 +109,10 @@ def EditProject(project_id):
             flash("Опис обов'язковий")
         elif not neededTeamMembers:
             flash("Команда обов'язкова")
+        elif not category:
+            flash("Категорія обов'язкова")
+        elif not address:
+            flash("Адреса обов'язкова")
         else:
             project.caption = caption
             project.neededAmount = neededAmount
@@ -109,6 +120,7 @@ def EditProject(project_id):
             project.description = dumps({"description": description, "neededTeamMembers": neededTeamMembers,
                                                  "risks": risks, "sponsorsInfo": sponsorsInfo})
             project.category = category
+            project.address = address
             print(images)
             if img.filename != '':
                 EditImg(img, project)
@@ -141,18 +153,20 @@ def ApplyTeamMember(project_id):
     project = ProjectQuery().GetProjectById(project_id)
     phone_number = request.form['telephone_number']
     message = request.form['message']
+    role = request.form['role']
     if not phone_number:
-        flash("")
-
+        flash("Уведіть номер телефону")
     elif not message:
-        flash("")
+        flash("Уведіть текст повідомлення")
+    elif not role:
+        flash("Уведіть спеціальність")
     else:
         author = UserQuery().GetUserById(project.authorId)
         if not author.notifications:
-            author.notifications = dumps([{"telephone_number": phone_number, "message": message}])
+            author.notifications = dumps([{"telephone_number": phone_number, "message": message, "role": role}])
         else:
             author.notifications = dumps(loads(author.notifications).append({"telephone_number": phone_number,
-                                                                             "message": message}))
+                                                                "message": message, "role": role}))
         db.session.commit()
         return redirect(url_for('project.ViewProject', project_id=project_id))
 

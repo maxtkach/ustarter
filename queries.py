@@ -23,7 +23,7 @@ class UserQuery():
             .authorId)
     def GetUsersWithProjects(self):
         return db.session.query(User)\
-            .filter(User.projectsParticipated.role == "Author")\
+            .filter(User.projectsParticipated.role == "Автор")\
             .all()
     def GetUsersInProjects(self):
         return db.session.query(User)\
@@ -53,6 +53,10 @@ class ProjectQuery():
     def GetProjectById(self, id):
         return db.session.query(Project)\
             .get(id)
+    def GetUserProjects(self, userId):
+        return db.session.query(Project)\
+               .filter(Project.authorId == userId)\
+               .all()
     def GetProjectByCaption(self, caption):
         return db.session.query(Project) \
             .filter(caption == Project.caption)\

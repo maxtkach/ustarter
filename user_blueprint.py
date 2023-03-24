@@ -42,7 +42,11 @@ def ShowProfile(id):
                            email=user.email,
                            aboutMe=user.aboutMe,
                            resume=user.resume,
-                           image_path=f"{UPLOAD_FOLDER_AVATARS}/{getImageNameById(id, UPLOAD_FOLDER_AVATARS)}"
+                           image_path=f"{UPLOAD_FOLDER_AVATARS}/{getImageNameById(id, UPLOAD_FOLDER_AVATARS)}",
+                           userProjects=ProjectQuery().GetUserProjects(user.id),
+                           getImageById=getImageNameById,
+                           path=UPLOAD_FOLDER,
+                           loads=loads
                            )# + " " + user.surname
 
 @user.route("/profile/<int:id>_edit", methods=["GET", "POST"])
@@ -79,7 +83,7 @@ def EditProfile(id):
                 return redirect(f"../../profile/{id}")
         else:
             return redirect(url_for("user.Logout"))
-    return redirect(url_for("user.Login")) # render_template("profile.html")
+    return redirect(url_for("user.Login"))# render_template("profile.html")
 
 @user.route("/signup")
 def SignupPage():
