@@ -33,7 +33,7 @@
   <section class="section">
 
     <div class="projects_large">
-      <img class="projects__image" src="../{{ path }}/{{ getImageById(project1.imageId) }}" alt="Картинка 1">
+      <img class="projects__image" src="../{{ path }}/{{ getImageById(project1.id) }}" alt="Картинка 1">
       <div class="projects__content">
         <div class="projects__main-info">
           <h2 class="projects__title"><a href="{{ url_for('project.ViewProject', project_id=project1.id) }}">{{ project1.caption }}</a></h2>
@@ -83,7 +83,7 @@
     <div class="projects__smalls">
       <div class="projects_small">
         <div>
-          <img class="projects__image_small" src="../{{ path }}/{{ getImageById(project2.imageId) }}" alt="Картинка 1">
+          <img class="projects__image_small" src="../{{ path }}/{{ getImageById(project2.id) }}" alt="Картинка 1">
         </div>
         <div class="projects__content">
           <div class="projects__main-info">
@@ -112,7 +112,7 @@
       </div>
       <div class="projects_small mt-md-1">
         <div>
-          <img class="projects__image_small" src="../{{ path }}/{{ getImageById(project3.imageId) }}" alt="Картинка 1">
+          <img class="projects__image_small" src="../{{ path }}/{{ getImageById(project3.id) }}" alt="Картинка 1">
         </div>
         <div class="projects__content">
           <div class="projects__main-info">
@@ -170,7 +170,7 @@
 <!-- НОВЫЙ ПРОЕКТ ------------------------------------------- -->
 {% for project in latestProjects %}
       <div class="recent__project">
-        <div class="recent__project__header" style="background-image: url(../{{ path }}/{{ getImageById(project.imageId) }})">
+        <div class="recent__project__header" style="background-image: url(../{{ path }}/{{ getImageById(project.id) }})">
           <h3 class="project__header__text"><a href="{{ url_for('project.ViewProject', project_id=project.id) }}">{{ project.caption }}</a></h3>
         </div>
         <div class="recent__project__content">
