@@ -864,58 +864,56 @@ body {
 		}
 
 
-		&__buttons {
-
-            &__button2 {
-                width: 350px;
-                transition: all 0.5s ease;
-                height: 55px;
-                border-radius: 10px;
-                border: none;
-                color: #fff;
-                background-color: $main;
-            
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                
-                &:hover {
-                    font-size: 16px;
-                    border-radius: 10px;
-                    border: 3px solid #000;
-                    color: #000;
-                    background-color: #fff;
-                
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                }
-            }
-        
-            &__button {
-                font-size: 16px;
-                transition: all 0.5s ease;
-                width: 225px;
-                height: 55px;
-                border-radius: 10px;
-                border: 3px solid #000;
-                color: #000;
-            
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-        
-                &:hover {
-                    border-radius: 10px;
-                    border: none;
-                    color: #fff;
-                    background-color: $main;
-                }
-            }
+        .projects__footer--button2 {
+            width: 350px;
+            transition: all 0.5s ease;
+            height: 55px;
+            border-radius: 10px;
+            border: none;
+            color: #fff;
+            background-color: $main;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
         }
+        .projects__footer--button2:hover {
+            font-size: 16px;
+            border-radius: 10px;
+            border: 3px solid #000;
+            color: #000;
+            background-color: #fff;
+                
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+            
+        
+        .projects__footer--button {
+            font-size: 16px;
+            transition: all 0.5s ease;
+            margin-top: 10px;
+            width: 350px;
+            height: 55px;
+            border-radius: 10px;
+            border: 3px solid #000;
+            color: #000;
+            
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .projects__footer--button:hover {
+            border-radius: 10px;
+            border: none;
+            color: #fff;
+            background-color: $main;
+        }
+        
 }
 .projects {
 
@@ -1010,6 +1008,7 @@ body {
         border-radius: 100px;
         display: inline-block;
         position: relative;
+        object-fit: cover;
 	}
 }
 
@@ -1068,4 +1067,26 @@ body {
 
 .settings{
     padding-top: 100px !important;
+}
+
+.projects__footer--social img{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.projects__footer--social{
+    display: inline-block;
+}
+
+.project-page--social{
+    display: inline-block;
+}
+
+.project-page--social img{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding-left: 10px;
 }

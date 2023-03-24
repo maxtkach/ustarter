@@ -1206,7 +1206,7 @@ input[type="file"]::file-selector-button::after {
   display: inline-block;
 }
 
-.project-page__buttons__button2 {
+.project-page .projects__footer--button2 {
   width: 350px;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -1215,6 +1215,7 @@ input[type="file"]::file-selector-button::after {
   border: none;
   color: #fff;
   background-color: #A73169;
+  margin-top: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1230,7 +1231,7 @@ input[type="file"]::file-selector-button::after {
           align-items: center;
 }
 
-.project-page__buttons__button2:hover {
+.project-page .projects__footer--button2:hover {
   font-size: 16px;
   border-radius: 10px;
   border: 3px solid #000;
@@ -1251,11 +1252,12 @@ input[type="file"]::file-selector-button::after {
           align-items: center;
 }
 
-.project-page__buttons__button {
+.project-page .projects__footer--button {
   font-size: 16px;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  width: 225px;
+  margin-top: 10px;
+  width: 350px;
   height: 55px;
   border-radius: 10px;
   border: 3px solid #000;
@@ -1275,7 +1277,7 @@ input[type="file"]::file-selector-button::after {
           align-items: center;
 }
 
-.project-page__buttons__button:hover {
+.project-page .projects__footer--button:hover {
   border-radius: 10px;
   border: none;
   color: #fff;
@@ -1364,6 +1366,8 @@ input[type="file"]::file-selector-button::after {
   border-radius: 100px;
   display: inline-block;
   position: relative;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .buttons__button2 {
@@ -1444,5 +1448,27 @@ input[type="file"]::file-selector-button::after {
 
 .settings {
   padding-top: 100px !important;
+}
+
+.projects__footer--social img {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding-left: 10px;
+}
+
+.projects__footer--social {
+  display: inline-block;
+}
+
+.project-page--social {
+  display: inline-block;
+}
+
+.project-page--social img {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  padding-left: 10px;
 }
 /*# sourceMappingURL=styles.css.map */
