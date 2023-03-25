@@ -128,25 +128,25 @@
             {% if p.project is not none %}
             <div class="short__project">
                 <div class="recent__project__header short__project--header">
-                    <h3 class="project__header__text">{{ project.project.caption }}</h3>
+                    <h3 class="project__header__text">{{ p.project.caption }}</h3>
                 </div>
                 <div class="short__project--content">
                     <div class="projects__progress__need small_project__content"><span>Потрібно коштів:</span> {{ p.project.neededAmount }}₴ </div>
                     <div class="progress-mark"></div>
-                    <div class="projects__progress__need small_project__content"><span>Зібрано коштів:</span>{{ p.project.receivedAmount }}₴ (~{{ (p.project.receivedAmount/p.project.neededAmount)|round }}%)</div>
+                    <div class="projects__progress__need small_project__content"><span>Зібрано коштів:</span>{{ p.project.receivedAmount }}₴ (~{{ ((p.project.receivedAmount/p.project.neededAmount) * 100)|round }}%)</div>
                     <div class="progress">
                         <div class="progress-bar profile__progress " role="progressbar"
-                            style="width: 79%; background-color:#A73169" aria-valuenow="15" aria-valuemin="0"
+                            style="width: {{ ((p.project.receivedAmount/p.project.neededAmount) * 100)|round }}%; background-color:#A73169" aria-valuenow="15" aria-valuemin="0"
                             aria-valuemax="100"></div>
                         <div class="progress-bar bg-success profile__progress" role="progressbar"
-                            style="width: 12%; background-color:#6AAF9D !important" aria-valuenow="30" aria-valuemin="0"
+                            style="width: {{ 100 - ((p.project.receivedAmount/p.project.neededAmount) * 100)|round }}%; background-color:#6AAF9D !important" aria-valuenow="30" aria-valuemin="0"
                             aria-valuemax="100"><span></span></span></div>
                     </div>
 
 
 
                     <div class="projects__progress__need small_project__content"><span>К-ть спонсованості проекта:
-                        </span>{{ p.money }}₴ (~{{(p.money/p.project.neededAmount)|round}}%)</div>
+                        </span>{{ p.money }}₴ (~{{((p.money/p.project.neededAmount) * 100)|round}}%)</div>
 
                 </div>
             </div>
@@ -167,13 +167,13 @@
                 <div class="short__project--content">
                     <div class="projects__progress__need small_project__content"><span>Потрібно коштів:</span> {{ p.project.neededAmount }}₴ </div>
                     <div class="progress-mark"></div>
-                    <div class="projects__progress__need small_project__content"><span>Зібрано коштів:</span>{{ p.project.receivedAmount }}₴ (~{{ (p.project.receivedAmount/p.project.neededAmount)|round }}%)</div>
+                    <div class="projects__progress__need small_project__content"><span>Зібрано коштів:</span>{{ p.project.receivedAmount }}₴ (~{{ ((p.project.receivedAmount/p.project.neededAmount) * 100)|round }}%)</div>
                     <div class="progress">
                         <div class="progress-bar profile__progress " role="progressbar"
-                            style="width: 79%; background-color:#A73169" aria-valuenow="15" aria-valuemin="0"
+                            style="width: {{ ((p.project.receivedAmount/p.project.neededAmount) * 100)|round }}%; background-color:#A73169" aria-valuenow="15" aria-valuemin="0"
                             aria-valuemax="100"></div>
                         <div class="progress-bar bg-success profile__progress" role="progressbar"
-                            style="width: 12%; background-color:#6AAF9D !important" aria-valuenow="30" aria-valuemin="0"
+                            style="width: {{ 100 - ((p.project.receivedAmount/p.project.neededAmount) * 100)|round }}%; background-color:#6AAF9D !important" aria-valuenow="30" aria-valuemin="0"
                             aria-valuemax="100"><span></span></span></div>
                     </div>
 

@@ -40,10 +40,10 @@
           <div class="projects__progress">
             <div class="progress__texts">
               <p class="progress__need">Потрібно коштів: {{ project1.neededAmount }}₴ </p>
-              <p class="progress__donated">Зібрано: {{ project1.receivedAmount }}₴ (~{{ (project1.receivedAmount/project1.neededAmount)|round }}%) </p>
+              <p class="progress__donated">Зібрано: {{ project1.receivedAmount }}₴ (~{{ ((project1.receivedAmount/project1.neededAmount) * 100)|round }}%) </p>
             </div>
             <div class="progress__fillbar">
-              <div class="fillbar__fill" style="width: {{ (project1.receivedAmount/project1.neededAmount)|round }}%"></div>
+              <div class="fillbar__fill" style="width: {{ ((project1.receivedAmount/project1.neededAmount) * 100)|round }}%"></div>
             </div>
           </div>
           <div class="projects__info">
@@ -94,7 +94,7 @@
         <div class="projects__content">
           <div class="projects__main-info">
             <h2 class="projects__title"><a href="{{ url_for('project.ViewProject', project_id=project2.id) }}">{{ project2.caption }}</a></h2>
-            <p class="progress__donated_small">Зібрано: <span>~{{ (project2.receivedAmount/project2.neededAmount)|round }}%</span></p>
+            <p class="progress__donated_small">Зібрано: <span>~{{ ((project2.receivedAmount/project2.neededAmount) * 100)|round }}%</span></p>
             <div class="projects__info">
               <p class="projects__description info__author"><span>Автор:</span>  {% if getUserById(project2.authorId) is not none %}
               {{ getUserById(project2.authorId).name }} {% endif %}</p>
@@ -127,7 +127,7 @@
         <div class="projects__content">
           <div class="projects__main-info">
             <h2 class="projects__title"></h2>
-            <p class="progress__donated_small">Зібрано: <span>~{{ (project3.receivedAmount/project3.neededAmount)|round }}%</span></p>
+            <p class="progress__donated_small">Зібрано: <span>~{{ ((project3.receivedAmount/project3.neededAmount) * 100)|round }}%</span></p>
             <div class="projects__info">
               <p class="projects__description info__author"><span>Автор:</span>  {% if getUserById(project3.authorId) is not none %}
               {{ getUserById(project3.authorId).name }} {% endif %}</p>
@@ -170,7 +170,7 @@
 
   <div class="recent">
     <h2 class="recent__title text-center">НЕЩОДАВНІ ПРОЕКТИ</h2>
-    <div class="see_all"><a href="#">УСІ ПРОЕКТИ</a> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+    <div class="see_all"><a href="{{ url_for('project.ShowAllProjects') }}">УСІ ПРОЕКТИ</a> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
       viewBox="0 0 24 24">
       <g transform="rotate(-90 12 12)">
         <path fill="#a73169" d="m12 15l-5-5h10Z" />
@@ -190,7 +190,7 @@
         <div class="recent-project__content">
           <div class="recent-project__donates">
             <div class="recent-project__need">Потрібно коштів: {{ project.neededAmount }}₴ </div>
-            <div class="recent-project__donated">Зібрано: {{ project.receivedAmount }}₴ (~{{ (project.receivedAmount/project.neededAmount)|round }}%) </div>
+            <div class="recent-project__donated">Зібрано: {{ project.receivedAmount }}₴ (~{{ ((project.receivedAmount/project.neededAmount) * 100)|round }}%) </div>
           </div>
           <hr>
           <div class="recent-content__descriprion">
@@ -237,7 +237,7 @@
 
    <div class="recent">
     <h2 class="recent__title text-center">ПОПУЛЯРНІ ПРОЕКТИ</h2>
-    <div class="see_all"><a href="#">УСІ ПРОЕКТИ</a> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+    <div class="see_all"><a href="{{ url_for('project.ShowAllProjects') }}">УСІ ПРОЕКТИ</a> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
       viewBox="0 0 24 24">
       <g transform="rotate(-90 12 12)">
         <path fill="#a73169" d="m12 15l-5-5h10Z" />
@@ -253,7 +253,7 @@
         <div class="recent-project__content">
           <div class="recent-project__donates">
             <div class="recent-project__need">Потрібно коштів: {{ project.neededAmount }}₴ </div>
-            <div class="recent-project__donated">Зібрано: {{ project.receivedAmount }}₴ (~{{ (project.receivedAmount/project.neededAmount)|round }}%) </div>
+            <div class="recent-project__donated">Зібрано: {{ project.receivedAmount }}₴ (~{{ ((project.receivedAmount/project.neededAmount) * 100)|round }}%) </div>
           </div>
           <hr>
           <div class="recent-content__descriprion">
@@ -333,19 +333,19 @@
         <h5 class="modal-title" id="staticBackdropLabel">Спонсорування</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    <form action="{{ url_for('project.ApplyTeamMember', project_id=project1.id) }}" method="POST">
+    <form action="{{ url_for('project.BecomeSponsor', project_id=project1.id) }}" method="POST">
       <div class="modal-body">
         <div class="input-group">
           <label for="basic-url" class="form-label">Введіть сумму поповнення
           </label>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon3">₴</span>
-            <input type="number" class="form-control" name="telephone_number" id="basic-url" aria-describedby="basic-addon3">
+            <input type="number" class="form-control" name="sum" id="basic-url" aria-describedby="basic-addon3">
           </div>
           <span class="input-group-text">Введіть номер вашої картки</span>
-          <input type="text" class="form-control" name="role" id="basic-url" aria-describedby="basic-addon3">
+          <input type="text" class="form-control" name="card_number" id="basic-url" aria-describedby="basic-addon3">
           <span class="input-group-text">Введіть ваш номер телефону</span>
-          <input type="number" class="form-control" name="role" id="basic-url" aria-describedby="basic-addon3">
+          <input type="number" class="form-control" name="telephone_number" id="basic-url" aria-describedby="basic-addon3">
           <span class="input-group-text">Можете написати повідомлення до авторів проекту</span>
           <textarea class="form-control" name="message" aria-label="With textarea"></textarea>
 

@@ -155,6 +155,29 @@ def EditProject(project_id):
                            getMediaById=getMediaNamesByIds
                            )
 
+@project.route("/all_projects", methods=["GET"])
+def ShowAllProjects():
+    projects = ProjectQuery().GetProjects()
+    return render_template("all_projects.html",
+                           projects=projects,
+                           getImageById=getImageNameById,
+                           path=UPLOAD_FOLDER,
+                           getUserById=UserQuery().GetUserById,
+                           loads=loads
+                           )
+
+@project.route("/projects_<category>", methods=["GET"])
+def ShowCategoryProjects(category):
+    projects = ProjectQuery().GetProjectsByCategory(category)
+    return render_template("category.html",
+                           projects=projects,
+                           getImageById=getImageNameById,
+                           path=UPLOAD_FOLDER,
+                           getUserById=UserQuery().GetUserById,
+                           loads=loads,
+                           category=category
+                           )
+
 @project.route("/project/<int:project_id>_delete", methods=["POST"])
 def DeleteProject(project_id):
     project = ProjectQuery().GetProjectById(project_id)
@@ -203,6 +226,42 @@ def ApplyTeamMember(project_id):
         return redirect(url_for('project.ViewProject', project_id=project_id))
 
 
-@project.route("/project/<int:project_id>/become_sponsor", methods=["POST"])
+@project.route("/project/<int:project_id>_become_sponsor", methods=["POST"])
 def BecomeSponsor(project_id):
     project = ProjectQuery().GetProjectById(project_id)
+    if session["id"] == project.authorId:
+        return redirect(url_for('project.ViewProject', project_id=project_id))
+    phone_number = request.form['telephone_number']
+    message = request.form['message']
+    card_number = request.form['card_number']
+    sum = request.form['sum']
+    if not phone_number:
+        flash("Уведіть номер телефону")
+        return redirect(url_for('project.ViewProject', project_id=project_id))
+    elif not message:
+        flash("Уведіть текст повідомлення")
+    elif not card_number:
+        flash("Уведіть номер карти")
+    elif not sum:
+        flash("Уведіть суму")
+    else:
+        author = UserQuery().GetUserById(project.authorId)
+        if not author.notifications:
+            author.notifications = dumps([{"telephone_number": phone_number, "message": message, "card_number": card_number,
+                                           "user_id": session['id'], "project_id": project_id, "sum": sum,
+                                           "type": "Допомога"}])
+        else:
+            loaded_notifications = loads(author.notifications)
+            loaded_notifications.append({"telephone_number": phone_number, "message": message, "card_number": card_number,
+                                         "user_id": session['id'], "project_id": project_id, "sum": sum,
+                                         "type": "Допомога"})
+            author.notifications = dumps(loaded_notifications)
+        project.receivedAmount += int(sum)
+        u = UserQuery().GetUserById(session["id"])
+        userSponsor = UserSponsor()
+        userSponsor.user = u
+        userSponsor.project = project
+        userSponsor.money = int(sum)
+        db.session.add(userSponsor)
+        db.session.commit()
+        return redirect(url_for('project.ViewProject', project_id=project_id))

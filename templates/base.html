@@ -32,25 +32,20 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <h5 class="dropdown-title dropdown-item">Категорії</h5>
             <div class="col dropdown-column">
-              <li><a class="dropdown-item" href="#">Фільми та відео</a></li>
-              <li><a class="dropdown-item" href="#">Дизайн</a></li>
-              <li><a class="dropdown-item" href="#">Ігри</a></li>
-              <li><a class="dropdown-item" href="#">Музика</a></li>
-              <li><a class="dropdown-item" href="#">Фото</a></li>
-              <li><a class="dropdown-item" href="#">Технології</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('project.ShowCategoryProjects', category='Фільми та відео') }}">Фільми та відео</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('project.ShowCategoryProjects', category='Дизайн') }}">Дизайн</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('project.ShowCategoryProjects', category='Ігри') }}">Ігри</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('project.ShowCategoryProjects', category='Музика') }}">Музика</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('project.ShowCategoryProjects', category='Фото') }}">Фото</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('project.ShowCategoryProjects', category='Технології') }}">Технології</a></li>
             </div>
             <div class="col dropdown-column">
-              <li><a class="dropdown-item" href="#">Для дітей</a></li>
-              <li><a class="dropdown-item" href="#">Постраждалі</a></li>
-              <li><a class="dropdown-item" href="#">Навчання</a></li>
-              <li><a class="dropdown-item" href="#">Застосунки</a></li>
-              <li><a class="dropdown-item" href="#">Комікси та мультиплікація</a></li>
-              <li><a class="dropdown-item" href="#">Особисті збори</a></li>
-            </div>
-            <div class="col dropdown-column">
-              <li><a class="dropdown-item" href="#">Нещодавні</a></li>
-              <li><a class="dropdown-item" href="#">Найпопулярніші</a></li>
-              <li><a class="dropdown-item" href="#">Найбільш спонсовані</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('project.ShowCategoryProjects', category='Для дітей') }}">Для дітей</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('project.ShowCategoryProjects', category='Постраждалі') }}">Постраждалі</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('project.ShowCategoryProjects', category='Навчання') }}">Навчання</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('project.ShowCategoryProjects', category='Застосунки') }}">Застосунки</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('project.ShowCategoryProjects', category='Комікси та мультиплікація') }}">Комікси та мультиплікація</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('project.ShowCategoryProjects', category='Особисті збори') }}">Особисті збори</a></li>
             </div>
           </ul>
         </li>

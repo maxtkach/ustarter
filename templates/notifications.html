@@ -34,6 +34,24 @@
 
         </div>
     </div>
+    {% elif notification['type'] == "Допомога" %}
+    <div class="notification">
+        <a class="btn notification__title" data-bs-toggle="collapse" href="#collapseExample" role="button"
+            aria-expanded="false" aria-controls="collapseExample">
+            <h3 class="notification__title__element">{{ notification['type'] }}</h3> <svg xmlns="http://www.w3.org/2000/svg"
+                class="notification__title__element" width="30" height="30" viewBox="0 0 24 24">
+                <path fill="#a73169" d="m12 15l-5-5h10l-5 5Z" /></svg>
+
+        </a>
+        <div class="collapse" id="collapseExample">
+            <h6 class="notification__author">Від: <a href="{{ url_for('user.ShowProfile', id=notification['user_id']) }}">{{ getUserById(notification['user_id']).name }}</a> </h6>
+            <h6 class="notification__author">Пошта: {{ getUserById(notification['user_id']).email }}</h6>
+            <h6 class="notification__author">Номер телефону: {{ notification['telephone_number'] }}</h6>
+            <h6 class="notification__author">Сума: {{ notification['sum'] }}</h6>
+            <h6 class="notification__author">Номер карти: {{ notification['card_number'] }}</h6>
+            <p class="notification__body">{{ notification['message'] }}</p>
+        </div>
+    </div>
     {% endif %}
     {% endfor %}
 {% endif %}
