@@ -24,6 +24,8 @@ def CreateProject():
         img = request.files['images']
         if not caption:
             flash("Заголовок обов'язковий")
+        elif ProjectQuery().GetProjectByCaption(caption):
+            flash("Проект з таким заголовком вже є")
         elif not neededAmount:
             flash("Потрібні гроші обов'язкові")
         elif not startBudget:
@@ -41,7 +43,6 @@ def CreateProject():
         elif not address:
             flash("Адреса обов'язкова")
         elif img and allowedFile(img.filename):
-            SaveImg(img)
             project = Project(caption=caption,
                               neededAmount=neededAmount,
                               receivedAmount=0,
@@ -49,7 +50,6 @@ def CreateProject():
                               description=dumps({"description": description, "neededTeamMembers": neededTeamMembers,
                                                  "risks": risks, "sponsorsInfo": sponsorsInfo}),
                               category=category,
-                              mediaNames=SaveMedia(images),
                               address=address,
                               authorId=session["id"]
                               )
@@ -63,6 +63,8 @@ def CreateProject():
             #team.role = "Автор"
             #db.session.add(team)
             #db.session.commit()
+            SaveImg(img, img_id=project.id)
+            project.mediaNames = SaveMedia(images, img_id=project.id)
             return redirect(url_for('project.ViewProject', project_id=project.id))
 
     return render_template("project_creation.html")
@@ -70,6 +72,23 @@ def CreateProject():
 @project.route("/project/<int:project_id>", methods=["GET"])
 def ViewProject(project_id):
     project = ProjectQuery().GetProjectById(project_id)
+    usersClicked = project.usersClicked
+    print(usersClicked)
+    if usersClicked is not None:
+        if usersClicked == "":
+            project.usersClicked = str(session['id'])
+            db.session.commit()
+        else:
+            usersClicked = [int(e) for e in usersClicked.split(" ")]
+            print(usersClicked)
+            if session['id'] not in usersClicked:
+                usersClicked.append(session["id"])
+                project.usersClicked = " ".join([str(i) for i in usersClicked])
+                db.session.commit()
+    else:
+        project.usersClicked = str(session['id'])
+        db.session.commit()
+
     return render_template("project_page.html",
                            project=project,
                            getImageById=getImageNameById,

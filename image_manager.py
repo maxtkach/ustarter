@@ -28,12 +28,12 @@ def EditImg(img, obj, upload_folder=UPLOAD_FOLDER):
     img.save(f"{upload_folder}/{fileName}")
     return fileName
 
-def SaveMedia(images, upload_folder=UPLOAD_FOLDER):
+def SaveMedia(images, upload_folder=UPLOAD_FOLDER, img_id=0):
     i = 1
     indexes = []
     for img in images:
         fileName = img.filename.split(".")
-        fileName[0] = f"{getImagesCount()}_{i}"
+        fileName[0] = f"{str(getImagesCount() + 1) if img_id == 0 else img_id}_{i}"
         fileName = f"{fileName[0]}.{fileName[-1]}"
         img.save(f"{upload_folder}/{fileName}")
         indexes.append(fileName)

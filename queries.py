@@ -69,8 +69,9 @@ class ProjectQuery():
         projects = [self.GetProjectById(t.projectId) for t in team]
         return projects
     def GetTopProjects(self):
-        return db.session.query(Project) \
-            .order_by(desc(len(Project.usersClicked.split(" ")))) \
+        return db.session.query(Project)\
+            .filter(Project.usersClicked != None)\
+            .order_by(desc(Project.usersClicked)) \
             .limit(4)\
             .all()
     def GetLatestProjects(self):
