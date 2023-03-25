@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-
+# from app import db
+# db = SQLAlchemy() # SQLAlchemy(app)?
 db = SQLAlchemy()
 
 class ProjectTeam(db.Model):
