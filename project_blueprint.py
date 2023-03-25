@@ -70,7 +70,6 @@ def CreateProject():
 @project.route("/project/<int:project_id>", methods=["GET"])
 def ViewProject(project_id):
     project = ProjectQuery().GetProjectById(project_id)
-    print(project.authorId)
     return render_template("project_page.html",
                            project=project,
                            getImageById=getImageNameById,

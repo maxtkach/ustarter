@@ -47,19 +47,21 @@
                 {{ project.address }}, Україна
             </div>
             <div class="project-page__socials">
+                {% if getUserById(project.authorId).social_media is not none and loads(getUserById(project.authorId).social_media)['telegram'] is not none %}
                 <div class="project-page--social" >
-                    <img src="../static/images/logos_telegram.svg" alt="telegram">
-                  </div>
-                  <div class="project-page--social">
-                    <img src="../static/images/logos_tiktok-icon.svg" alt="tiktok">
-                  </div>
-                  <div class="project-page--social">
-                    <img src="../static/images/skill-icons_instagram.svg" alt="instagram">
-                  </div>
-                  <div class="project-page--social">
-                    <img src="../static/images/skill-icons_twitter.svg" alt="twitter">
-                  </div>
-
+                    <a href="https://t.me/{{loads(getUserById(project.authorId).social_media)['telegram']}}"><img src="../static/images/logos_telegram.svg" alt="telegram"></a>
+                </div>
+                {% endif %}
+                {% if getUserById(project.authorId).social_media is not none and loads(getUserById(project.authorId).social_media)['instagram'] is not none %}
+                <div class="project-page--social">
+                    <a href="https://instagram.com/{{loads(getUserById(project.authorId).social_media)['instagram']}}"><img src="../static/images/skill-icons_instagram.svg" alt="instagram"></a>
+                </div>
+                {% endif %}
+                {% if getUserById(project.authorId).social_media is not none and loads(getUserById(project.authorId).social_media)['twitter'] != '' %}
+                <div class="project-page--social">
+                    <a href="https://twitter.com/{{loads(getUserById(project.authorId).social_media)['twitter']}}"><img src="../static/images/skill-icons_twitter.svg" alt="twitter"></a>
+                </div>
+                {% endif %}
             </div>
             <hr>
         </div>

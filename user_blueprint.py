@@ -74,8 +74,8 @@ def EditProfile(id):
                         else:
                             print("(here2)")
                             SaveImg(img, UPLOAD_FOLDER_AVATARS, session["id"])
-                    user.social_media = dumps({"telegram": request.form["telegram"], "tiktok": request.form["tiktok"],
-                                               "instagram": request.form["instagram"], "twitter": request.form["twitter"]})
+                    user.social_media = dumps({"telegram": request.form["telegram"],
+                                            "instagram": request.form["instagram"], "twitter": request.form["twitter"]})
 
                     db.session.commit()
                     return redirect(f"../../profile/{id}")

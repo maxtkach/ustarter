@@ -54,18 +54,21 @@
           <div class="footer__texts">
             <div class="footer__text"><span>Зв'язок з нами</span>
               <div class="footer__socials">
-                <div class="footer__icon">
-                  <img src="../static/images/logos_telegram.svg" alt="telegram">
+                {% if getUserById(project1.authorId).social_media is not none and loads(getUserById(project1.authorId).social_media)['telegram'] is not none %}
+                <div class="project-page--social" >
+                    <a href="https://t.me/{{loads(getUserById(project1.authorId).social_media)['telegram']}}"><img src="../static/images/logos_telegram.svg" alt="telegram"></a>
                 </div>
-                <div class="footer__icon">
-                  <img src="../static/images/logos_tiktok-icon.svg" alt="telegram">
+                {% endif %}
+                {% if getUserById(project1.authorId).social_media is not none and loads(getUserById(project1.authorId).social_media)['instagram'] is not none %}
+                <div class="project-page--social">
+                    <a href="https://instagram.com/{{loads(getUserById(project1.authorId).social_media)['instagram']}}"><img src="../static/images/skill-icons_instagram.svg" alt="instagram"></a>
                 </div>
-                <div class="footer__icon">
-                  <img src="../static/images/skill-icons_instagram.svg" alt="telegram">
+                {% endif %}
+                {% if getUserById(project1.authorId).social_media is not none and loads(getUserById(project1.authorId).social_media)['twitter'] != '' %}
+                <div class="project-page--social">
+                    <a href="https://twitter.com/{{loads(getUserById(project1.authorId).social_media)['twitter']}}"><img src="../static/images/skill-icons_twitter.svg" alt="twitter"></a>
                 </div>
-                <div class="footer__icon">
-                  <img src="../static/images/skill-icons_twitter.svg" alt="telegram">
-                </div>
+                {% endif %}
               </div>
             </div>
             <div class="footer__text" style="text-align:right">Адреса <br>
@@ -97,18 +100,21 @@
             </div>
           </div>
           <div class="footer__socials">
-            <div class="footer__icon">
-              <img src="../static/images/logos_telegram.svg" alt="telegram">
+            {% if getUserById(project2.authorId).social_media is not none and loads(getUserById(project2.authorId).social_media)['telegram'] is not none %}
+            <div class="project-page--social" >
+                <a href="https://t.me/{{loads(getUserById(project2.authorId).social_media)['telegram']}}"><img src="../static/images/logos_telegram.svg" alt="telegram"></a>
             </div>
-            <div class="footer__icon">
-              <img src="../static/images/logos_tiktok-icon.svg" alt="tiktok">
+            {% endif %}
+            {% if getUserById(project2.authorId).social_media is not none and loads(getUserById(project2.authorId).social_media)['instagram'] is not none %}
+            <div class="project-page--social">
+                <a href="https://instagram.com/{{loads(getUserById(project2.authorId).social_media)['instagram']}}"><img src="../static/images/skill-icons_instagram.svg" alt="instagram"></a>
             </div>
-            <div class="footer__icon">
-              <img src="../static/images/skill-icons_instagram.svg" alt="instagram">
+            {% endif %}
+            {% if getUserById(project2.authorId).social_media is not none and loads(getUserById(project2.authorId).social_media)['twitter'] != '' %}
+            <div class="project-page--social">
+                <a href="https://twitter.com/{{loads(getUserById(project2.authorId).social_media)['twitter']}}"><img src="../static/images/skill-icons_twitter.svg" alt="twitter"></a>
             </div>
-            <div class="footer__icon">
-              <img src="../static/images/skill-icons_twitter.svg" alt="twitter">
-            </div>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -127,18 +133,21 @@
             </div>
           </div>
           <div class="footer__socials">
-            <div class="footer__icon">
-              <img src="../static/images/logos_telegram.svg" alt="telegram">
+            {% if getUserById(project3.authorId).social_media is not none and loads(getUserById(project3.authorId).social_media)['telegram'] is not none %}
+            <div class="project-page--social" >
+                <a href="https://t.me/{{loads(getUserById(project3.authorId).social_media)['telegram']}}"><img src="../static/images/logos_telegram.svg" alt="telegram"></a>
             </div>
-            <div class="footer__icon">
-              <img src="../static/images/logos_tiktok-icon.svg" alt="tiktok">
+            {% endif %}
+            {% if getUserById(project3.authorId).social_media is not none and loads(getUserById(project3.authorId).social_media)['instagram'] is not none %}
+            <div class="project-page--social">
+                <a href="https://instagram.com/{{loads(getUserById(project3.authorId).social_media)['instagram']}}"><img src="../static/images/skill-icons_instagram.svg" alt="instagram"></a>
             </div>
-            <div class="footer__icon">
-              <img src="../static/images/skill-icons_instagram.svg" alt="instagram">
+            {% endif %}
+            {% if getUserById(project3.authorId).social_media is not none and loads(getUserById(project3.authorId).social_media)['twitter'] != '' %}
+            <div class="project-page--social">
+                <a href="https://twitter.com/{{loads(getUserById(project3.authorId).social_media)['twitter']}}"><img src="../static/images/skill-icons_twitter.svg" alt="twitter"></a>
             </div>
-            <div class="footer__icon">
-              <img src="../static/images/skill-icons_twitter.svg" alt="twitter">
-            </div>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -192,18 +201,21 @@
         <hr>
         <div class="recent__project__footer">
           <div class="projects__footer--socials">
-            <div class="projects__footer--social" >
-              <img src="../static/images/logos_telegram.svg" alt="telegram">
+            {% if getUserById(project.authorId).social_media is not none and loads(getUserById(project.authorId).social_media)['telegram'] is not none %}
+            <div class="project-page--social" >
+                <a href="https://t.me/{{loads(getUserById(project.authorId).social_media)['telegram']}}"><img src="../static/images/logos_telegram.svg" alt="telegram"></a>
             </div>
-            <div class="projects__footer--social">
-              <img src="../static/images/logos_tiktok-icon.svg" alt="tiktok">
+            {% endif %}
+            {% if getUserById(project.authorId).social_media is not none and loads(getUserById(project.authorId).social_media)['instagram'] is not none %}
+            <div class="project-page--social">
+                <a href="https://instagram.com/{{loads(getUserById(project.authorId).social_media)['instagram']}}"><img src="../static/images/skill-icons_instagram.svg" alt="instagram"></a>
             </div>
-            <div class="projects__footer--social">
-              <img src="../static/images/skill-icons_instagram.svg" alt="instagram">
+            {% endif %}
+            {% if getUserById(project.authorId).social_media is not none and loads(getUserById(project.authorId).social_media)['twitter'] != '' %}
+            <div class="project-page--social">
+                <a href="https://twitter.com/{{loads(getUserById(project.authorId).social_media)['twitter']}}"><img src="../static/images/skill-icons_twitter.svg" alt="twitter"></a>
             </div>
-            <div class="projects__footer--social">
-              <img src="../static/images/skill-icons_twitter.svg" alt="twitter">
-            </div>
+            {% endif %}
           </div>
           <div class="recent__footer--text">
             <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
