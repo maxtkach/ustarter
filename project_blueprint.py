@@ -73,14 +73,12 @@ def CreateProject():
 def ViewProject(project_id):
     project = ProjectQuery().GetProjectById(project_id)
     usersClicked = project.usersClicked
-    print(usersClicked)
     if usersClicked is not None:
         if usersClicked == "":
             project.usersClicked = str(session['id'])
             db.session.commit()
         else:
             usersClicked = [int(e) for e in usersClicked.split(" ")]
-            print(usersClicked)
             if session['id'] not in usersClicked:
                 usersClicked.append(session["id"])
                 project.usersClicked = " ".join([str(i) for i in usersClicked])
@@ -95,8 +93,6 @@ def ViewProject(project_id):
                            loads=loads,
                            path=UPLOAD_FOLDER,
                            path_avatar=UPLOAD_FOLDER_AVATARS,
-                           getSponsors=SponsorQuery().GetSponsorsByProjectId,
-                           getTeam=TeamQuery().GetTeamByProjectId,
                            len=len,
                            getMediaById=getMediaNamesByIds,
                            getUserById=UserQuery().GetUserById
@@ -170,11 +166,23 @@ def DeleteProject(project_id):
 @project.route("/project/<int:project_id>/apply_team_member", methods=["POST"])
 def ApplyTeamMember(project_id):
     project = ProjectQuery().GetProjectById(project_id)
+    applications = loads(UserQuery().GetUserById(project.authorId).notifications)
+    for a in applications:
+        try:
+            if a["user_id"] == session["id"]:
+                return redirect(url_for('project.ViewProject', project_id=project_id))
+        except KeyError:
+            continue
+    for t in project.team:
+        print(t.userId)
+        if t.userId == session["id"] or session["id"] == project.authorId:
+            return redirect(url_for('project.ViewProject', project_id=project_id))
     phone_number = request.form['telephone_number']
     message = request.form['message']
     role = request.form['role']
     if not phone_number:
         flash("Уведіть номер телефону")
+        return redirect(url_for('project.ViewProject', project_id=project_id))
     elif not message:
         flash("Уведіть текст повідомлення")
     elif not role:
@@ -182,10 +190,15 @@ def ApplyTeamMember(project_id):
     else:
         author = UserQuery().GetUserById(project.authorId)
         if not author.notifications:
-            author.notifications = dumps([{"telephone_number": phone_number, "message": message, "role": role}])
+            author.notifications = dumps([{"telephone_number": phone_number, "message": message, "role": role,
+                                           "user_id": session['id'], "project_id": project_id,
+                                           "type": "Заявка до команди"}])
         else:
-            author.notifications = dumps(loads(author.notifications).append({"telephone_number": phone_number,
-                                                                "message": message, "role": role}))
+            loaded_notifications = loads(author.notifications)
+            loaded_notifications.append({"telephone_number": phone_number, "message": message, "role": role,
+                                           "user_id": session['id'], "project_id": project_id,
+                                           "type": "Заявка до команди"})
+            author.notifications = dumps(loaded_notifications)
         db.session.commit()
         return redirect(url_for('project.ViewProject', project_id=project_id))
 

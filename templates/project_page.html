@@ -23,8 +23,8 @@
                 <div class="project-page__need projects__progress__need">Потрібна сума: {{ project.neededAmount }}</div>
                 <div class="project-page__donated projects__progress__donated">Отримана сума: {{ project.receivedAmount }}</div>
                 <div class="project-page__fillbar projects__progress__fillbar"></div>
-                <div class="project-page__sponsors">К-ть спонсорів: {{ len(getSponsors(project.id)) }}</div>
-                <div class="project-page__team">Команда: {{ len(getTeam(project.id)) }}</div>
+                <div class="project-page__sponsors">К-ть спонсорів: {{ len(project.sponsors) }}</div>
+                <div class="project-page__team">Команда: {{ len(project.team) }}</div>
                 <div class="project-page__media-space">Медіа Простір</div>
                 {% for imgName in getMediaById(project.mediaNames) %}
                 <div class="project-page__media-space--image"> <a data-fancybox="gallery" class="fancybox" href="../{{ path }}/{{ imgName }}"><img src="../{{ path }}/{{ imgName }}" alt=""></a> 
@@ -95,18 +95,23 @@
             <div class="project-page__main-team">
                 <div class="project-page__main-people">
                     <h3>Ідея</h3>
-                    <img src="../{{ path_avatar }}/{{ getImageById(project.authorId, path_avatar) }}" alt="">
+                    <a href="{{ url_for('user.ShowProfile', id=project.authorId) }}">
+                        <img src="../{{ path_avatar }}/{{ getImageById(project.authorId, path_avatar) }}" alt="">
+                    </a>
                     {% if getUserById(project.authorId) is not none %}
-                    <h6>{{ getUserById(project.authorId).name }}</h6>
+                        <h6>{{ getUserById(project.authorId).name }}</h6>
                     {% endif %}
                 </div>
+                {% if len(project.team) > 0 %}
+                <h3>Команда</h3>
                 <div class="project-page__main-people">
-                    <h3>Команда</h3>
-                    <img src="../{{ path }}/{{ getImageById(project.id) }}" alt="">
-                    <img src="../{{ path }}/{{ getImageById(project.id) }}" alt="">
-                    <img src="../{{ path }}/{{ getImageById(project.id) }}" alt="">
-    
+                    {% for member in project.team %}
+                    <a href="{{ url_for('user.ShowProfile', id=member.userId) }}">
+                        <img src="../{{ path_avatar }}/{{ getImageById(member.userId, path_avatar) }}" alt="">
+                    </a>
+                    {% endfor %}
                 </div>
+                {% endif %}
             </div>
         </div>
         

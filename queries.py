@@ -87,15 +87,3 @@ class ProjectQuery():
         return db.session.query(Project) \
             .filter(Project.category == category) \
             .all()
-
-class TeamQuery():
-    def GetTeamByProjectId(self, projectId):
-        return db.session.query(ProjectTeam).filter(ProjectTeam.projectId == projectId).all()
-    def GetTeamByUserId(self, userId):
-        return db.session.query(ProjectTeam).filter(ProjectTeam.userId == userId).all()
-
-class SponsorQuery():
-    def GetSponsorsByProjectId(self, projectId):
-        return db.session.query(UserSponsor).filter(UserSponsor.projectId == projectId).all()
-    def GetSponsorsByUserId(self, userId):
-        return db.session.query(UserSponsor).filter(UserSponsor.userId == userId).all()

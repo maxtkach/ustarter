@@ -47,6 +47,8 @@ def ShowProfile(id):
                            image_path=f"{UPLOAD_FOLDER_AVATARS}/{getImageNameById(id, UPLOAD_FOLDER_AVATARS)}",
                            userProjects=ProjectQuery().GetUserProjects(user.id),
                            getImageById=getImageNameById,
+                           userProjectsParticipated=user.projectsParticipated,
+                           userProjectsSponsored=user.projectsSponsored,
                            path=UPLOAD_FOLDER,
                            loads=loads
                            )# + " " + user.surname
@@ -93,7 +95,46 @@ def SignupPage():
 
 @user.route("/notifications")
 def ShowNotifications():
-    return render_template("notifications.html")
+    if session:
+        return redirect(url_for("user.Notifications", id=session["id"]))
+
+@user.route("/notifications/<int:id>", methods=["GET"])
+def Notifications(id):
+    notifications = UserQuery().GetUserById(session["id"]).notifications
+    if notifications:
+        notifications = loads(notifications)
+    print(notifications)
+
+    return render_template("notifications.html",
+                           notifications=notifications,
+                           getUserById=UserQuery().GetUserById
+                           )
+
+@user.route("/react/<int:user_id>_<int:project_id>_<int:isAccept>_<role>", methods=["GET", "POST"])
+def ReactApplication(user_id, project_id, isAccept, role):
+    if request.method == "POST":
+        currentUser = UserQuery().GetUserById(session["id"])
+        applier = UserQuery().GetUserById(user_id)
+        project = ProjectQuery().GetProjectById(project_id)
+        if bool(isAccept):
+            team = ProjectTeam()
+            team.project = project
+            team.user = applier
+            team.role = role
+            db.session.add(team)
+        notifications = loads(currentUser.notifications)
+        for n in notifications:
+            try:
+                if n["user_id"] == user_id:
+                    notifications.remove(n)
+            except KeyError:
+                continue
+        currentUser.notifications = dumps(notifications)
+        db.session.commit()
+    return redirect(url_for("user.ShowNotifications"))
+
+
+
 
 @user.route("/logout")
 def Logout():
