@@ -2,23 +2,18 @@
   margin-top: 2%;
   margin-left: 2%;
 }
-
 .notification__title {
   padding: 0 !important;
 }
-
 .notification__title__element {
   display: inline-block;
 }
-
 .notification__author {
   color: #414141;
 }
-
 .notification__body {
   margin-top: 1%;
 }
-
 .notification__accept {
   margin-top: 1%;
   color: #fff;
@@ -30,5 +25,4 @@
   font-weight: bold;
   height: 50px;
   border-radius: 10px;
-}
-/*# sourceMappingURL=notifications.css.map */
+}/*# sourceMappingURL=notifications.css.map */

@@ -144,6 +144,10 @@
   display: flex;
   justify-content: space-between;
 }
+.footer__social img {
+  width: 32px;
+  height: 32px;
+}
 .footer__buttons {
   display: flex;
   justify-content: space-between;

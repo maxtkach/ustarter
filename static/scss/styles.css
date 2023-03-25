@@ -348,6 +348,10 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: space-between;
 }
+.footer__social img {
+  width: 32px;
+  height: 32px;
+}
 .footer__buttons {
   display: flex;
   justify-content: space-between;
@@ -1294,4 +1298,15 @@ input[type=file]::file-selector-button::after {
   height: 50px;
   padding-left: 10px;
 }
-/*# sourceMappingURL=styles.css.map */
+
+.projects__img-wrapper img {
+  width: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-position: center;
+  height: 150px;
+}
+
+.notification {
+  margin-right: 10px;
+}/*# sourceMappingURL=styles.css.map */

@@ -175,6 +175,13 @@ $main:#A73169;
         justify-content: space-between;
     }
 
+    &__social {
+        img {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
     &__buttons {
         display: flex;
         justify-content: space-between;

@@ -57,17 +57,17 @@
             <div class="footer__text_left"><span>Зв'язок з нами</span>
               <div class="footer__socials">
                 {% if getUserById(project1.authorId).social_media is not none and loads(getUserById(project1.authorId).social_media)['telegram'] is not none %}
-                <div class="project-page--social" >
+                <div class="footer__social" >
                     <a href="https://t.me/{{loads(getUserById(project1.authorId).social_media)['telegram']}}"><img src="../static/images/logos_telegram.svg" alt="telegram"></a>
                 </div>
                 {% endif %}
                 {% if getUserById(project1.authorId).social_media is not none and loads(getUserById(project1.authorId).social_media)['instagram'] is not none %}
-                <div class="project-page--social">
+                <div class="footer__social">
                     <a href="https://instagram.com/{{loads(getUserById(project1.authorId).social_media)['instagram']}}"><img src="../static/images/skill-icons_instagram.svg" alt="instagram"></a>
                 </div>
                 {% endif %}
                 {% if getUserById(project1.authorId).social_media is not none and loads(getUserById(project1.authorId).social_media)['twitter'] != '' %}
-                <div class="project-page--social">
+                <div class="footer__social">
                     <a href="https://twitter.com/{{loads(getUserById(project1.authorId).social_media)['twitter']}}"><img src="../static/images/skill-icons_twitter.svg" alt="twitter"></a>
                 </div>
                 {% endif %}
@@ -193,25 +193,25 @@
             <div class="recent-project__donated">Зібрано: {{ project.receivedAmount }}₴ (~{{ (project.receivedAmount/project.neededAmount)|round }}%) </div>
           </div>
           <hr>
-          <div class="project__content__descriprion">
-            <p class="projects__description"><span>Автор:</span> Андрій Меленюк</p>
+          <div class="recent-content__descriprion">
+            <p class="recent-project__description"><span>Автор:</span> Андрій Меленюк</p>
 
-            <p class="projects__description projects__goals"><span>Опис: </span> {{ loads(project.description)['description'] }} </p>
+            <p class="recent-project__description recent-project__goals"><span>Опис: </span> {{ loads(project.description)['description'] }} </p>
           </div>
         </div>
         <hr>
-        <div class="recent__project__footer">
-          <div class="projects__footer--socials">
-            <div class="projects__footer--social" >
+        <div class="recent-project__recent-footer">
+          <div class="recent-footer__socials">
+            <div class="recent-footer__social" >
               <img src="../static/images/logos_telegram.svg" alt="telegram">
             </div>
-            <div class="projects__footer--social">
+            <div class="recent-footer__social">
               <img src="../static/images/logos_tiktok-icon.svg" alt="tiktok">
             </div>
-            <div class="projects__footer--social">
+            <div class="recent-footer__social">
               <img src="../static/images/skill-icons_instagram.svg" alt="instagram">
             </div>
-            <div class="projects__footer--social">
+            <div class="recent-footer__social">
               <img src="../static/images/skill-icons_twitter.svg" alt="twitter">
             </div>
           </div>
@@ -232,7 +232,7 @@
 <!-- НАЧАЛО БЛОКА "ПОПУЛЯРНЫЕ ПРОЕКТЫ" ------------------------------------------- -->
 
 
-  <div class="recent">
+  <!-- <div class="recent">
     <h2 class="recent__title text-center">ПОПУЛЯРНІ ПРОЕКТИ</h2>
     <div class="see_all"><a href="#">УСІ ПРОЕКТИ</a> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
       viewBox="0 0 24 24">
@@ -288,38 +288,38 @@
         </div>
       </div>
 {% endfor %}
-
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">Форма вступу до команди</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-          <form action="{{ url_for('project.ApplyTeamMember', project_id=project1.id) }}" method="POST">
-            <div class="modal-body">
-              <div class="input-group">
-                <label for="basic-url" class="form-label">Введіть ваш номер телефону
-                </label>
-                <div class="input-group mb-3">
-                  <span class="input-group-text" id="basic-addon3">+380</span>
-                  <input type="number" class="form-control" name="telephone_number" id="basic-url" aria-describedby="basic-addon3">
-                </div>
-                <span class="input-group-text">Ваша спеціальність</span>
-                <input type="text" class="form-control" name="role" id="basic-url" aria-describedby="basic-addon3">
-                <span class="input-group-text">Опишіть чому повинні взяти саме вас</span>
-                <textarea class="form-control" name="message" aria-label="With textarea"></textarea>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ЗАКРИТИ</button>
-              <button type="submit" class="btn" style="background-color: #A73169 !important; color: #FFFFFF !important; ">ПОДАТИ ЗАЯВКУ</button>
-            </div>
-          </form>
-          </div>
-        </div>
     </div>
    </div>
+  </div>
+</div> -->
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Форма вступу до команди</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    <form action="{{ url_for('project.ApplyTeamMember', project_id=project1.id) }}" method="POST">
+      <div class="modal-body">
+        <div class="input-group">
+          <label for="basic-url" class="form-label">Введіть ваш номер телефону
+          </label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3">+380</span>
+            <input type="number" class="form-control" name="telephone_number" id="basic-url" aria-describedby="basic-addon3">
+          </div>
+          <span class="input-group-text">Ваша спеціальність</span>
+          <input type="text" class="form-control" name="role" id="basic-url" aria-describedby="basic-addon3">
+          <span class="input-group-text">Опишіть чому повинні взяти саме вас</span>
+          <textarea class="form-control" name="message" aria-label="With textarea"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ЗАКРИТИ</button>
+        <button type="submit" class="btn" style="background-color: #A73169 !important; color: #FFFFFF !important; ">ПОДАТИ ЗАЯВКУ</button>
+      </div>
+    </form>
   </div>
 </div>
 </div>
