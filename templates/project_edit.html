@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 
+{% block head %}
+    <script>
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            window.location =
+                "../templates/mobile.html"; // замените "http://example.com/mobile-page" на URL вашей мобильной страницы
+        }
+    </script>
+{% endblock %}
+
 {% block content %}
 <form method="post" enctype="multipart/form-data">
     <div class="creation">
@@ -59,6 +68,36 @@
         <div class="input-group mb-3">
             <input type="file" id="images" name="images_mult" accept="image/*" multiple />
         </div>
+
+        <h4 class="creation_undertitle">У якому місті плануєте реалізовувати проект?</h4>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><select class="form-select" name="address_select" id="inputGroupSelect01">
+                <option value="Одеса">Одеса</option>
+                <option value="Миколаїв">Миколаїв</option>
+                <option value="Херсон">Херсон</option>
+                <option value="Крим">Крим</option>
+                <option value="Запоріжжя">Запоріжжя</option>
+                <option value="Донецьк">Донецьк</option>
+                <option value="Черкаси">Черкаси</option>
+                <option value="Львів">Львів</option>
+                <option value="Кіровоград">Кіровоград</option>
+                <option value="Дніпропетровськ">Київ</option>
+                <option value="Харків">Харків</option>
+                <option value="Чернівці">Чернівці</option>
+                <option value="Вінниця">Вінниця</option>
+                <option value="Житомир">Житомир</option>
+                <option value="Хмельницький">Хмельницький</option>
+                <option value="Луцьк">Луцьк</option>
+                <option value="Рівне">Рівне</option>
+                <option value="Івано-Франківськ">Івано-Франківськ</option>
+                <option value="Чернігів">Чернігів</option>
+                <option value="Тернопіль">Тернопіль</option>
+                <option value="Ужгород">Ужгород</option>
+                <option value="Суми">Суми</option>
+                <option value="Луганськ">Луганськ</option>
+                <option value="Київ">Київ</option>
+            </select></span></div>
+
 
         <h4 class="creation_undertitle">Ризики проекту</h4>
         <div class="input-group">

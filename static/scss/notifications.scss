@@ -1,0 +1,37 @@
+.btn {
+}
+.notification {
+    margin-top: 2%;
+    margin-left: 2%;
+		&__title {
+            padding: 0 !important;
+		}
+
+        &__title__element {
+            display: inline-block;
+		}
+
+		&__author {
+            color: #414141;
+
+		}
+
+		&__body {
+            margin-top: 1%;
+		}
+
+		&__accept {
+            margin-top: 1%;
+            color: #fff;
+            background-color: #A73169;
+            border: none;
+            padding: 5px;
+            width: 200px;
+            font-size: 13px;
+            font-weight: bold;
+            height: 50px;
+            border-radius: 10px;
+		}
+}
+.collapse {
+}

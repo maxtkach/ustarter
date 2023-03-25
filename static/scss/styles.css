@@ -1271,4 +1271,27 @@ input[type=file]::file-selector-button::after {
 
 .settings {
   padding-top: 100px !important;
-}/*# sourceMappingURL=styles.css.map */
+}
+
+.projects__footer--social img {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding-left: 10px;
+}
+
+.projects__footer--social {
+  display: inline-block;
+}
+
+.project-page--social {
+  display: inline-block;
+}
+
+.project-page--social img {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  padding-left: 10px;
+}
+/*# sourceMappingURL=styles.css.map */

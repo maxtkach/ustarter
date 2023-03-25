@@ -2,6 +2,7 @@ from flask import render_template, request, Flask, flash, redirect, url_for, Blu
 from config import Config
 from tables import *
 from queries import *
+from image_manager import *
 from json import dumps, loads
 
 user = Blueprint("user", __name__)
@@ -36,37 +37,63 @@ def Profile():
 @user.route("/profile/<int:id>")
 def ShowProfile(id):
     user = UserQuery().GetUserById(id) #session["id"])
-    return render_template("profile.html", fullName=user.name, email=user.email, aboutMe=user.aboutMe) # + " " + user.surname
+    return render_template("profile.html",
+                           fullName=user.name,
+                           email=user.email,
+                           aboutMe=user.aboutMe,
+                           resume=user.resume,
+                           address=user.address,
+                           user_id=user.id,
+                           image_path=f"{UPLOAD_FOLDER_AVATARS}/{getImageNameById(id, UPLOAD_FOLDER_AVATARS)}",
+                           userProjects=ProjectQuery().GetUserProjects(user.id),
+                           getImageById=getImageNameById,
+                           path=UPLOAD_FOLDER,
+                           loads=loads
+                           )# + " " + user.surname
 
-@user.route("/profile/<int:id>/edit", methods=["GET", "POST"])
+@user.route("/profile/<int:id>_edit", methods=["GET", "POST"])
 def EditProfile(id):
     if session:
         user = UserQuery().GetUserById(session["id"])
         if user.email == session["email"] and user.password == session["password"]:
             if session["id"] == id:
                 if request.method == "GET":
-                    return render_template("user_edit.html")
+                    return render_template("user_edit.html", user=user, loads=loads)
                 elif request.method == "POST":
+                    img = request.files["avatar"]
                     # if request["name"] and request["surname"] and request["avatar"]
-                    UserQuery().GetUserById(session["id"]).name = request.form["name"]
+                    user.name = request.form["name"]
                     # UserQuery().GetUserById(session["id"]).surname = request.form["surname"]
-                    UserQuery().GetUserById(session["id"]).aboutMe = request.form["aboutMe"]
-                    UserQuery().GetUserById(session["id"]).address = request.form["address"]
-                    UserQuery().GetUserById(session["id"]).resume = request.form["resume"]
+                    user.aboutMe = request.form["aboutMe"]
+                    user.address = request.form["address"]
+                    user.resume = request.form["resume"]
+                    if img and allowedFile(img.filename):
+                        if getImageNameById(session["id"], UPLOAD_FOLDER_AVATARS):
+                            print("(here)")
+                            EditImg(img, user, UPLOAD_FOLDER_AVATARS)
+                        else:
+                            print("(here2)")
+                            SaveImg(img, UPLOAD_FOLDER_AVATARS, session["id"])
+                    user.social_media = dumps({"telegram": request.form["telegram"],
+                                            "instagram": request.form["instagram"], "twitter": request.form["twitter"]})
 
                     db.session.commit()
-                    return redirect(f"../../profile/{id}");
+                    return redirect(f"../../profile/{id}")
             else:
                 # Not authorized
                 # return redirect(f"../profile/{user.id}");
-                return redirect(f"../../profile/{id}");
+                return redirect(f"../../profile/{id}")
         else:
             return redirect(url_for("user.Logout"))
-    return redirect(url_for("user.Login")) # render_template("profile.html")
+    return redirect(url_for("user.Login"))# render_template("profile.html")
 
 @user.route("/signup")
 def SignupPage():
     return render_template("signup.html")
+
+@user.route("/notifications")
+def ShowNotifications():
+    return render_template("notifications.html")
 
 @user.route("/logout")
 def Logout():
@@ -118,7 +145,7 @@ def Register():
             session["id"] = UserQuery().GetUserByEmail(request.form["email"]).id
         else:
             return redirect(url_for("user.SignupPage", error="Please fill out all values"))
-        return redirect(url_for("user.Profile")) #url_for("user.Profile") # Welcome message?
+        return redirect(url_for("user.EditProfile", id=session["id"])) #url_for("user.Profile") # Welcome message?
     else:
         return redirect(url_for("user.SignupPage", error="Please fill out all values"))
         # return render_template("signup.html", error="Please fill out all values")

@@ -14,7 +14,7 @@ class UserQuery():
             .all()
     def GetUserByProjectId(self, projectId):
         return db.session.query(User)\
-            .filter(User.projectsParticipated.columns.projectId == projectId)\
+            .filter(User.projectsParticipated.projectId == projectId)\
             .first()
     def GetAuthorByProjectId(self, projectId):
         return self.GetUserById(db.session.query(Project)
@@ -23,7 +23,7 @@ class UserQuery():
             .authorId)
     def GetUsersWithProjects(self):
         return db.session.query(User)\
-            .filter(User.projectsParticipated.columns.role == "Author")\
+            .filter(User.projectsParticipated.role == "Автор")\
             .all()
     def GetUsersInProjects(self):
         return db.session.query(User)\
@@ -32,12 +32,12 @@ class UserQuery():
     def GetUsersWithSponsoredProjects(self):
         return db.session.query(User)\
             .filter(User.projectsSponsored)\
-            .order_by(desc(sum(sp.columns.money for sp in User.projectsSponsored)))\
+            .order_by(desc(sum(sp.money for sp in User.projectsSponsored)))\
             .all()
     def GetTopUsersWithSponsoredProjects(self):
         return db.session.query(User)\
             .filter(User.projectsSponsored)\
-            .order_by(desc(sum(sp.columns.money for sp in User.projectsSponsored)))\
+            .order_by(desc(sum(sp.money for sp in User.projectsSponsored)))\
             .limit(4)\
             .all()
     def GetTopUsersWithProjects(self):
@@ -53,16 +53,25 @@ class ProjectQuery():
     def GetProjectById(self, id):
         return db.session.query(Project)\
             .get(id)
+    def GetUserProjects(self, userId):
+        return db.session.query(Project)\
+               .filter(Project.authorId == userId)\
+               .all()
+    def GetProjectByCaption(self, caption):
+        return db.session.query(Project) \
+            .filter(caption == Project.caption)\
+            .first()
     def GetProjects(self):
         return db.session.query(Project)\
             .all()
     def GetProjectsByTeamMemberId(self, userId):
         team = UserQuery().GetUserById(userId).projectsParticipated
-        projects = [self.GetProjectById(t.columns.projectId) for t in team]
+        projects = [self.GetProjectById(t.projectId) for t in team]
         return projects
     def GetTopProjects(self):
-        return db.session.query(Project) \
-            .order_by(desc(len(Project.usersClicked.split(" ")))) \
+        return db.session.query(Project)\
+            .filter(Project.usersClicked != None)\
+            .order_by(desc(Project.usersClicked)) \
             .limit(4)\
             .all()
     def GetLatestProjects(self):
@@ -72,7 +81,7 @@ class ProjectQuery():
             .all()
     def GetProjectsBySponsorId(self, userId):
         sponsors = UserQuery().GetUserById(userId).projectsSponsored
-        projects = [self.GetProjectById(s.columns.projectId) for s in sponsors]
+        projects = [self.GetProjectById(s.projectId) for s in sponsors]
         return projects
     def GetProjectsByCategory(self, category):
         return db.session.query(Project) \
@@ -81,8 +90,12 @@ class ProjectQuery():
 
 class TeamQuery():
     def GetTeamByProjectId(self, projectId):
-        return db.session.query(Team).filter(Team.columns.projectId == projectId).all()
+        return db.session.query(ProjectTeam).filter(ProjectTeam.projectId == projectId).all()
+    def GetTeamByUserId(self, userId):
+        return db.session.query(ProjectTeam).filter(ProjectTeam.userId == userId).all()
 
 class SponsorQuery():
     def GetSponsorsByProjectId(self, projectId):
-        return db.session.query(Sponsor).filter(Sponsor.columns.projectId == projectId).all()
+        return db.session.query(UserSponsor).filter(UserSponsor.projectId == projectId).all()
+    def GetSponsorsByUserId(self, userId):
+        return db.session.query(UserSponsor).filter(UserSponsor.userId == userId).all()
