@@ -47,12 +47,12 @@
                 {{ project.address }}, Україна
             </div>
             <div class="project-page__socials">
-                {% if getUserById(project.authorId).social_media is not none and loads(getUserById(project.authorId).social_media)['telegram'] is not none %}
+                {% if getUserById(project.authorId).social_media is not none and loads(getUserById(project.authorId).social_media)['telegram'] != '' %}
                 <div class="project-page--social" >
                     <a href="https://t.me/{{loads(getUserById(project.authorId).social_media)['telegram']}}"><img src="../static/images/logos_telegram.svg" alt="telegram"></a>
                 </div>
                 {% endif %}
-                {% if getUserById(project.authorId).social_media is not none and loads(getUserById(project.authorId).social_media)['instagram'] is not none %}
+                {% if getUserById(project.authorId).social_media is not none and loads(getUserById(project.authorId).social_media)['instagram'] != '' %}
                 <div class="project-page--social">
                     <a href="https://instagram.com/{{loads(getUserById(project.authorId).social_media)['instagram']}}"><img src="../static/images/skill-icons_instagram.svg" alt="instagram"></a>
                 </div>

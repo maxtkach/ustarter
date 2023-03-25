@@ -1,5 +1,4 @@
 from flask import render_template, request, Flask, flash, redirect, url_for, Blueprint, session
-# from config import Config
 from tables import *
 from queries import *
 from image_manager import *
@@ -176,6 +175,8 @@ def Register():
             newUser.resume = ""
             newUser.aboutMe = ""
             newUser.address = ""
+            newUser.social_media = dumps({"telegram": "",
+                                            "instagram": "", "twitter": ""})
 
             session["email"] = newUser.email
             session["password"] = newUser.password

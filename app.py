@@ -1,5 +1,4 @@
 from flask import Flask
-from config import Config
 from tables import db
 #from flask_migrate import Migrate
 from main_blueprint import main
