@@ -78,7 +78,7 @@
             </div>
           </div>
           <div class="footer__buttons">
-            <div class="buttons__button2">СПОНСОРУВАТИ</div>
+            <div class="buttons__button2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">СПОНСОРУВАТИ</div>
             <div class="buttons__button" ><button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               ХОЧУ ДО КОМАНДИ
             </button></div>
@@ -320,6 +320,41 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ЗАКРИТИ</button>
         <button type="submit" class="btn" style="background-color: #A73169 !important; color: #FFFFFF !important; ">ПОДАТИ ЗАЯВКУ</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Спонсорування</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    <form action="{{ url_for('project.ApplyTeamMember', project_id=project1.id) }}" method="POST">
+      <div class="modal-body">
+        <div class="input-group">
+          <label for="basic-url" class="form-label">Введіть сумму поповнення
+          </label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3">₴</span>
+            <input type="number" class="form-control" name="telephone_number" id="basic-url" aria-describedby="basic-addon3">
+          </div>
+          <span class="input-group-text">Введіть номер вашої картки</span>
+          <input type="text" class="form-control" name="role" id="basic-url" aria-describedby="basic-addon3">
+          <span class="input-group-text">Введіть ваш номер телефону</span>
+          <input type="number" class="form-control" name="role" id="basic-url" aria-describedby="basic-addon3">
+          <span class="input-group-text">Можете написати повідомлення до авторів проекту</span>
+          <textarea class="form-control" name="message" aria-label="With textarea"></textarea>
+
+          <h6>*ЦЯ ФУНКЦІЯ ПОКИ ЩО НЕ ПРАЦЮЄ, ГРОШІ З КАРТКИ НЕ ЗПИШУТЬСЯ, ПОСТАРАЄМОСЯ РЕАЛІЗУВАТИ ІЇ НАЙБЛИЖЧИМ ЧАСОМ</h6>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ЗАКРИТИ</button>
+        <button type="submit" class="btn" style="background-color: #A73169 !important; color: #FFFFFF !important; ">ВІДПРАВИТИ КОШТИ</button>
       </div>
     </form>
   </div>
