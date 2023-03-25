@@ -1471,4 +1471,16 @@ input[type="file"]::file-selector-button::after {
   height: 50px;
   padding-left: 10px;
 }
+
+.projects__img-wrapper img {
+  width: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-position: center;
+  height: 150px;
+}
+
+.notification {
+  margin-right: 10px;
+}
 /*# sourceMappingURL=styles.css.map */

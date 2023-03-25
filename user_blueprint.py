@@ -91,6 +91,10 @@ def EditProfile(id):
 def SignupPage():
     return render_template("signup.html")
 
+@user.route("/notifications")
+def ShowNotifications():
+    return render_template("notifications.html")
+
 @user.route("/logout")
 def Logout():
     session.clear()
