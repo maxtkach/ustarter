@@ -8,7 +8,7 @@ from user_blueprint import user
 
 app = Flask(__name__)
 app.secret_key = "UwU"
-app.config["SQLALCHEMY_DATABASE_URI"] = Config.link
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 db.init_app(app)
 with app.app_context():
     db.create_all()

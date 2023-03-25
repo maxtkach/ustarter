@@ -10,7 +10,9 @@ project = Blueprint("project", __name__)
 
 @project.route("/create_project", methods=("GET", "POST"))
 def CreateProject():
-    if request.method == "POST" and session:
+    if not session:
+        return redirect(url_for("main.MainPage"))
+    if request.method == "POST":
         caption = request.form['caption']
         neededAmount = request.form['neededAmount']
         startBudget = request.form['startBudget']
@@ -65,6 +67,7 @@ def CreateProject():
             #db.session.commit()
             SaveImg(img, img_id=project.id)
             project.mediaNames = SaveMedia(images, img_id=project.id)
+            db.session.commit()
             return redirect(url_for('project.ViewProject', project_id=project.id))
 
     return render_template("project_creation.html")
@@ -73,19 +76,21 @@ def CreateProject():
 def ViewProject(project_id):
     project = ProjectQuery().GetProjectById(project_id)
     usersClicked = project.usersClicked
-    if usersClicked is not None:
-        if usersClicked == "":
+    if session:
+        if usersClicked is not None:
+            if usersClicked == "":
+                project.usersClicked = str(session['id'])
+                db.session.commit()
+            else:
+                usersClicked = [int(e) for e in usersClicked.split(" ")]
+                if session['id'] not in usersClicked:
+                    usersClicked.append(session["id"])
+                    project.usersClicked = " ".join([str(i) for i in usersClicked])
+                    db.session.commit()
+        else:
             project.usersClicked = str(session['id'])
             db.session.commit()
-        else:
-            usersClicked = [int(e) for e in usersClicked.split(" ")]
-            if session['id'] not in usersClicked:
-                usersClicked.append(session["id"])
-                project.usersClicked = " ".join([str(i) for i in usersClicked])
-                db.session.commit()
-    else:
-        project.usersClicked = str(session['id'])
-        db.session.commit()
+    print(project.mediaNames)
 
     return render_template("project_page.html",
                            project=project,
@@ -192,7 +197,7 @@ def ApplyTeamMember(project_id):
     applications = loads(UserQuery().GetUserById(project.authorId).notifications)
     for a in applications:
         try:
-            if a["user_id"] == session["id"]:
+            if a["user_id"] == session["id"] and a["type"] != "Допомога":
                 return redirect(url_for('project.ViewProject', project_id=project_id))
         except KeyError:
             continue

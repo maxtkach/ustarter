@@ -72,12 +72,19 @@
                     </div>
                     <div class="projects__content">
 
-                        <h2 class="projects__title">{{ project.caption }}</h2>
+                        <h2 class="projects__title"><a href="{{ url_for('project.ViewProject', project_id=project.id) }}">{{ project.caption }}</a></h2>
                         <div class="projects__progress">
                             <div class="projects__progress__need">Потрібна сума: {{ project.neededAmount }}</div>
-                            <div class="projects__progress__donated">Зібрано: {{ project.receivedAmount }}₴ (~{{ (project.receivedAmount/project.neededAmount)|round }}%) </div>
-                            <div class="progress__fillbar" style="width: {{ (project.receivedAmount/project.neededAmount)|round }}%"></div>
-                        </div>
+                            <div class="projects__progress__donated">Зібрано: {{ project.receivedAmount }}₴ (~{{ ((project.receivedAmount/project.neededAmount) * 100)|round }}%) </div>
+                            <div class="progress">
+                                <div class="progress-bar profile__progress " role="progressbar"
+                                    style="width: {{ ((project.receivedAmount/project.neededAmount) * 100)|round }}%; background-color:#A73169" aria-valuenow="15" aria-valuemin="0"
+                                    aria-valuemax="100"></div>
+                                <div class="progress-bar bg-success profile__progress" role="progressbar"
+                                    style="width: {{ 100 - ((project.receivedAmount/project.neededAmount) * 100)|round }}%; background-color:#6AAF9D !important" aria-valuenow="30" aria-valuemin="0"
+                                    aria-valuemax="100"><span></span></span></div>
+                                </div>
+                            </div>
 
                         <p class="projects__description projects__goals"><span>Опис:</span>{{ loads(project.description)['description'] }}</p>
                         <!--<p class="projects__description projects__problem"><span>Проблема:</span> Велика к-ть тварин
@@ -111,10 +118,6 @@
                             <div class="projects__footer--text" style="text-align:right">Адреса <br>
                                 <span>{{ project.address }}, Україна</span>
                             </div>
-                        </div>
-                        <div class="projects__footer--buttons">
-                            <div class="projects__footer--button2">СПОНСОРУВАТИ</div>
-                            <div class="projects__footer--button " style="margin-left: 20px;">ХОЧУ ДО КОМАНДИ</div>
                         </div>
                     </div>
                 </div>

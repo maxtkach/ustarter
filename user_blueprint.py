@@ -31,7 +31,7 @@ def Identify(id, password):
 def Profile():
     if Identify(session["id"], session["password"]):
         return redirect(url_for("user.ShowProfile", id=int(session["id"])))
-    return redirect(url_for("Login"))
+    return redirect(url_for("user.SignupPage"))
     # return render_template("profile.html") #, userName=session["email"] if session["email"] else "Unknown")
 
 @user.route("/profile/<int:id>")
@@ -87,7 +87,7 @@ def EditProfile(id):
                 return redirect(f"../../profile/{id}")
         else:
             return redirect(url_for("user.Logout"))
-    return redirect(url_for("user.Login"))# render_template("profile.html")
+    return redirect(url_for("user.SignupPage"))# render_template("profile.html")
 
 @user.route("/signup")
 def SignupPage():
@@ -125,7 +125,7 @@ def ReactApplication(user_id, project_id, isAccept, role):
         notifications = loads(currentUser.notifications)
         for n in notifications:
             try:
-                if n["user_id"] == user_id:
+                if n["user_id"] and n["type"] != "Допомога" == user_id:
                     notifications.remove(n)
             except KeyError:
                 continue
