@@ -42,6 +42,8 @@ def ShowProfile(id):
                            email=user.email,
                            aboutMe=user.aboutMe,
                            resume=user.resume,
+                           address=user.address,
+                           user_id=user.id,
                            image_path=f"{UPLOAD_FOLDER_AVATARS}/{getImageNameById(id, UPLOAD_FOLDER_AVATARS)}",
                            userProjects=ProjectQuery().GetUserProjects(user.id),
                            getImageById=getImageNameById,

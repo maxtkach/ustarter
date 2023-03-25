@@ -70,6 +70,7 @@ def CreateProject():
 @project.route("/project/<int:project_id>", methods=["GET"])
 def ViewProject(project_id):
     project = ProjectQuery().GetProjectById(project_id)
+    print(project.authorId)
     return render_template("project_page.html",
                            project=project,
                            getImageById=getImageNameById,
@@ -87,7 +88,9 @@ def ViewProject(project_id):
 def EditProject(project_id):
     project = ProjectQuery().GetProjectById(project_id)
 
-    if request.method == "POST" and session and project.authorId == session["id"]:
+    if request.method == "POST" and session:
+        if project.authorId != session["id"]:
+            return redirect(url_for('project.ViewProject', project_id=project_id))
         caption = request.form['caption']
         neededAmount = request.form['neededAmount']
         startBudget = request.form['startBudget']
@@ -128,8 +131,6 @@ def EditProject(project_id):
                 project.mediaNames = EditMedia(images, project)
             db.session.commit()
             return redirect(url_for('project.ViewProject', project_id=project_id))
-    else:
-        return redirect(url_for('project.ViewProject', project_id=project_id))
 
     return render_template("project_edit.html",
                            project=project,
