@@ -1,0 +1,119 @@
+$main:#A73169;
+
+
+
+.recent {
+
+    &__recent-project {
+        box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        display: inline-block;
+        background-color: #EFEFEF;
+        margin-right: 10px;
+        margin-right: 20px;
+        width: 700px;
+    }
+}
+.recent-project {
+
+    &__header {
+        display: flex;
+        align-items: flex-end;
+        padding: 16px;
+        height: 150px;
+        border-radius: 10px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #fff;
+        position: relative;
+        &::before {
+            content: "";
+            border-radius: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 2;
+        }
+    }
+
+    &__text {
+        z-index: 100;
+        position: relative;
+        font-weight: bold;
+        text-transform: capitalize;
+        a {
+            color: #fff !important;
+            &:hover{
+                color: $main !important;
+            }
+        }
+    }
+
+    &__donates {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__content {
+        padding: 20px;
+    }
+
+    &__goals {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__recent-footer {
+        padding: 20px;
+        justify-content: space-between;
+        display: flex;
+    }
+}
+
+.recent-footer {
+
+    &__socials {
+        display: flex;
+    }
+
+    &__social {
+        margin-right: 12px;
+        img{
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &__text {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 767px) {
+    .recent__recent-project {
+        width: 65vw;
+        font-size: 14px;
+    }
+    
+    .recent-project__donates {
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 640px) {
+    .recent-project__recent-footer {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .recent-footer__socials {
+        margin-bottom: 16px;
+    }
+}

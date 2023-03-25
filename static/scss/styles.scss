@@ -36,7 +36,7 @@ p {
     margin: 0;
     padding: 0;
 }
-a{
+a {
     color: #000 !important;
     cursor: pointer;
     text-decoration: none !important;
@@ -46,7 +46,15 @@ a:hover{
     color: $main !important;
 }
 
-
+.link {
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
 
 .header {
     display: flex;
@@ -59,6 +67,10 @@ a:hover{
 
 body {
     font-family: "e-Ukraine" !important;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 /* стили для элемента логотипа */
@@ -221,7 +233,7 @@ body {
         align-items: center;
     }
 }
-@media (max-width: 1620px) {
+@media (max-width: 1680px) {
     .section {
         flex-direction: column;
         height: max-content;
@@ -244,16 +256,20 @@ body {
 }
 
 
-
-
 .recent__projects {
     overflow-x: scroll;
     white-space: nowrap;
     overflow: hidden;
     margin-left: 5%;
     padding: 20px;
-
 }
+
+.recent__title {
+    margin-top: 3%;
+    font-weight: bold;
+}
+
+@import 'recent_project';
 
 .popular__projects {
     overflow-x: scroll;
@@ -275,80 +291,6 @@ body {
 
 .see_all a:hover {
     color: rgba(0, 0, 0, 0.7);
-}
-
-.project__header__text {
-    padding-top: 100px;
-    padding-left: 20px;
-    z-index: 100;
-    position: relative;
-    font-weight: bold;
-    text-transform: capitalize;
-}
-
-.project__header__text a{
-    color: #fff !important;
-}
-
-.project__header__text a:hover{
-    color: $main !important;
-}
-
-.recent__project {
-    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    display: inline-block;
-    background-color: #EFEFEF;
-    margin-right: 10px;
-    margin-right: 20px;
-    width: 700px;
-}
-
-.recent__project__content,
-.recent__project__footer {
-    padding-left: 20px;
-    padding-top: 20px;
-
-}
-
-.recent__project__footer {
-    padding-bottom: 20px;
-}
-
-.recent__footer--text,
-.projects__footer--socials {
-    display: inline-block;
-}
-
-.recent__footer--text {
-    padding-left: 45%;
-}
-
-.recent__project__header {
-    height: 150px;
-    border-radius: 10px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: #fff;
-    position: relative;
-    
-}
-
-.recent__project__header::before {
-    content: "";
-    border-radius: 10px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 2;
-  }
-.recent__title {
-    margin-top: 3%;
-    font-weight: bold;
 }
 
 .profile__slider-container {
@@ -919,7 +861,6 @@ body {
 
 		&__progress {
             display: inline-block;
-            margin-left: 10px;
 		}
 
 		&__footer--buttons {
@@ -1012,81 +953,8 @@ body {
 	}
 }
 
-.buttons {
 
-    &__button2 {
-        width: 350px;
-        transition: all 0.5s ease;
-        height: 55px;
-        border-radius: 10px;
-        border: none;
-        color: #fff;
-        background-color: $main;
-    
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        
-        &:hover {
-            font-size: 16px;
-            border-radius: 10px;
-            border: 3px solid #000;
-            color: #000;
-            background-color: #fff;
-        
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-
-    &__button {
-        font-size: 16px;
-        transition: all 0.5s ease;
-        width: 225px;
-        height: 55px;
-        border-radius: 10px;
-        border: 3px solid #000;
-        color: #000;
-    
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-
-        &:hover {
-            border-radius: 10px;
-            border: none;
-            color: #fff;
-            background-color: $main;
-        }
-    }
-}
 
 .settings{
     padding-top: 100px !important;
-}
-
-.projects__footer--social img{
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    padding-left: 10px;
-}
-
-.projects__footer--social{
-    display: inline-block;
-}
-
-.project-page--social{
-    display: inline-block;
-}
-
-.project-page--social img{
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    padding-left: 10px;
 }

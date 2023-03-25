@@ -51,4 +51,3 @@ container2.addEventListener('mousemove', (e) => {
   const walk = (x - startX2) * 3;
   container2.scrollLeft = scrollLeft2 - walk;
 });
-

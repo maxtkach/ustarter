@@ -34,7 +34,7 @@
 
     <div class="projects_large">
       <img class="projects__image" src="../{{ path }}/{{ getImageById(project1.id) }}" alt="Картинка 1">
-      <div class="projects__content">
+      <div class="projects__content_large">
         <div class="projects__main-info">
           <h2 class="projects__title"><a href="{{ url_for('project.ViewProject', project_id=project1.id) }}">{{ project1.caption }}</a></h2>
           <div class="projects__progress">
@@ -42,7 +42,9 @@
               <p class="progress__need">Потрібно коштів: {{ project1.neededAmount }}₴ </p>
               <p class="progress__donated">Зібрано: {{ project1.receivedAmount }}₴ (~{{ (project1.receivedAmount/project1.neededAmount)|round }}%) </p>
             </div>
-            <div class="progress__fillbar" style="width: {{ (project1.receivedAmount/project1.neededAmount)|round }}%"></div>
+            <div class="progress__fillbar">
+              <div class="fillbar__fill" style="width: {{ (project1.receivedAmount/project1.neededAmount)|round }}%"></div>
+            </div>
           </div>
           <div class="projects__info">
             <p class="projects__description info__author"><span>Автор: </span>Андрій Меленюк</p>
@@ -51,7 +53,7 @@
         </div>
         <div class="projects__footer">
           <div class="footer__texts">
-            <div class="footer__text"><span>Зв'язок з нами</span>
+            <div class="footer__text_left"><span>Зв'язок з нами</span>
               <div class="footer__socials">
                 <div class="footer__icon">
                   <img src="../static/images/logos_telegram.svg" alt="telegram">
@@ -67,13 +69,13 @@
                 </div>
               </div>
             </div>
-            <div class="footer__text" style="text-align:right">Адреса <br>
+            <div class="footer__text">Адреса <br>
               <span>Одеса, вул. Пушкіна 19 </span>
             </div>
           </div>
           <div class="footer__buttons">
             <div class="buttons__button2">СПОНСОРУВАТИ</div>
-            <div class="buttons__button " style="margin-left: 20px;"><button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <div class="buttons__button" ><button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               ХОЧУ ДО КОМАНДИ
             </button></div>
           </div>
@@ -116,7 +118,7 @@
         </div>
         <div class="projects__content">
           <div class="projects__main-info">
-            <h2 class="projects__title"><a href="{{ url_for('project.ViewProject', project_id=project3.id) }}">{{ project3.caption }}</a></h2>
+            <h2 class="projects__title"></h2>
             <p class="progress__donated_small">Зібрано: <span>~{{ (project3.receivedAmount/project3.neededAmount)|round }}%</span></p>
             <div class="projects__info">
               <p class="projects__description info__author"><span>Автор:</span> Андрій Меленюк</p>
@@ -169,39 +171,38 @@
 
 <!-- НОВЫЙ ПРОЕКТ ------------------------------------------- -->
 {% for project in latestProjects %}
-      <div class="recent__project">
-        <div class="recent__project__header" style="background-image: url(../{{ path }}/{{ getImageById(project.id) }})">
-          <h3 class="project__header__text"><a href="{{ url_for('project.ViewProject', project_id=project.id) }}">{{ project.caption }}</a></h3>
+      <div class="recent__recent-project">
+        <div class="recent-project__header" style="background-image: url(../{{ path }}/{{ getImageById(project.id) }})">
+          <h3 class="recent-project__text"><a href="{{ url_for('project.ViewProject', project_id=project.id) }}">{{ project.caption }}</a></h3>
         </div>
-        <div class="recent__project__content">
-          <div class="project__content__donates">
-            <div class="projects__progress__need">Потрібно коштів: {{ project.neededAmount }}₴ </div>
-            <div class="projects__progress__donated">Зібрано: {{ project.receivedAmount }}₴ (~{{ (project.receivedAmount/project.neededAmount)|round }}%) </div>
+        <div class="recent-project__content">
+          <div class="recent-project__donates">
+            <div class="recent-project__need">Потрібно коштів: {{ project.neededAmount }}₴ </div>
+            <div class="recent-project__donated">Зібрано: {{ project.receivedAmount }}₴ (~{{ (project.receivedAmount/project.neededAmount)|round }}%) </div>
           </div>
           <hr>
-          <div class="project__content__descriprion">
-            <p class="projects__description"><span>Автор:</span> Андрій Меленюк</p>
-
-            <p class="projects__description projects__goals"><span>Опис: </span> {{ loads(project.description)['description'] }} </p>
+          <div class="recent-project__descriprion">
+            <p class="recent-project__description"><span>Автор:</span> Андрій Меленюк</p>
+            <p class="recent-project__description recent-project__goals"><span>Опис: </span> {{ loads(project.description)['description'] }} </p>
           </div>
         </div>
         <hr>
-        <div class="recent__project__footer">
-          <div class="projects__footer--socials">
-            <div class="projects__footer--social" >
+        <div class="recent-project__recent-footer">
+          <div class="recent-footer__socials">
+            <div class="recent-footer__social" >
               <img src="../static/images/logos_telegram.svg" alt="telegram">
             </div>
-            <div class="projects__footer--social">
+            <div class="recent-footer__social">
               <img src="../static/images/logos_tiktok-icon.svg" alt="tiktok">
             </div>
-            <div class="projects__footer--social">
+            <div class="recent-footer__social">
               <img src="../static/images/skill-icons_instagram.svg" alt="instagram">
             </div>
-            <div class="projects__footer--social">
+            <div class="recent-footer__social">
               <img src="../static/images/skill-icons_twitter.svg" alt="twitter">
             </div>
           </div>
-          <div class="recent__footer--text">
+          <div class="recent-footer__text">
             <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path fill="currentColor"
                   d="M12 12q.825 0 1.413-.588T14 10q0-.825-.588-1.413T12 8q-.825 0-1.413.588T10 10q0 .825.588 1.413T12 12Zm0 7.35q3.05-2.8 4.525-5.088T18 10.2q0-2.725-1.738-4.462T12 4Q9.475 4 7.737 5.738T6 10.2q0 1.775 1.475 4.063T12 19.35ZM12 22q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2q3.175 0 5.588 2.225T20 10.2q0 2.5-1.988 5.438T12 22Zm0-11.8Z" />
