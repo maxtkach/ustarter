@@ -1,18 +1,18 @@
 from flask import Flask
-from config import Config
+from flask_sqlalchemy import SQLAlchemy
 from tables import db
-#from flask_migrate import Migrate
-from main_blueprint import main
-from project_blueprint import project
-from user_blueprint import user
 
 app = Flask(__name__)
 app.secret_key = "UwU"
-app.config["SQLALCHEMY_DATABASE_URI"] = Config.link
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db" # Config.link
+# db = SQLAlchemy(app)
 db.init_app(app)
 with app.app_context():
     db.create_all()
-#migrate = Migrate(app, db)
+
+from main_blueprint import main
+from project_blueprint import project
+from user_blueprint import user
 
 app.register_blueprint(user)
 app.register_blueprint(main)

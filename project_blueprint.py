@@ -1,5 +1,5 @@
 from flask import render_template, request, Flask, flash, redirect, url_for, Blueprint, session
-from config import Config
+# from config import Config
 from tables import *
 from queries import *
 from json import dumps, loads
@@ -65,6 +65,7 @@ def CreateProject():
             #db.session.commit()
             SaveImg(img, img_id=project.id)
             project.mediaNames = SaveMedia(images, img_id=project.id)
+            db.session.commit()
             return redirect(url_for('project.ViewProject', project_id=project.id))
 
     return render_template("project_creation.html")
